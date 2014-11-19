@@ -4,7 +4,7 @@ public class StartGame {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Hello Louis, even testen!");
+		System.out.println("Hello Louis, even testen! ");
 
 	}
 
