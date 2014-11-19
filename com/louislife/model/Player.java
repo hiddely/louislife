@@ -4,6 +4,6 @@ public class Player {
 	
 	private int id;
 	private String name;
-	private short rugnummer;
+	private short jerseyNumber;
 
 }
