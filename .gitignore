@@ -4,6 +4,8 @@
 *.ear
 *.class
 
+/bin/
+
 # eclipse specific git ignore
 *.pydevproject
 #.project
