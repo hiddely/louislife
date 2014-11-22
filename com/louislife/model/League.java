@@ -2,6 +2,11 @@ package com.louislife.model;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a league: A collection of teams in an area
+ * @author hidde
+ *
+ */
 public class League {
 
 	private int id;

@@ -2,6 +2,11 @@ package com.louislife.model;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Team object with players
+ * @author hidde
+ *
+ */
 public class Team {
 	
 	private int id;

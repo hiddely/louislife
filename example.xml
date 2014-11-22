@@ -5,3 +5,18 @@
 	<number>8</number>
 	<>
 </player>
+<game name="">
+	<league id="">
+		<match id="" date="">
+			<team_home>
+				<id></id>
+				<points></points>
+			</team_home>
+			<team_away>
+				<id></id>
+				<points></points>
+			</team_away>
+		</match>
+	</league>
+
+</game>
