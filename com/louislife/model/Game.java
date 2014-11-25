@@ -13,6 +13,7 @@ public class Game {
 
 	private int id;
 	private String name;
+	private int currentDay;
 	private ArrayList<League> leagues;
 	private ArrayList<Match> matches;
 
@@ -30,4 +31,53 @@ public class Game {
 		}
 		return points;
 	}
+
+	public Game(int id, String name, int currentDay) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.currentDay = currentDay;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getCurrentDay() {
+		return currentDay;
+	}
+
+	public void setCurrentDay(int currentDay) {
+		this.currentDay = currentDay;
+	}
+
+	public ArrayList<League> getLeagues() {
+		return leagues;
+	}
+
+	public void setLeagues(ArrayList<League> leagues) {
+		this.leagues = leagues;
+	}
+	
+	public void addLeague(League l) {
+		this.leagues.add(l);
+	}
+
+	public ArrayList<Match> getMatches() {
+		return matches;
+	}
+
+	public void setMatches(ArrayList<Match> matches) {
+		this.matches = matches;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	
 }

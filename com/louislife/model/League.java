@@ -44,6 +44,9 @@ public class League {
 	public void setTeams(ArrayList<Team> teams) {
 		this.teams = teams;
 	}
+	public void addTeam(Team t) {
+		this.teams.add(t);
+	}
 	
 	
 	

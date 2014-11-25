@@ -30,6 +30,9 @@ public class Team {
 	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
+	public void addPlayer(Player p) {
+		this.players.add(p);
+	}
 	public Team(int id, String name, ArrayList<Player> players) {
 		super();
 		this.id = id;

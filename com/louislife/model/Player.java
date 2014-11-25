@@ -5,11 +5,11 @@ public class Player {
 	private int id;
 	private String firstname;
 	private String surname;
-	private short jerseyNumber;
+	private byte jerseyNumber;
 	private PlayerType type;
-	private short offensiveScore;
-	private short defensiveScore;
-	private short staminaScore;
+	private short offensiveRating;
+	private short defensiveRating;
+	private short staminaRating;
 	private int teamId;
 	private PlayerStatus status;
 	private int price;
@@ -29,7 +29,7 @@ public class Player {
 	 * @param status
 	 * @param price
 	 */
-	public Player(int id, String firstname, String surname, short jerseyNumber,
+	public Player(int id, String firstname, String surname, byte jerseyNumber,
 			PlayerType type, short offensiveScore, short defensiveScore,
 			short staminaScore, int teamId, PlayerStatus status, int price) {
 		super();
@@ -38,9 +38,9 @@ public class Player {
 		this.surname = surname;
 		this.jerseyNumber = jerseyNumber;
 		this.type = type;
-		this.offensiveScore = offensiveScore;
-		this.defensiveScore = defensiveScore;
-		this.staminaScore = staminaScore;
+		this.offensiveRating = offensiveScore;
+		this.defensiveRating = defensiveScore;
+		this.staminaRating = staminaScore;
 		this.teamId = teamId;
 		this.status = status;
 		this.price = price;
@@ -76,7 +76,7 @@ public class Player {
 		return jerseyNumber;
 	}
 
-	public void setJerseyNumber(short jerseyNumber) {
+	public void setJerseyNumber(byte jerseyNumber) {
 		this.jerseyNumber = jerseyNumber;
 	}
 
@@ -89,27 +89,27 @@ public class Player {
 	}
 
 	public short getOffensiveScore() {
-		return offensiveScore;
+		return offensiveRating;
 	}
 
 	public void setOffensiveScore(short offensiveScore) {
-		this.offensiveScore = offensiveScore;
+		this.offensiveRating = offensiveScore;
 	}
 
 	public short getDefensiveScore() {
-		return defensiveScore;
+		return defensiveRating;
 	}
 
 	public void setDefensiveScore(short defensiveScore) {
-		this.defensiveScore = defensiveScore;
+		this.defensiveRating = defensiveScore;
 	}
 
 	public short getStaminaScore() {
-		return staminaScore;
+		return staminaRating;
 	}
 
 	public void setStaminaScore(short staminaScore) {
-		this.staminaScore = staminaScore;
+		this.staminaRating = staminaScore;
 	}
 
 	public int getTeamId() {
