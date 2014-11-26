@@ -59,7 +59,13 @@ public class League {
 		return "League [id=" + id + ", name=" + name + ", country=" + country
 				+ ", teams=" + teams + "]";
 	}
-	
+	public Team findTeam(int id) {
+		for (Team t : this.teams) {
+			if (t.getId() == id)
+				return t;
+		}
+		return null;
+	}
 	
 	
 	

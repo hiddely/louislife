@@ -30,6 +30,10 @@ public class Game {
 		transfers = new ArrayList<Transfer>();
 		matches = new ArrayList<Match>();
 	}
+	
+	public Team getUserTeam() {
+		return leagues.get(0).findTeam(currentTeam);
+	}
 
 	public String getName() {
 		return name;
