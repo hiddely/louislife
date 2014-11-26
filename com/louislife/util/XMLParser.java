@@ -13,6 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.louislife.model.Event;
+import com.louislife.model.EventType;
 import com.louislife.model.Game;
 import com.louislife.model.League;
 import com.louislife.model.Match;
@@ -63,8 +65,43 @@ public class XMLParser {
 					int mid = Integer.parseInt(getAttribute(match.getAttributes(), "id"));
 					int day = Integer.parseInt(getAttribute(match.getAttributes(), "day"));
 					
+					Match matchObj = new Match(mid, day);
+					
 					// Get home team data
 					NodeList homeData = match.getElementsByTagName("team_home");
+					int idhome = Integer.parseInt(getAttribute(homeData.item(0).getAttributes(), "id"));
+					
+					matchObj.setTeam_home(idhome);
+					
+					NodeList home_events = ((Element)homeData.item(0)).getElementsByTagName("event");
+					for (int a = 0; a < home_events.getLength(); a++) {
+						Element event = (Element)home_events.item(a);
+						int player = Integer.parseInt(getAttribute(event.getAttributes(), "id"));
+						int type = Integer.parseInt(getChildValue(event, "type"));
+						int minute = Integer.parseInt(getChildValue(event, "minute"));
+						
+						Event e = new Event(player, EventType.values()[type], minute);
+						
+						matchObj.addEventHome(e);
+					}
+					
+					
+					NodeList awayData = match.getElementsByTagName("team_away");
+					int idaway = Integer.parseInt(getAttribute(awayData.item(0).getAttributes(), "id"));
+
+					matchObj.setTeam_away(idaway);
+						
+					NodeList away_events = ((Element)awayData.item(0)).getElementsByTagName("event");
+					for (int a = 0; a < home_events.getLength(); a++) {
+						Element event = (Element)away_events.item(a);
+						int player = Integer.parseInt(getAttribute(event.getAttributes(), "id"));
+						int type = Integer.parseInt(getChildValue(event, "type"));
+						int minute = Integer.parseInt(getChildValue(event, "minute"));
+						
+						Event e = new Event(player, EventType.values()[type], minute);
+						
+						matchObj.addEventAway(e);
+					}
 					
 					game.addMatch(new Match(mid, day));
 					
