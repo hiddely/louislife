@@ -76,7 +76,7 @@ public class XMLParser {
 					NodeList home_events = ((Element)homeData.item(0)).getElementsByTagName("event");
 					for (int a = 0; a < home_events.getLength(); a++) {
 						Element event = (Element)home_events.item(a);
-						int player = Integer.parseInt(getAttribute(event.getAttributes(), "id"));
+						int player = Integer.parseInt(getAttribute(event.getAttributes(), "player"));
 						int type = Integer.parseInt(getChildValue(event, "type"));
 						int minute = Integer.parseInt(getChildValue(event, "minute"));
 						
@@ -92,9 +92,9 @@ public class XMLParser {
 					matchObj.setTeam_away(idaway);
 						
 					NodeList away_events = ((Element)awayData.item(0)).getElementsByTagName("event");
-					for (int a = 0; a < home_events.getLength(); a++) {
+					for (int a = 0; a < away_events.getLength(); a++) {
 						Element event = (Element)away_events.item(a);
-						int player = Integer.parseInt(getAttribute(event.getAttributes(), "id"));
+						int player = Integer.parseInt(getAttribute(event.getAttributes(), "player"));
 						int type = Integer.parseInt(getChildValue(event, "type"));
 						int minute = Integer.parseInt(getChildValue(event, "minute"));
 						
@@ -103,7 +103,7 @@ public class XMLParser {
 						matchObj.addEventAway(e);
 					}
 					
-					game.addMatch(new Match(mid, day));
+					game.addMatch(matchObj);
 					
 				}
 			}

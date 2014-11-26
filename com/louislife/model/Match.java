@@ -7,8 +7,8 @@ public class Match {
 private int id;
 private int day;
 
-ArrayList<Event> events_home;
-ArrayList<Event> events_away;
+private ArrayList<Event> events_home;
+private ArrayList<Event> events_away;
 
 private int team_home;
 private int team_away;
@@ -19,11 +19,17 @@ private int team_away;
 		
 		this.team_home = team_home;
 		this.team_away = team_away;
+		
+		events_home = new ArrayList<Event>();
+		events_away = new ArrayList<Event>();
 	}
 	
 	public Match(int id, int day){
 		this.id = id;
 		this.day = day;
+		
+		events_home = new ArrayList<Event>();
+		events_away = new ArrayList<Event>();
 	}
 	
 	public void addEventHome(Event e){
