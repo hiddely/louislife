@@ -31,6 +31,14 @@ public class Game {
 		matches = new ArrayList<Match>();
 	}
 	
+	public void nextDay(){
+		currentDay++;
+	}
+	
+	public void nextWeek(){
+		currentDay += 7;
+	}
+	
 	public Team getUserTeam() {
 		return leagues.get(0).findTeam(currentTeam);
 	}
