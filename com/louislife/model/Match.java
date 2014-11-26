@@ -1,92 +1,79 @@
 package com.louislife.model;
 
-/**
- * Class representing a played match between to teams
- * @author hidde
- *
- */
+import java.util.ArrayList;
+
 public class Match {
+
+private int id;
+private int day;
+
+ArrayList<Event> events_home;
+ArrayList<Event> events_away;
+
+private int team_home;
+private int team_away;
 	
-	private Team teamHome;
-	private Team teamAway;
-	
-	private int scoreHome;
-	private int scoreAway;
-	
-	/**
-	 * Get the result of the match
-	 * @return enum MatchResult
-	 */
-	public MatchResult getResult() {
-		if (scoreHome == scoreAway)
-			return MatchResult.TIE;
-		else if (scoreHome < scoreAway)
-			return MatchResult.AWAY;
-		else if (scoreHome > scoreAway)
-			return MatchResult.HOME;
-		return null;
+	public Match(int id, int day, int team_home, int team_away) {
+		this.id = id;
+		this.day = day;
+		
+		this.team_home = team_home;
+		this.team_away = team_away;
 	}
 	
-	/**
-	 * Get the winning team of the match
-	 * @return
-	 */
-	public Team getWinningTeam() {
-		if (getResult() == MatchResult.HOME)
-			return teamHome;
-		else if (getResult() == MatchResult.AWAY)
-			return teamAway;
-		return null; // At a tie
+	public Match(int id, int day){
+		this.id = id;
+		this.day = day;
 	}
 	
-	/**
-	 * Get the losing team of the match
-	 * @return the losing team
-	 */
-	public Team getLosingTeam() {
-		if (getResult() == MatchResult.HOME)
-			return teamAway;
-		else if (getResult() == MatchResult.AWAY)
-			return teamHome;
-		return null; // At a tie
+	public void addEventHome(Event e){
+		events_home.add(e);
 	}
 	
-	/**
-	 * Make new match object using team ids
-	 * @param teamHome team_id
-	 * @param teamAway team_id
-	 * @param scoreHome
-	 * @param scoreAway
-	 */
-	// TODO
-	// WARNING not finished
-	public Match(int teamHome, Team teamAway, int scoreHome, int scoreAway) {
-		//this.teamHome = // Team.find() ?
-		//this.teamAway
-		this.scoreHome = scoreHome;
-		this.scoreAway = scoreAway;
+	public void addEventAway(Event e){
+		events_away.add(e);
 	}
-	
-	public Match(Team teamHome, Team teamAway, int scoreHome, int scoreAway) {
-		super();
-		this.teamHome = teamHome;
-		this.teamAway = teamAway;
-		this.scoreHome = scoreHome;
-		this.scoreAway = scoreAway;
+
+	public int getId() {
+		return id;
 	}
-	public Team getTeamHome() {
-		return teamHome;
+
+	public int getDay() {
+		return day;
 	}
-	public Team getTeamAway() {
-		return teamAway;
+
+	public ArrayList<Event> getEvents_home() {
+		return events_home;
 	}
-	public int getScoreHome() {
-		return scoreHome;
+
+	public ArrayList<Event> getEvents_away() {
+		return events_away;
 	}
-	public int getScoreAway() {
-		return scoreAway;
+
+	public int getTeam_home() {
+		return team_home;
+	}
+
+	public int getTeam_away() {
+		return team_away;
+	}
+
+	public void setTeam_home(int team_home) {
+		this.team_home = team_home;
+	}
+
+	public void setTeam_away(int team_away) {
+		this.team_away = team_away;
+	}
+
+	@Override
+	public String toString() {
+		return "Match [id=" + id + ", day=" + day + ", events_home="
+				+ events_home + ", events_away=" + events_away + ", team_home="
+				+ team_home + ", team_away=" + team_away + "]";
 	}
 	
 	
-	
+
 }
+

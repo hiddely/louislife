@@ -5,13 +5,12 @@ public class Player {
 	private int id;
 	private String firstname;
 	private String surname;
-	private byte jerseyNumber;
+	private byte number;
 	private PlayerType type;
-	private short offensiveRating;
-	private short defensiveRating;
-	private short staminaRating;
+	private byte offensiveRating;
+	private byte defensiveRating;
+	private byte stamina;
 	private int teamId;
-	private PlayerStatus status;
 	private int price;
 
 	/**
@@ -30,19 +29,18 @@ public class Player {
 	 * @param price
 	 */
 	public Player(int id, String firstname, String surname, byte jerseyNumber,
-			PlayerType type, short offensiveScore, short defensiveScore,
-			short staminaScore, int teamId, PlayerStatus status, int price) {
+			PlayerType type, byte offensiveScore, byte defensiveScore,
+			byte staminaScore, int teamId, int price) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.surname = surname;
-		this.jerseyNumber = jerseyNumber;
+		this.number = jerseyNumber;
 		this.type = type;
 		this.offensiveRating = offensiveScore;
 		this.defensiveRating = defensiveScore;
-		this.staminaRating = staminaScore;
+		this.stamina = staminaScore;
 		this.teamId = teamId;
-		this.status = status;
 		this.price = price;
 	}
 
@@ -73,11 +71,11 @@ public class Player {
 	}
 
 	public short getJerseyNumber() {
-		return jerseyNumber;
+		return number;
 	}
 
 	public void setJerseyNumber(byte jerseyNumber) {
-		this.jerseyNumber = jerseyNumber;
+		this.number = jerseyNumber;
 	}
 
 	public PlayerType getType() {
@@ -88,28 +86,28 @@ public class Player {
 		this.type = type;
 	}
 
-	public short getOffensiveScore() {
+	public byte getOffensiveScore() {
 		return offensiveRating;
 	}
 
-	public void setOffensiveScore(short offensiveScore) {
+	public void setOffensiveScore(byte offensiveScore) {
 		this.offensiveRating = offensiveScore;
 	}
 
-	public short getDefensiveScore() {
+	public byte getDefensiveScore() {
 		return defensiveRating;
 	}
 
-	public void setDefensiveScore(short defensiveScore) {
+	public void setDefensiveScore(byte defensiveScore) {
 		this.defensiveRating = defensiveScore;
 	}
 
-	public short getStaminaScore() {
-		return staminaRating;
+	public byte getStaminaScore() {
+		return stamina;
 	}
 
-	public void setStaminaScore(short staminaScore) {
-		this.staminaRating = staminaScore;
+	public void setStaminaScore(byte staminaScore) {
+		this.stamina = staminaScore;
 	}
 
 	public int getTeamId() {
@@ -120,14 +118,6 @@ public class Player {
 		this.teamId = teamId;
 	}
 
-	public PlayerStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(PlayerStatus status) {
-		this.status = status;
-	}
-
 	public int getPrice() {
 		return price;
 	}
@@ -136,6 +126,18 @@ public class Player {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", firstname=" + firstname + ", surname="
+				+ surname + ", jerseyNumber=" + number + ", type=" + type
+				+ ", offensiveRating=" + offensiveRating + ", defensiveRating="
+				+ defensiveRating + ", staminaRating=" + stamina
+				+ ", teamId=" + teamId + ", price="
+				+ price + "]";
+	}
+
 	// Getters and Setters end
+	
+	
 
 }

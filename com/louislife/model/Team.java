@@ -40,6 +40,18 @@ public class Team {
 		this.players = players;
 	}
 	
+	public Team(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.players = new ArrayList<Player>();
+	}
+	@Override
+	public String toString() {
+		return "Team [id=" + id + ", name=" + name + ", players=" + players
+				+ "]";
+	}
+	
 	
 
 }

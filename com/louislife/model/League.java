@@ -20,6 +20,13 @@ public class League {
 		this.country = country;
 		this.teams = teams;
 	}
+	public League(int id, String name, String country) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.country = country;
+		this.teams = new ArrayList<Team>();
+	}
 	public int getId() {
 		return id;
 	}
@@ -47,6 +54,12 @@ public class League {
 	public void addTeam(Team t) {
 		this.teams.add(t);
 	}
+	@Override
+	public String toString() {
+		return "League [id=" + id + ", name=" + name + ", country=" + country
+				+ ", teams=" + teams + "]";
+	}
+	
 	
 	
 	

@@ -14,29 +14,21 @@ public class Game {
 	private int id;
 	private String name;
 	private int currentDay;
+	private int currentTeam;
 	private ArrayList<League> leagues;
+	private ArrayList<Transfer> transfers;
 	private ArrayList<Match> matches;
 
-	public int calcPoints(Team team) {
-		int points = 0;
-		for (int i = 0; i < matches.size(); i++) {
-			if (team.equals(matches.get(i).getWinningTeam())) {
-				points = points + 3;
-			}
-			if (team.equals(matches.get(i).getTeamAway())
-					|| team.equals(matches.get(i).getTeamHome())
-					&& matches.get(i).getResult() == MatchResult.TIE) {
-				points++;
-			}
-		}
-		return points;
-	}
-
-	public Game(int id, String name, int currentDay) {
+	public Game(int id, String name, int currentDay, int currentTeam) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.currentDay = currentDay;
+		this.currentTeam = currentTeam;
+		
+		leagues = new ArrayList<League>();
+		transfers = new ArrayList<Transfer>();
+		matches = new ArrayList<Match>();
 	}
 
 	public String getName() {
@@ -66,18 +58,27 @@ public class Game {
 	public void addLeague(League l) {
 		this.leagues.add(l);
 	}
-
-	public ArrayList<Match> getMatches() {
-		return matches;
+	
+	public void addTransfer(Transfer t) {
+		this.transfers.add(t);
 	}
-
-	public void setMatches(ArrayList<Match> matches) {
-		this.matches = matches;
+	
+	public void addMatch(Match m) {
+		this.matches.add(m);
 	}
 
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", name=" + name + ", currentDay="
+				+ currentDay + ", currentTeam=" + currentTeam + ", leagues="
+				+ leagues + ", transfers=" + transfers + ", matches=" + matches
+				+ "]";
+	}
+	
 	
 	
 }
