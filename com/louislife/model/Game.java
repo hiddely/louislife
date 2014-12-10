@@ -62,6 +62,10 @@ public class Game {
 	public ArrayList<League> getLeagues() {
 		return leagues;
 	}
+	
+	public ArrayList<Match> getMatches() {
+		return matches;
+	}
 
 	public void setLeagues(ArrayList<League> leagues) {
 		this.leagues = leagues;
@@ -81,6 +85,21 @@ public class Game {
 
 	public int getId() {
 		return id;
+	}
+	
+	public Team getPlayerTeam(Player pl){
+		int day = 0;
+		int newTeamId = 0;
+		for(int i = 0; i < this.transfers.size(); i++){
+			if(pl.equals(transfers.get(i).getPlayer()) && transfers.get(i).getDay() > day){
+				newTeamId = transfers.get(i).getTo();
+			}
+		}
+		if(day != 0){
+			return leagues.get(0).findTeam(newTeamId);
+		}else{
+			return leagues.get(0).findTeam(pl.getTeamId());
+		}
 	}
 
 	@Override
