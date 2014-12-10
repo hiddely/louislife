@@ -19,9 +19,11 @@ public class StartGame {
 		
 		Game game = parser.parseGame();
 		
-		System.out.println("Game: "+game.toString());
+		System.out.println("Games: "+XMLParser.getGames().toString());
 		
-		System.out.println("Saving: "+parser.writeGame(game));
+		//System.out.println("Game: "+game.toString());
+		
+		//System.out.println("Saving: "+parser.writeGame(game));
 		
 	}
 
