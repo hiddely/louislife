@@ -65,6 +65,14 @@ public class Team {
 		this.name = name;
 		this.players = new ArrayList<Player>();
 	}
+	
+	public Player findPlayer(int id) {
+		for (Player p : this.players) {
+			if (p.getId() == id)
+				return p;
+		}
+		return null;
+	}
 
 	@Override
 	public String toString() {

@@ -31,6 +31,17 @@ public class Game {
 		matches = new ArrayList<Match>();
 	}
 	
+	private static Game instance = null;
+	   protected Game() {
+	      // Exists only to defeat instantiation.
+	   }
+	   public static Game getInstance() {
+	      if(instance == null) {
+	         instance = new Game();
+	      }
+	      return instance;
+	   }
+	
 	public void nextDay(){
 		currentDay++;
 	}

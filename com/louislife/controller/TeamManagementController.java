@@ -8,14 +8,25 @@ public class TeamManagementController extends Observable{
 
 	private int transferIdentifier = 0;
 
-	public void buyPlayer(int teamFromId, int teamToId, int playerId){
-		Team teamFrom = game.getLeagues().get(0).findTeam(teamFromId);
-		Team teamTo = game.getLeagues().get(0).findTeam(teamToId);
-		Player player = 
+	/**
+	 * Creates Transfer, adds it to the list of transfer and sets new balances
+	 * 
+	 * @param leagueIndex	We have one League so leagueIndex = 0
+	 * @param teamFromId	
+	 * @param teamToId
+	 * @param playerId
+	 */
+	public void buyPlayer(int leagueIndex, int teamFromId, int teamToId, int playerId){
+		Team teamFrom = Game.getInstance().getLeagues().get(leagueIndex).findTeam(teamFromId);
+		Team teamTo = Game.getInstance().getLeagues().get(leagueIndex).findTeam(teamToId);
+		Player pl = Game.getInstance().getLeagues().get(leagueIndex).findTeam(teamFromId).findPlayer(playerId);
 		
-		if(to.getBalance() >= pl.getPrice()){
-			transfer = new Transfer(transferIdentifier, )
+		if(teamTo.getBalance() >= pl.getPrice()){
+			Transfer transfer = new Transfer(transferIdentifier, teamFromId, teamToId, playerId, pl.getPrice(), Game.getInstance().getCurrentDay());
+			Game.getInstance().addTransfer(transfer);
 			transferIdentifier++;
+			teamFrom.setBalance(teamFrom.getBalance() + pl.getPrice());
+			teamTo.setBalance(teamTo.getBalance() - pl.getPrice());
 		}
 	}
 }
