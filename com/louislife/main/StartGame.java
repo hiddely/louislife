@@ -21,6 +21,8 @@ public class StartGame {
 		
 		System.out.println("Game: "+game.toString());
 		
+		System.out.println("Saving: "+parser.writeGame(game));
+		
 	}
 
 }

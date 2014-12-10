@@ -62,6 +62,10 @@ public class Game {
 	public ArrayList<League> getLeagues() {
 		return leagues;
 	}
+	
+	public ArrayList<Match> getMatches() {
+		return matches;
+	}
 
 	public void setLeagues(ArrayList<League> leagues) {
 		this.leagues = leagues;

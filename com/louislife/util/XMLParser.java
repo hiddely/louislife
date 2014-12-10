@@ -2,6 +2,9 @@ package com.louislife.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,7 +15,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -35,6 +37,8 @@ public class XMLParser {
 	private DocumentBuilder builder;
 	private String filename;
 	
+	private static final String SAVE_FOLDER = "savegames/";
+	
 	public XMLParser(String filename) throws ParserConfigurationException {
 		this.filename = filename;
 		
@@ -45,7 +49,7 @@ public class XMLParser {
 	}
 	
 	public Game parseGame() throws SAXException, IOException, Exception {		
-		Document document = builder.parse(ClassLoader.getSystemResourceAsStream(filename));
+		Document document = builder.parse(ClassLoader.getSystemResourceAsStream(SAVE_FOLDER + filename));
 		document.normalize();
 		
 		Game game = null;
@@ -60,6 +64,7 @@ public class XMLParser {
 			int currentTeam = Integer.parseInt(getAttribute(gameNode.getAttributes(), "currentteam"));
 			
 			game = new Game(id, name, currentDay, currentTeam);
+			
 			
 			// Get match data
 			
@@ -174,7 +179,7 @@ public class XMLParser {
 							byte rating_def = Byte.parseByte(getChildValue(player, "defensiveRating"));
 							byte stamina = Byte.parseByte(getChildValue(player, "stamina"));
 							
-							int team_id = Integer.parseInt(getChildValue(player, "teamId"));
+							int team_id = tid;
 							int price = Integer.parseInt(getChildValue(player, "price"));
 							
 							PlayerType playerType = PlayerType.values()[player_type]; // Convert to enum counterparts
@@ -212,48 +217,106 @@ public class XMLParser {
 			rootElement.setAttribute("currentday", g.getCurrentDay()+"");
 			rootElement.setAttribute("currentteam", g.getUserTeam().getId()+"");
 			
-			for (Team t : g.getLeagues().get(0).getTeams()) {
+			for (League l : g.getLeagues()) {
+				Element eLeague = doc.createElement("league");
+				eLeague.setAttribute("id", l.getId()+"");
+				eLeague.setAttribute("name", l.getName());
+				eLeague.setAttribute("country", l.getCountry());
+				rootElement.appendChild(eLeague);
 				
+				for (Team t : l.getTeams()) {
+					Element eTeam = doc.createElement("team");
+					eTeam.setAttribute("id", t.getId()+"");
+					eTeam.setAttribute("name", t.getName());
+					
+					for (Player p : t.getPlayers()) {
+						Element ePlayer = doc.createElement("player");
+						ePlayer.setAttribute("id", p.getId()+"");
+						
+						Element eName = doc.createElement("name");
+						eName.appendChild(doc.createTextNode(p.getFirstname()));
+						ePlayer.appendChild(eName);
+						
+						Element eLastName = doc.createElement("surname");
+						eLastName.appendChild(doc.createTextNode(p.getSurname()));
+						ePlayer.appendChild(eLastName);
+						
+						Element eNumber = doc.createElement("number");
+						eNumber.appendChild(doc.createTextNode(p.getJerseyNumber()+""));
+						ePlayer.appendChild(eNumber);
+						
+						Element eType = doc.createElement("type");
+						eType.appendChild(doc.createTextNode(p.getType().ordinal()+""));
+						ePlayer.appendChild(eType);
+						
+						Element offensive = doc.createElement("offensiveRating");
+						offensive.appendChild(doc.createTextNode(p.getOffensiveScore()+""));
+						ePlayer.appendChild(offensive);
+						
+						Element defensive = doc.createElement("defensiveRating");
+						defensive.appendChild(doc.createTextNode(p.getDefensiveScore()+""));
+						ePlayer.appendChild(defensive);
+						
+						Element stamina = doc.createElement("stamina");
+						stamina.appendChild(doc.createTextNode(p.getStaminaScore()+""));
+						ePlayer.appendChild(stamina);
+						
+						Element price = doc.createElement("price");
+						price.appendChild(doc.createTextNode(p.getPrice()+""));
+						ePlayer.appendChild(price);
+						
+						eTeam.appendChild(ePlayer);
+					}
+					
+					eLeague.appendChild(eTeam);
+				}
 			}
 			
+			for (Match m : g.getMatches()) {
+				Element eM = doc.createElement("match");
+				eM.setAttribute("id", m.getId()+"");
+				eM.setAttribute("day", m.getDay()+"");
+				Element tH = doc.createElement("team_home");
+				tH.setAttribute("id", m.getTeam_home()+"");
+				for (Event e : m.getEvents_home()) {
+					Element eE = doc.createElement("event");
+					eE.setAttribute("player", e.getPlayer()+"");
+					Element eEType = doc.createElement("type");
+					eEType.appendChild(doc.createTextNode(e.getType()+""));
+					Element eEMinute = doc.createElement("minute");
+					eEMinute.appendChild(doc.createTextNode(e.getMinute()+""));
+					eE.appendChild(eEType);
+					eE.appendChild(eEMinute);
+					
+					tH.appendChild(eE);
+				}
+				
+				Element tA = doc.createElement("team_away");
+				tA.setAttribute("id", m.getTeam_away()+"");
+				for (Event e : m.getEvents_away()) {
+					Element eE = doc.createElement("event");
+					eE.setAttribute("player", e.getPlayer()+"");
+					Element eEType = doc.createElement("type");
+					eEType.appendChild(doc.createTextNode(e.getType()+""));
+					Element eEMinute = doc.createElement("minute");
+					eEMinute.appendChild(doc.createTextNode(e.getMinute()+""));
+					eE.appendChild(eEType);
+					eE.appendChild(eEMinute);
+					
+					tA.appendChild(eE);
+				}
+				
+				eM.appendChild(tH);
+				eM.appendChild(tA);
+				
+				rootElement.appendChild(eM);
+			}
 			
-			// staff elements
-			Element staff = doc.createElement("Staff");
-			rootElement.appendChild(staff);
-	 
-			// set attribute to staff element
-			Attr attr = doc.createAttribute("id");
-			attr.setValue("1");
-			staff.setAttributeNode(attr);
-	 
-			// shorten way
-			// staff.setAttribute("id", "1");
-	 
-			// firstname elements
-			Element firstname = doc.createElement("firstname");
-			firstname.appendChild(doc.createTextNode("yong"));
-			staff.appendChild(firstname);
-	 
-			// lastname elements
-			Element lastname = doc.createElement("lastname");
-			lastname.appendChild(doc.createTextNode("mook kim"));
-			staff.appendChild(lastname);
-	 
-			// nickname elements
-			Element nickname = doc.createElement("nickname");
-			nickname.appendChild(doc.createTextNode("mkyong"));
-			staff.appendChild(nickname);
-	 
-			// salary elements
-			Element salary = doc.createElement("salary");
-			salary.appendChild(doc.createTextNode("100000"));
-			staff.appendChild(salary);
-	 
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(filename));
+			StreamResult result = new StreamResult(new File(SAVE_FOLDER + "newsave.xml"));
 	 
 			// Output to console for testing
 			// StreamResult result = new StreamResult(System.out);
@@ -268,8 +331,51 @@ public class XMLParser {
 		  } catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		  }
+		return false;
+	}
+	
+	/**
+	 * Maakt een nieuw game aan met name
+	 * @param name
+	 * @return true on success, false on failure
+	 */
+	public boolean createGame(String name) {
+		File f = new File(name);
+		if (f.isDirectory()) {
+			return false;
 		}
-	return false;
+		if (!f.exists()) {
+			File src = new File("example.xml");
+			File target = new File(SAVE_FOLDER + name);
+
+			try {
+				Files.copy(src.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				return true;
+			} catch (IOException e) {
+				return false;
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Geef de current savegames bij naam
+	 * @return Lijst van games
+	 */
+	public static ArrayList<String> getGames() {
+		ArrayList<String> out = new ArrayList<String>();
+		
+		File folder = new File(SAVE_FOLDER);
+		File[] listOfFiles = folder.listFiles();
+		
+		for (int i = 0; i < listOfFiles.length; i++) {
+			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".xml")) {
+				out.add(listOfFiles[i].getName().replaceFirst(".xml", ""));
+			}
+		}
+		
+		return out;
 	}
 	
 	public String getChildValue(Node p, String name) {
