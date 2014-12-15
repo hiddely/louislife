@@ -1,6 +1,8 @@
 package com.louislife.UI;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -26,17 +28,21 @@ public class MainApplication extends Application {
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		mainContainer.setScreen(MainApplication.MAIN_MENU);
 		
-		
+		primaryStage.setTitle("Louis life");
 		
 		Group root= new Group();
 		root.getChildren().addAll(mainContainer);
 		Scene scene= new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setFullScreen(true);
+		//primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
 
 		
 	}
+	
+	@FXML protected void actionButtonLoad(ActionEvent event) {
+        System.out.print("Pressed load");
+    }
 
 }
