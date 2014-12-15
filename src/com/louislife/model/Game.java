@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Represents a Game object with leagues and played matches. This holds all the
  * game data necessary for one instance of the game to function.
+ * This object is a Singleton.
  * 
  * @author hidde
  *
