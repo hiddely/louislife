@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Represents a Game object with leagues and played matches. This holds all the
  * game data necessary for one instance of the game to function.
+ * This object is a Singleton.
  * 
  * @author hidde
  *
@@ -31,10 +32,16 @@ public class Game {
 		matches = new ArrayList<Match>();
 	}
 	
+	/**
+	 * Adds 1 day to the Day count. Currently not in use (use nextWeek to play a round).
+	 */
 	public void nextDay(){
 		currentDay++;
 	}
 	
+	/**
+	 * Adds 7 days to the Day count (used to play a  round).
+	 */
 	public void nextWeek(){
 		currentDay += 7;
 	}
