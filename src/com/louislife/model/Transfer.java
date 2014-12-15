@@ -2,8 +2,13 @@ package com.louislife.model;
 
 public class Transfer {
 	
-	private int id;
+	/**
+	 * A transfer object should be created any time a player is transferred.
+	 * This class serves as a history log of all transfers that happened.
+	 * To get() a player's team or a team's player, the Team and Player classes sh
+	 */
 	
+	private int id;
 	private int from;
 	private int to;
 	private int player;
