@@ -1,7 +1,9 @@
 package com.louislife.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -48,8 +50,18 @@ public class XMLParser {
 		
 	}
 	
+	/**
+	 * Parses game file with filename and initializes the singleton instance of Game
+	 * @return the Game object, also accessable by Game.getInstance()
+	 * @throws SAXException
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public Game parseGame() throws SAXException, IOException, Exception {		
-		Document document = builder.parse(ClassLoader.getSystemResourceAsStream(SAVE_FOLDER + filename));
+		String loadFile = SAVE_FOLDER + filename;
+		System.out.println("LOAD: "+loadFile);
+		InputStream input = new FileInputStream(loadFile);
+		Document document = builder.parse(input);
 		document.normalize();
 		
 		Game game = null;

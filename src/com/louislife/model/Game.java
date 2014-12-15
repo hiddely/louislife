@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class Game {
 
+	private static Game sGame;
+	
 	private int id;
 	private String name;
 	private int currentDay;
@@ -30,7 +32,30 @@ public class Game {
 		leagues = new ArrayList<League>();
 		transfers = new ArrayList<Transfer>();
 		matches = new ArrayList<Match>();
+		
+		// Set static for singleton
+		Game.sGame = this;
 	}
+	
+	/**
+	 * Used for singleton instance
+	 */
+	public Game() {
+		
+	}
+	
+	/**
+	 * Get static singleton for Game
+	 * @return
+	 */
+	public static Game getInstance() {
+		if (sGame == null) {
+			sGame = new Game(); // Empty game
+		}
+		return sGame;
+	}
+	
+	
 	
 	/**
 	 * Adds 1 day to the Day count. Currently not in use (use nextWeek to play a round).

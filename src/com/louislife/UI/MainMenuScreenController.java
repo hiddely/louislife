@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.GridPane;
 
+import com.louislife.model.Game;
 import com.louislife.util.XMLParser;
 
 public class MainMenuScreenController implements Initializable,
@@ -22,6 +25,7 @@ public class MainMenuScreenController implements Initializable,
 	
 	/** XML Properties **/
 	@FXML private GridPane menuPane;
+	@FXML private ListView<String> loadGameList;
 	
 	public MainMenuScreenController() {
 		// TODO Auto-generated constructor stub
@@ -40,19 +44,30 @@ public class MainMenuScreenController implements Initializable,
 		
 		System.out.println("GamesFromINIT: "+games.toString());
 		
-		ListView<String> list = new ListView<String>();
+		loadGameList = new ListView<String>();
 		ObservableList<String> items =FXCollections.observableArrayList (games);
-		list.setItems(items);
+		loadGameList.setItems(items);
                       
-		menuPane.add(list, 0, 0);
+		menuPane.add(loadGameList, 0, 0);
 	}
 	
-	@FXML protected void actionButtonContinue(ActionEvent event) {
-        System.out.print("Pressed Continue");
+	@FXML protected void actionButtonNew(ActionEvent event) {
+        System.out.println("Pressed New");
     }
 	
 	@FXML protected void actionButtonLoad(ActionEvent event) {
-        System.out.print("Pressed load");
+        System.out.println("Pressed load: "+loadGameList.getSelectionModel().getSelectedItem());
+        
+        //loadGameList.getSelectionModel().getSelectedItem()
+        try {
+			XMLParser parser = new XMLParser(loadGameList.getSelectionModel().getSelectedItem() + ".xml");
+			parser.parseGame();
+			
+			// The instance is now set
+			System.out.println("Game loaded: "+Game.getInstance().toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
 }
