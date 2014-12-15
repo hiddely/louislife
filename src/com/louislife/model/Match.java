@@ -24,6 +24,14 @@ private int team_away;
 		events_away = new ArrayList<Event>();
 	}
 	
+	/**
+	 * Creates a new match.
+	 * 
+	 * A match is played on the day that the overview screen shows before pressing the next round button.
+	 * Thus, nextWeek() happens after creating the match object.
+	 * @param id - int. Match ID
+	 * @param day - int. Day the match is played on.
+	 */
 	public Match(int id, int day){
 		this.id = id;
 		this.day = day;
