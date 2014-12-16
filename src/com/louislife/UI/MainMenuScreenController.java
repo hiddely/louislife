@@ -40,15 +40,14 @@ public class MainMenuScreenController implements Initializable,
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		// Laad de load games
 		ArrayList<String> games = XMLParser.getGames();
-		
 		System.out.println("GamesFromINIT: "+games.toString());
 		
-		loadGameList = new ListView<String>();
+		// En zet ze dynamisch in de UI
 		ObservableList<String> items =FXCollections.observableArrayList (games);
 		loadGameList.setItems(items);
                       
-		menuPane.add(loadGameList, 0, 0);
 	}
 	
 	@FXML protected void actionButtonNew(ActionEvent event) {
