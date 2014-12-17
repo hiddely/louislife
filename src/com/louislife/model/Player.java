@@ -1,8 +1,10 @@
 package com.louislife.model;
 
+import com.louislife.model.*;
 
 /**
  * Represents football player
+ * 
  * @author hidde
  *
  */
@@ -36,8 +38,8 @@ public class Player {
 	 * @param price
 	 */
 	public Player(int id, String firstname, String surname, byte jerseyNumber,
-			PlayerType type, PlayerStatus status, byte offensiveScore, byte defensiveScore,
-			byte staminaScore, int teamId, int price) {
+			PlayerType type, PlayerStatus status, byte offensiveScore,
+			byte defensiveScore, byte staminaScore, int teamId, int price) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -147,13 +149,24 @@ public class Player {
 		return "Player [id=" + id + ", firstname=" + firstname + ", surname="
 				+ surname + ", jerseyNumber=" + number + ", type=" + type
 				+ ", offensiveRating=" + offensiveRating + ", defensiveRating="
-				+ defensiveRating + ", staminaRating=" + stamina
-				+ ", teamId=" + teamId + ", price="
-				+ price + "]";
+				+ defensiveRating + ", staminaRating=" + stamina + ", teamId="
+				+ teamId + ", price=" + price + "]";
 	}
 
 	// Getters and Setters end
-	
-	
+
+	public boolean equals(Player pl) {
+		if (this.id == pl.id && this.firstname.equals(pl.getFirstname())
+				&& this.surname.equals(pl.getSurname())
+				&& this.number == pl.getJerseyNumber()
+				&& this.type == pl.getType()
+				&& this.offensiveRating == pl.getDefensiveScore()
+				&& this.defensiveRating == pl.getDefensiveScore()
+				&& this.stamina == pl.getStaminaScore()
+				&& this.teamId == pl.teamId && this.price == pl.getPrice()) {
+			return true;
+		}
+		return false;
+	}
 
 }
