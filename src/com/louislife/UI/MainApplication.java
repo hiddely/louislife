@@ -11,10 +11,12 @@ import javafx.stage.Stage;
 
 public class MainApplication extends Application {
 
+	/** Schermen **/
 	public static final String MAIN_MENU = "main_menu";
 	public static final String MAIN_MENU_FXML = "GameMenuPlaceholder.fxml";
 	public static final String OVERVIEW = "game_overview";
 	public static final String OVERVIEW_FXML = "GameOverview.fxml";
+	
 	ScreensController mainContainer = new ScreensController(); 
 	
 	public MainApplication() {
@@ -26,14 +28,14 @@ public class MainApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//load all screens here
+		// Load all screens here
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 		mainContainer.setScreen(MainApplication.MAIN_MENU);
 		
 		primaryStage.setTitle("Louis life");
 		
-		Group root= new Group();
+		Group root = new Group();
 		root.getChildren().addAll(mainContainer);
 		Scene scene= new Scene(root);
 		primaryStage.setScene(scene);
