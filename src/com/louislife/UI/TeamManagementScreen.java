@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 public class TeamManagementScreen extends Application{
 
+	/**
+	 * Launches the UI
+	 * @param args
+	 */
 	public static void main(String[] args){
 		launch(args);
 	}
