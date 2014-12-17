@@ -2,6 +2,11 @@ package com.louislife.model;
 
 import java.util.ArrayList;
 
+/**
+ * Represents match to be played or that is already played
+ * @author hidde
+ *
+ */
 public class Match {
 
 private int id;

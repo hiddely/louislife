@@ -30,6 +30,7 @@ import com.louislife.model.Game;
 import com.louislife.model.League;
 import com.louislife.model.Match;
 import com.louislife.model.Player;
+import com.louislife.model.PlayerStatus;
 import com.louislife.model.PlayerType;
 import com.louislife.model.Team;
 import com.louislife.model.Transfer;
@@ -187,6 +188,7 @@ public class XMLParser {
 							byte number = Byte.parseByte(getChildValue(player, "number"));
 							
 							int player_type = Integer.parseInt(getChildValue(player, "type"));
+							int player_state = Integer.parseInt(getChildValue(player, "status"));
 							byte rating_offensive = Byte.parseByte(getChildValue(player, "offensiveRating"));
 							byte rating_def = Byte.parseByte(getChildValue(player, "defensiveRating"));
 							byte stamina = Byte.parseByte(getChildValue(player, "stamina"));
@@ -195,8 +197,9 @@ public class XMLParser {
 							int price = Integer.parseInt(getChildValue(player, "price"));
 							
 							PlayerType playerType = PlayerType.values()[player_type]; // Convert to enum counterparts
+							PlayerStatus pstatus = PlayerStatus.values()[player_state];
 							
-							team.addPlayer(new Player(pid, pname, surname, number, playerType, rating_offensive, rating_def, stamina, team_id, price));
+							team.addPlayer(new Player(pid, pname, surname, number, playerType, pstatus, rating_offensive, rating_def, stamina, team_id, price));
 						}
 						
 						leagueObject.addTeam(team);
@@ -260,6 +263,10 @@ public class XMLParser {
 						Element eType = doc.createElement("type");
 						eType.appendChild(doc.createTextNode(p.getType().ordinal()+""));
 						ePlayer.appendChild(eType);
+						
+						Element eStatus = doc.createElement("status");
+						eStatus.appendChild(doc.createTextNode(p.getStatus().ordinal()+""));
+						ePlayer.appendChild(eStatus);
 						
 						Element offensive = doc.createElement("offensiveRating");
 						offensive.appendChild(doc.createTextNode(p.getOffensiveScore()+""));

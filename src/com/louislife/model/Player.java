@@ -1,5 +1,11 @@
 package com.louislife.model;
 
+
+/**
+ * Represents football player
+ * @author hidde
+ *
+ */
 public class Player {
 
 	private int id;
@@ -7,6 +13,7 @@ public class Player {
 	private String surname;
 	private byte number;
 	private PlayerType type;
+	private PlayerStatus status;
 	private byte offensiveRating;
 	private byte defensiveRating;
 	private byte stamina;
@@ -29,7 +36,7 @@ public class Player {
 	 * @param price
 	 */
 	public Player(int id, String firstname, String surname, byte jerseyNumber,
-			PlayerType type, byte offensiveScore, byte defensiveScore,
+			PlayerType type, PlayerStatus status, byte offensiveScore, byte defensiveScore,
 			byte staminaScore, int teamId, int price) {
 		super();
 		this.id = id;
@@ -37,6 +44,7 @@ public class Player {
 		this.surname = surname;
 		this.number = jerseyNumber;
 		this.type = type;
+		this.status = status;
 		this.offensiveRating = offensiveScore;
 		this.defensiveRating = defensiveScore;
 		this.stamina = staminaScore;
@@ -84,6 +92,14 @@ public class Player {
 
 	public void setType(PlayerType type) {
 		this.type = type;
+	}
+
+	public PlayerStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(PlayerStatus status) {
+		this.status = status;
 	}
 
 	public byte getOffensiveScore() {

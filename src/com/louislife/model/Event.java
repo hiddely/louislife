@@ -1,5 +1,10 @@
 package com.louislife.model;
 
+/**
+ * Events that happened during match. Always child of team
+ * @author hidde
+ *
+ */
 public class Event {
 	
 private int player;

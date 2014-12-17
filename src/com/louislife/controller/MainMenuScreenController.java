@@ -1,4 +1,4 @@
-package com.louislife.UI;
+package com.louislife.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +15,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.GridPane;
 
+import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
+import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.util.XMLParser;
 
