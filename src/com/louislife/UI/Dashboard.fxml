@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -15,20 +16,26 @@
       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
     <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
     <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="NEVER" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button mnemonicParsing="false" onAction="#penisButtonPressed" prefHeight="33.0" prefWidth="135.0" text="PENIS" GridPane.columnIndex="3" />
-      <Pane opacity="0.5" prefHeight="200.0" prefWidth="200.0">
-         <effect>
-            <BoxBlur />
-         </effect>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.rowIndex="1">
          <children>
             <Label layoutX="40.0" layoutY="40.0" prefHeight="39.0" prefWidth="194.0" text="MyLabel" />
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Button layoutX="142.0" layoutY="87.0" mnemonicParsing="false" onAction="#penisButtonPressed" prefHeight="33.0" prefWidth="135.0" text="MATTHIJS" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="4" GridPane.rowIndex="3" />
    </children>
 </GridPane>
