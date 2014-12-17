@@ -28,10 +28,4 @@ public class GameDashboardController implements Initializable, ControlledScreen 
 
 	}
 	
-	@FXML
-	protected void penisButtonPressed(Event event){
-		System.out.println("Aw YEAH MY DICK");
-		
-		
-	}
 }

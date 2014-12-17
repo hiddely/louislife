@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
@@ -23,19 +24,26 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.rowIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
+         <styleClass>
+            <String fx:value="dashboard-pane" />
+            <String fx:value="pane-1" />
+         </styleClass>
          <children>
-            <Label layoutX="40.0" layoutY="40.0" prefHeight="39.0" prefWidth="194.0" text="MyLabel" />
+            <Label layoutX="30.0" layoutY="30.0" prefHeight="39.0" prefWidth="202.0" text="Next game" textFill="#ffffffe5">
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+            </Label>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <Button layoutX="142.0" layoutY="87.0" mnemonicParsing="false" onAction="#penisButtonPressed" prefHeight="33.0" prefWidth="135.0" text="MATTHIJS" />
-         </children>
-      </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.rowIndex="3" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="3" />
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
    </children>
 </GridPane>

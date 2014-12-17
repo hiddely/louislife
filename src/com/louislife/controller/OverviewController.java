@@ -19,7 +19,7 @@ public class OverviewController extends Observable {
 	public void nextMatch() {
 		Game.getInstance().nextWeek();
 		
-		Match playedMatch = new Match(,Game.getInstance().getCurrentDay(),Game.getInstance().getUserTeam,);
+		//Match playedMatch = new Match(,Game.getInstance().getCurrentDay(),Game.getInstance().getUserTeam,);
 		//TODO: Add the Controller method for SpelGenerator
 	}
 }
