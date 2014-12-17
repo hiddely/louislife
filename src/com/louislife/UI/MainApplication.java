@@ -13,6 +13,8 @@ public class MainApplication extends Application {
 
 	public static final String MAIN_MENU = "main_menu";
 	public static final String MAIN_MENU_FXML = "GameMenuPlaceholder.fxml";
+	public static final String OVERVIEW = "game_overview";
+	public static final String OVERVIEW_FXML = "GameOverview.fxml";
 	ScreensController mainContainer = new ScreensController(); 
 	
 	public MainApplication() {
@@ -26,6 +28,7 @@ public class MainApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		//load all screens here
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
+		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 		mainContainer.setScreen(MainApplication.MAIN_MENU);
 		
 		primaryStage.setTitle("Louis life");
@@ -37,12 +40,6 @@ public class MainApplication extends Application {
 		//primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
-
-		
 	}
-	
-	@FXML protected void actionButtonLoad(ActionEvent event) {
-        System.out.print("Pressed load");
-    }
 
 }
