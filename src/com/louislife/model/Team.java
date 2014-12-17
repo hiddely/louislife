@@ -46,7 +46,7 @@ public class Team {
 	public int getBalance() {
 		return balance;
 	}
-	
+
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
@@ -64,6 +64,14 @@ public class Team {
 		this.id = id;
 		this.name = name;
 		this.players = new ArrayList<Player>();
+	}
+
+	public Player findPlayer(int id) {
+		for (Player p : this.players) {
+			if (p.getId() == id)
+				return p;
+		}
+		return null;
 	}
 
 	@Override
