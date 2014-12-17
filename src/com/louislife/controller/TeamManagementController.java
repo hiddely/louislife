@@ -2,12 +2,15 @@ package com.louislife.controller;
 
 import java.util.Observable;
 
+import javafx.event.ActionEvent;
+
 import com.louislife.model.*;
 
 public class TeamManagementController extends Observable {
 
 	private int transferIdentifier = 0;
 
+	
 	/**
 	 * Creates Transfer, adds it to the list of transfer and sets new balances
 	 *
@@ -32,8 +35,18 @@ public class TeamManagementController extends Observable {
 							.getCurrentDay());
 			Game.getInstance().addTransfer(transfer);
 			transferIdentifier++;
+			for (int i = 0; i < teamFrom.getPlayers().size(); i++){
+				if (teamFrom.getPlayers().get(i).equals(pl)){
+					teamFrom.getPlayers().remove(i);
+				}
+			};
+			teamTo.getPlayers().add(pl);
 			teamFrom.setBalance(teamFrom.getBalance() + pl.getPrice());
 			teamTo.setBalance(teamTo.getBalance() - pl.getPrice());
 		}
+	}
+	
+	public void BuyPlayerAction(ActionEvent BuyPlayerBtn){
+		System.out.println("player bought");
 	}
 }
