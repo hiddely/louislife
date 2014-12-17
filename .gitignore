@@ -10,6 +10,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.classpath
 /bin/
 
 .DS_Store
