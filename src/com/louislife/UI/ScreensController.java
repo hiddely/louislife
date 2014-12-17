@@ -57,8 +57,8 @@ public class ScreensController extends StackPane {
 			System.out.println("Attempting to load: "+resource);
 			FXMLLoader myLoader = new FXMLLoader(ScreensController.class.getResource(resource));
 			Parent loadScreen =  (Parent)myLoader.load();
-			//ControlledScreen screenController = ((ControlledScreen) myLoader.getController());
-			//screenController.setScreenParent(this);
+			ControlledScreen screenController = ((ControlledScreen) myLoader.getController());
+			screenController.setScreenParent(this);
 			addScreen(id, loadScreen);
 
 			return true;

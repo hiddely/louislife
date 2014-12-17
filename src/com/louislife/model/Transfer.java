@@ -1,5 +1,10 @@
 package com.louislife.model;
 
+/**
+ * A team transfer
+ * @author hidde
+ *
+ */
 public class Transfer {
 	
 	private int id;
