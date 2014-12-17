@@ -24,10 +24,10 @@ private int team_away;
 	 * 
 	 * A match is played on the day that the overview screen shows before pressing the next round button.
 	 * Thus, nextWeek() happens after creating the match object.
-	 * @param id
-	 * @param day
-	 * @param team_home
-	 * @param team_away
+	 * @param id - int. Match ID
+	 * @param day - int. Day the match is played on
+	 * @param team_home - int. Team ID that played home
+	 * @param team_away - int. Team ID that played away
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
