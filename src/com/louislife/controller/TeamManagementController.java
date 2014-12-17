@@ -46,6 +46,10 @@ public class TeamManagementController extends Observable {
 		}
 	}
 	
+	/**
+	 * Actions which follow after pushing the Buy Player Button
+	 * @param BuyPlayerBtn
+	 */
 	public void BuyPlayerAction(ActionEvent BuyPlayerBtn){
 		System.out.println("player bought");
 	}
