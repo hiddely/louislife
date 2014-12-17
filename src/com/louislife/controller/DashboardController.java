@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
 
-public class GameDashboardController implements Initializable, ControlledScreen {
+public class DashboardController implements Initializable, ControlledScreen {
 
 	ScreensController controller;
 
@@ -26,6 +26,22 @@ public class GameDashboardController implements Initializable, ControlledScreen 
 
 		// Laad de load games
 
+	}
+	
+	@FXML protected void onClickNextGame(Event e) {
+		System.out.println("Next game");
+	}
+	
+	@FXML protected void onClickTeam(Event e) {
+		System.out.println("Team");
+	}
+	
+	@FXML protected void onClickLeaderboard(Event e) {
+		System.out.println("Leaderboard");
+	}
+	
+	@FXML protected void onClickMarket(Event e) {
+		System.out.println("Market");
 	}
 	
 }

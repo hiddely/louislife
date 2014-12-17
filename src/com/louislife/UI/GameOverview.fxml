@@ -19,13 +19,19 @@
    <children>
       <TabPane prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab text="Dashboard">
           	<content>
               <fx:include fx:id="dashboard" source="Dashboard.fxml" />
             </content>
           	 
           </Tab>
-          <Tab text="Untitled Tab 2">
+            <Tab text="Manage team">
+            <content>
+              <fx:include fx:id="team" source="Team.fxml" />
+            </content>
+            </Tab>
+            
+          <Tab text="Statistics">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>

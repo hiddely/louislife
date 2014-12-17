@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.GameDashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.DashboardController">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
@@ -24,15 +24,15 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
+      <Pane onMouseClicked="#onClickNextGame" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
          <styleClass>
             <String fx:value="dashboard-pane" />
             <String fx:value="pane-1" />
          </styleClass>
          <children>
-            <Label layoutX="30.0" layoutY="30.0" prefHeight="39.0" prefWidth="202.0" text="Next game" textFill="#ffffffe5">
+            <Label layoutX="30.0" layoutY="17.0" prefHeight="40.0" prefWidth="240.0" text="Next game" textFill="#ffffffe5">
                <font>
-                  <Font name="Avenir Light" size="30.0" />
+                  <Font name="Avenir Heavy" size="30.0" />
                </font>
                <effect>
                   <DropShadow offsetY="2.0" />
@@ -40,10 +40,40 @@
             </Label>
          </children>
       </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Pane onMouseClicked="#onClickTeam" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Label layoutX="30.0" layoutY="14.0" prefHeight="40.0" prefWidth="240.0" text="My team" textFill="#ffffffe5">
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Pane onMouseClicked="#onClickLeaderboard" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <children>
+            <Label layoutX="30.0" layoutY="14.0" prefHeight="40.0" prefWidth="240.0" text="Leaderboard" textFill="#ffffffe5">
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="3" />
+      <Pane onMouseClicked="#onClickMarket" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="3">
+         <children>
+            <Label layoutX="30.0" layoutY="14.0" prefHeight="40.0" prefWidth="240.0" text="Market" textFill="#ffffffe5">
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
    </children>
 </GridPane>

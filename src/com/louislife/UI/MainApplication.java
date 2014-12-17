@@ -32,7 +32,7 @@ public class MainApplication extends Application {
 		// Load all screens here
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
-		mainContainer.setScreen(MainApplication.MAIN_MENU);
+		mainContainer.setScreen(MainApplication.OVERVIEW); // Voor nu
 		
 		primaryStage.setTitle("Louis life");
 		
