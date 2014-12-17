@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.GameDashboardController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button mnemonicParsing="false" onAction="#penisButtonPressed" prefHeight="33.0" prefWidth="135.0" text="PENIS" GridPane.columnIndex="3" />
+      <Pane opacity="0.5" prefHeight="200.0" prefWidth="200.0">
+         <effect>
+            <BoxBlur />
+         </effect>
+         <children>
+            <Label layoutX="40.0" layoutY="40.0" prefHeight="39.0" prefWidth="194.0" text="MyLabel" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+   </children>
+</GridPane>
