@@ -115,6 +115,10 @@ public class Game {
 		this.matches.add(m);
 	}
 
+	public void setCurrentTeam(int currentTeam) {
+		this.currentTeam = currentTeam;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -369,13 +369,15 @@ public class XMLParser {
 
 			try {
 				Files.copy(src.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				this.filename = name;
+
 				return true;
 			} catch (IOException e) {
 				return false;
 			}
 		}
-		
-		return false;
+
+		return false; // Never reached
 	}
 	
 	/**

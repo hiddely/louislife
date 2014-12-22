@@ -9,6 +9,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -17,6 +18,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.model.Team;
@@ -35,6 +37,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 	private int selected_teamId; // Het team dat de gebruiker heeft geselecteerd om mee te spelen.
 
 	/** XML Properties **/
+	@FXML private TextField fieldName;
 	@FXML private GridPane parentGrid;
 	
 	@Override
@@ -44,6 +47,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		selected_teamId = 0; // TODO: Make dynamic
+		
 		final int ITEMS_ROW = 6; // Aantal items in de kolom
 		// Laad de mogelijke teams
 		try {
@@ -59,7 +64,9 @@ public class NewGameController implements Initializable, ControlledScreen {
 						break;
 					Team t = teams.get(ITEMS_ROW*i + j);
 					Pane p = new Pane(); // Make clickable
-
+					//p.addEventHandler(EventType, eventHandler);
+					
+					//p.setOnMousePressed(new TeamSelectHandler());
 					Label name = new Label(t.getName());
 					p.getChildren().add(name);
 					
@@ -76,8 +83,35 @@ public class NewGameController implements Initializable, ControlledScreen {
 
 	}
 	
-	@FXML protected void onClickStart(Event e) {
+	@FXML protected void onNewGame(Event e) {
 		System.out.println("Start");
+		
+		if (!fieldName.getText().isEmpty()) {
+			try {
+				XMLParser parser = new XMLParser("example.xml");
+				if (parser.createGame(fieldName.getText()+".xml")) {
+					try {
+						parser.parseGame(); // Load game
+						
+						// Edit game data to set new team
+						Game g = Game.getInstance();
+						g.setName(fieldName.getText());
+						g.setCurrentTeam(selected_teamId);
+						
+						parser.writeGame(g); // Write game back to savefile. The game can now start..
+						
+						controller.setScreen(MainApplication.OVERVIEW);
+					} catch (SAXException | IOException | GameLoadException e1) {
+						// Error parsing game
+						e1.printStackTrace();
+					}
+					
+				}
+			} catch (ParserConfigurationException e1) {
+				// Name already exists
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	@FXML protected void onClickBack(Event e) {
