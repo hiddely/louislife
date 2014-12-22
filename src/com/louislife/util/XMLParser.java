@@ -56,9 +56,9 @@ public class XMLParser {
 	 * @return the Game object, also accessable by Game.getInstance()
 	 * @throws SAXException
 	 * @throws IOException
-	 * @throws Exception
+	 * @throws GameLoadException 
 	 */
-	public Game parseGame() throws SAXException, IOException, Exception {		
+	public Game parseGame() throws SAXException, IOException, GameLoadException {		
 		String loadFile = SAVE_FOLDER + filename;
 		System.out.println("LOAD: "+loadFile);
 		InputStream input = new FileInputStream(loadFile);
@@ -210,7 +210,7 @@ public class XMLParser {
 				}
 			}
 		} else {
-			throw new Exception("XML: No game data element found.");
+			throw new GameLoadException("XML: No game data element found.");
 		}
 				
 		return game;
