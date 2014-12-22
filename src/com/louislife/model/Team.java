@@ -79,5 +79,18 @@ public class Team {
 		return "Team [id=" + id + ", name=" + name + ", players=" + players
 				+ "]";
 	}
+	
+	/**
+	 * Checks equality of Teams by comparing Team.id
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Team) {
+			Team that = (Team) o;
+			
+			return this.getId() == that.getId();
+		}
+		return false;
+	}
 
 }
