@@ -88,6 +88,11 @@ private int team_away;
 		return team_away;
 	}
 
+	public void setDay(int d) {
+		this.day = d;
+		
+	}
+
 	public void setTeam_home(int team_home) {
 		this.team_home = team_home;
 	}
