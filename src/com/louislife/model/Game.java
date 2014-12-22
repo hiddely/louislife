@@ -119,6 +119,11 @@ public class Game {
 		return id;
 	}
 	
+	/**
+	 *  Can be removed? (Unnecessary because we can find players in ArrayList<Player> Team.Players)
+	 * @param pl
+	 * @return
+	 */
 	public Team getPlayerTeam(Player pl){
 		int day = 0;
 		int newTeamId = 0;
