@@ -1,0 +1,15 @@
+.dashboard-pane {
+		/*-fx-background-image: radial-gradient(50% 150%, rgba(0, 0, 0, 0.35) 50%, #000000 100%);
+	*/
+	-fx-background-color: rgba(0, 0, 0, 0.35);
+	/* 
+	-fx-background-color: radial-gradient(50% 150%, rgba(0, 0, 0, 0.35) 50%, #000000 100%);*/
+}
+
+.dashboard-pane:hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.pane-1 {
+	-fx-background-image: url(../images/menu-block_louis.png); 
+}
