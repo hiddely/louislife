@@ -1,6 +1,7 @@
 package com.louislife.controller;
 
 import java.util.Observable;
+import java.util.Random;
 
 import javafx.event.ActionEvent;
 
@@ -19,8 +20,10 @@ public class TeamManagementController extends Observable {
 	 * @param teamFromId
 	 * @param teamToId
 	 * @param playerId
+	 * 
+	 * @author Shane
 	 */
-	public void buyPlayer(int leagueIndex, int teamFromId, int teamToId,
+	public void transferPlayer(int leagueIndex, int teamFromId, int teamToId,
 			int playerId) {
 		Team teamFrom = Game.getInstance().getLeagues().get(leagueIndex)
 				.findTeam(teamFromId);
@@ -44,6 +47,30 @@ public class TeamManagementController extends Observable {
 			teamFrom.setBalance(teamFrom.getBalance() + pl.getPrice());
 			teamTo.setBalance(teamTo.getBalance() - pl.getPrice());
 		}
+	}
+	
+	/**
+	 * Sells a player to a random team which has enough balance
+	 * 
+	 * @param leagueIndex
+	 * @param playerId
+	 * 
+	 * @author Shane
+	 */
+	public void selPlayer(int leagueIndex, int playerId){
+		int userTeamId = Game.getInstance().getUserTeam().getId();
+		Player pl = Game.getInstance().getLeagues().get(leagueIndex)
+				.findTeam(userTeamId).findPlayer(playerId);
+		int loop = 1;
+		int randomTeam = 0;
+		while(loop == 1){
+			Random generator = new Random(); 
+			randomTeam = generator.nextInt(Game.getInstance().getLeagues().get(leagueIndex).getTeams().size());
+			if (pl.getPrice() >= Game.getInstance().getLeagues().get(leagueIndex).getTeams().get(randomTeam).getBalance()){
+				loop = 0;
+			}
+		}
+		transferPlayer(leagueIndex, userTeamId, randomTeam, playerId);
 	}
 	
 	/**

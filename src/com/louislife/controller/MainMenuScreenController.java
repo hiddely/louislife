@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
@@ -55,7 +56,8 @@ public class MainMenuScreenController implements Initializable,
 	
 	@FXML protected void actionButtonNew(ActionEvent event) {
         System.out.println("Pressed New");
-        controller.setScreen(MainApplication.OVERVIEW);
+        
+        controller.setScreen(MainApplication.MAIN_MENU_NEW_GAME);
     }
 	
 	@FXML protected void actionButtonLoad(ActionEvent event) {
@@ -68,8 +70,12 @@ public class MainMenuScreenController implements Initializable,
 			
 			// The instance is now set
 			System.out.println("Game loaded: "+Game.getInstance().toString());
+			
+			controller.setScreen(MainApplication.OVERVIEW);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			// TODO: Show error message for parsing error
 		}
     }
 

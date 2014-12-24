@@ -14,6 +14,8 @@ public class MainApplication extends Application {
 	/** Schermen **/
 	public static final String MAIN_MENU = "main_menu";
 	public static final String MAIN_MENU_FXML = "GameMenuPlaceholder.fxml";
+	public static final String MAIN_MENU_NEW_GAME = "main_menu_new_game";
+	public static final String MAIN_MENU_NEW_GAME_FXML = "NewGame.fxml";
 	public static final String OVERVIEW = "game_overview";
 	public static final String OVERVIEW_FXML = "GameOverview.fxml";
 
@@ -31,8 +33,9 @@ public class MainApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		// Load all screens here
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
+		mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
-		mainContainer.setScreen(MainApplication.OVERVIEW); // Voor nu
+		mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
 		
 		primaryStage.setTitle("Louis life");
 		
