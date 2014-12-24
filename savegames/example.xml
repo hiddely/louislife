@@ -124,7 +124,7 @@
 	            <price>
 	                1000000000
 	            </price>
-	        </player>
+	            <status>0</status></player>
 	        <player id="1">
 	            <name>
 	                Dennis
@@ -153,6 +153,7 @@
 	            <price>
 	                500000
 	            </price>
+	            <status>0</status>
 	        </player>
 	        <player id="2">
 	            <name>
@@ -182,7 +183,8 @@
 	            <price>
 	                15000000
 	            </price>
+	            <status>0</status>
 	        </player>
 	    </team>
-	</league>
+    </league>
 </game>
