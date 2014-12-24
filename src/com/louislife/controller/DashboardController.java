@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 
 public class DashboardController implements Initializable, ControlledScreen {
@@ -30,10 +31,12 @@ public class DashboardController implements Initializable, ControlledScreen {
 	
 	@FXML protected void onClickNextGame(Event e) {
 		System.out.println("Next game");
+		controller.setScreen(MainApplication.MAIN_MENU);
 	}
 	
 	@FXML protected void onClickTeam(Event e) {
 		System.out.println("Team");
+
 	}
 	
 	@FXML protected void onClickLeaderboard(Event e) {
