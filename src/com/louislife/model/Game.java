@@ -181,12 +181,24 @@ public class Game {
 		}
 		
 		
+		
+		shuffledList.remove(Game.getInstance().getUserTeam());
+		day = 0;
+		int weeklyCounter = 1;
+		
 		for (int i = 0; i < shuffledList.size(); i++) {
 			
 			for (int j = 0; j < shuffledList.size(); j++) {
+				
 				if (i != j) {
-					Game.getInstance().addMatch(new Match(idCounter, j, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
 					idCounter++;
+					
+					// Go to next week
+					if (weeklyCounter < curLeague.weeklyMatches() ) {
+						day += 7;
+						weeklyCounter = 1;
+					}
 				}
 			}
 		}

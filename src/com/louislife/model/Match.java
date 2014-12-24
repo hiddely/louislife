@@ -56,6 +56,14 @@ private int team_away;
 		this.events_away = new ArrayList<Event>();
 	}
 	
+	public Match(int id, int day) {
+		this.id = id;
+		this.day = day;
+		
+		this.events_home = new ArrayList<Event>();
+		this.events_away = new ArrayList<Event>();
+	}
+
 	public void addEventHome(Event e){
 		events_home.add(e);
 	}
