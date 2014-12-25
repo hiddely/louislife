@@ -31,6 +31,7 @@ public class DashboardController implements Initializable, ControlledScreen {
 	
 	@FXML protected void onClickNextGame(Event e) {
 		System.out.println("Next game");
+		controller.setScreen(MainApplication.MAIN_MENU);
 	}
 	
 	@FXML protected void onClickTeam(Event e) {

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url(overviewbackground.png);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.GameOverviewController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-image: url('overviewbackground.png');" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.GameOverviewController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
     <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="920.0" />
@@ -25,7 +25,7 @@
             </content>
           	 
           </Tab>
-            <Tab text="My Team">
+            <Tab text="Manage team">
             <content>
               <fx:include fx:id="team" source="Team.fxml" />
             </content>
