@@ -55,7 +55,6 @@ public class MainMenuScreenController implements Initializable,
 	
 	@FXML protected void actionButtonNew(ActionEvent event) {
         System.out.println("Pressed New");
-        controller.setScreen(MainApplication.OVERVIEW);
     }
 	
 	@FXML protected void actionButtonLoad(ActionEvent event) {
