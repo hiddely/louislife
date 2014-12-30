@@ -17,7 +17,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TabPane prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TabPane fx:id="navigationPane" prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <tabs>
           <Tab text="Dashboard">
           	<content>
@@ -25,7 +25,7 @@
             </content>
           	 
           </Tab>
-            <Tab text="Manage team">
+            <Tab text="Team Management">
             <content>
               <fx:include fx:id="team" source="Team.fxml" />
             </content>
@@ -36,6 +36,11 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
+            <Tab text="Transfer Market">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

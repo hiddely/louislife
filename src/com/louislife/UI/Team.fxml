@@ -20,18 +20,6 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
-         <children>
-            <Label layoutX="30.0" layoutY="17.0" prefHeight="40.0" prefWidth="240.0" text="My team" textFill="#ffffffe5">
-               <font>
-                  <Font name="Avenir Heavy" size="30.0" />
-               </font>
-               <effect>
-                  <DropShadow offsetY="2.0" />
-               </effect>
-            </Label>
-         </children>
-      </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
             <Label layoutX="52.0" layoutY="179.0" text="Team designer view hier" textFill="WHITE">
@@ -39,5 +27,6 @@
                   <Font size="43.0" />
                </font></Label>
          </children></Pane>
+      <ListView fx:id="teamList" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
 </GridPane>

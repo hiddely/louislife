@@ -9,6 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The main application class, that preloads the screens and runs the game.
+ * @author Matthijs
+ *
+ */
 public class MainApplication extends Application {
 
 	/** Schermen **/
