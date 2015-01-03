@@ -1,25 +1,38 @@
 package com.louislife.tests;
-import com.louislife.model.Player;
+import com.louislife.model.*;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class PlayerTest {
-
+	
 	@Test
 	public void testPlayer() {
-		fail("Not yet implemented");
+		//New player1
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		//New player2
+		byte b2 = 10;
+		Player player2 = new Player(1, "Elgar", "Weijtmans", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
+		
+		//AssertEquals failed
+		assertTrue(player1.equals(player2));
 	}
 
 	@Test
 	public void testGetId() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		assertEquals(player1.getId(), 1);
 	}
 
 	@Test
 	public void testSetId() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setId(2);
+		
+		assertEquals(player1.getId(), 2);
 	}
 
 	@Test
