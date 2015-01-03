@@ -14,8 +14,7 @@ public class PlayerTest {
 		//New player2
 		byte b2 = 10;
 		Player player2 = new Player(1, "Elgar", "Weijtmans", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
-		
-		//AssertEquals failed
+	
 		assertTrue(player1.equals(player2));
 	}
 
@@ -23,6 +22,7 @@ public class PlayerTest {
 	public void testGetId() {
 		byte b1 = 10;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
 		assertEquals(player1.getId(), 1);
 	}
 
@@ -37,112 +37,194 @@ public class PlayerTest {
 
 	@Test
 	public void testGetFirstname() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getFirstname(),"Elgar");
 	}
 
 	@Test
 	public void testSetFirstname() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setFirstname("Henk");
+		
+		assertEquals(player1.getFirstname(),"Henk");
 	}
 
 	@Test
 	public void testGetSurname() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getSurname(),"Weijtmans");
 	}
 
 	@Test
 	public void testSetSurname() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setSurname("Davids");
+		
+		assertEquals(player1.getSurname(),"Davids");
 	}
 
 	@Test
 	public void testGetJerseyNumber() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getJerseyNumber(),10);
 	}
 
 	@Test
 	public void testSetJerseyNumber() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		byte b2 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setJerseyNumber(b2);
+		
+		assertEquals(player1.getJerseyNumber(),10);
 	}
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getType(),PlayerType.STRIKER);
 	}
 
 	@Test
 	public void testSetType() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setType(PlayerType.DEFENDER);
+		
+		assertEquals(player1.getType(),PlayerType.DEFENDER);
 	}
 
 	@Test
 	public void testGetStatus() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getStatus(),PlayerStatus.NORMAL);
 	}
 
 	@Test
 	public void testSetStatus() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setStatus(PlayerStatus.REDCARD);
+		
+		assertEquals(player1.getStatus(),PlayerStatus.REDCARD);
 	}
 
 	@Test
 	public void testGetOffensiveScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getOffensiveScore(), 10);
 	}
 
 	@Test
 	public void testSetOffensiveScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		byte b2 = 11;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setOffensiveScore(b2);
+		
+		assertEquals(player1.getOffensiveScore(), 11);
 	}
 
 	@Test
 	public void testGetDefensiveScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getDefensiveScore(), 10);
 	}
 
 	@Test
 	public void testSetDefensiveScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		byte b2 = 11;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setDefensiveScore(b2);
+		
+		assertEquals(player1.getDefensiveScore(), 11);
 	}
 
 	@Test
 	public void testGetStaminaScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getStaminaScore(), 10);
 	}
 
 	@Test
 	public void testSetStaminaScore() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		byte b2 = 11;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setStaminaScore(b2);
+		
+		assertEquals(player1.getStaminaScore(), 11);
 	}
 
 	@Test
 	public void testGetTeamId() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getTeamId(), 1);
 	}
 
 	@Test
 	public void testSetTeamId() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setTeamId(2);
+		
+		assertEquals(player1.getTeamId(), 2);
 	}
 
 	@Test
 	public void testGetPrice() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.getPrice(), 100);
 	}
 
 	@Test
 	public void testSetPrice() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		player1.setPrice(200);
+		
+		assertEquals(player1.getPrice(), 200);
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		
+		assertEquals(player1.toString(), "Player [id=1, firstname=Elgar, surname=Weijtmans, jerseyNumber=10, type=STRIKER, offensiveRating=10, defensiveRating=10, staminaRating=10, teamId=1, price=100]");
 	}
 
 	@Test
 	public void testEqualsPlayer() {
-		fail("Not yet implemented");
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		byte b2 = 10;
+		Player player2 = new Player(1, "Elgar", "Weijtmans", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
+
+		assertTrue(player1.equals(player2));
 	}
 
 }
