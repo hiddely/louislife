@@ -13,3 +13,9 @@
 .pane-1 {
 	-fx-background-image: url(../images/menu-block_louis.png); 
 }
+
+#team-field {
+	-fx-background-image: url(../images/formationbg.jpg);
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center top;
+}
