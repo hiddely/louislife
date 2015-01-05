@@ -66,6 +66,12 @@ public class League {
 		}
 		return null;
 	}
+	public boolean equals(League l) {
+		if (this.id == l.id && this.name.equals(l.getName()) && this.country.equals(l.getCountry()) && this.teams.equals(l.getTeams())) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 	

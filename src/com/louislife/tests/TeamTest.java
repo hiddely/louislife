@@ -148,5 +148,17 @@ public class TeamTest {
 		
 		assertEquals("Team [id=1, name=United States, players=[Player [id=1, firstname=Elgar, surname=Weijtmans, jerseyNumber=10, type=STRIKER, offensiveRating=10, defensiveRating=10, staminaRating=10, teamId=1, price=100]]]", team1.toString());
 	}
+	
+	@Test
+	public void testEquals() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		ArrayList<Player> players1 = new ArrayList<Player>();
+		players1.add(player1);
+		Team team1 = new Team(1, "United States", 10000, players1);
+		Team team2 = new Team(1, "United States", 10000, players1);
+		
+		assertTrue(team1.equals(team2));
+	}
 
 }

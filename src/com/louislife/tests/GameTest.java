@@ -8,11 +8,6 @@ import com.louislife.model.*;
 public class GameTest {
 
 	@Test
-	public void testGameIntStringIntInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testGame() {
 		fail("Not yet implemented");
 	}

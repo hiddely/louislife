@@ -1,7 +1,5 @@
 package com.louislife.model;
 
-import com.louislife.model.*;
-
 /**
  * Represents football player
  * 
