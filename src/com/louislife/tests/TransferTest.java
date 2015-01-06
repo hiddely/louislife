@@ -3,48 +3,66 @@ package com.louislife.tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import com.louislife.model.*;
 
 public class TransferTest {
 
 	@Test
 	public void testTransfer() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		Transfer transfer2 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertTrue(transfer1.equals(transfer2));
 	}
 
 	@Test
 	public void testGetId() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(1, transfer1.getId());
 	}
 
 	@Test
 	public void testGetFrom() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(1, transfer1.getFrom());
 	}
 
 	@Test
 	public void testGetTo() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(2, transfer1.getTo());
 	}
 
 	@Test
 	public void testGetPlayer() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(1, transfer1.getPlayer());
 	}
 
 	@Test
 	public void testGetPrice() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(100, transfer1.getPrice());
 	}
 
 	@Test
 	public void testGetDay() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(1, transfer1.getDay());
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
+		
+		assertEquals(1, transfer1.toString());
 	}
 
 }
