@@ -103,7 +103,13 @@ private int team_away;
 				+ team_home + ", team_away=" + team_away + "]";
 	}
 	
-	
+	public boolean equals(Match that) {
+		if (this.id == that.id && this.day == that.day && this.team_home == that.team_home && this.team_away == that.team_away) {
+			return true;
+		}
+		return false;
+	}
+
 
 }
 

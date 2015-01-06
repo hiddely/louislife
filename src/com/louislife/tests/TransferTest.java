@@ -62,7 +62,7 @@ public class TransferTest {
 	public void testToString() {
 		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
 		
-		assertEquals(1, transfer1.toString());
+		assertEquals("Transfer [id=1, from=1, to=2, player=1, price=100, day=1]", transfer1.toString());
 	}
 
 }
