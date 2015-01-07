@@ -24,10 +24,10 @@ private int team_away;
 	 * 
 	 * A match is played on the day that the overview screen shows before pressing the next round button.
 	 * Thus, nextWeek() happens after creating the match object.
-	 * @param id - int. Match ID
-	 * @param day - int. Day the match is played on
-	 * @param team_home - int. Team ID that played home
-	 * @param team_away - int. Team ID that played away
+	 * @param id - int. Match ID.
+	 * @param day - int. Day the match is played on.
+	 * @param team_home - int. Team ID that played home.
+	 * @param team_away - int. Team ID that played away.
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
@@ -36,26 +36,34 @@ private int team_away;
 		this.team_home = team_home;
 		this.team_away = team_away;
 		
-		events_home = new ArrayList<Event>();
-		events_away = new ArrayList<Event>();
+		this.events_home = new ArrayList<Event>();
+		this.events_away = new ArrayList<Event>();
 	}
 	
 	/**
-	 * Creates a new match without specifying the participating teams.
-	 * 
-	 * A match is played on the day that the overview screen shows before pressing the next round button.
-	 * Thus, nextWeek() happens after creating the match object.
-	 * @param id - int. Match ID
-	 * @param day - int. Day the match is played on.
+	 * Creates a new match without specifying the match day. The day should later be filled in with Match.setDay
+	 * @param id -int. match ID.
+	 * @param team_home - int. Team ID that played home.
+	 * @param team_away - int. Team ID that played away.
 	 */
-	public Match(int id, int day){
+	public Match(int id, int team_home, int team_away) {
+		this.id = id;
+		
+		this.team_home = team_home;
+		this.team_away = team_away;
+				
+		this.events_home = new ArrayList<Event>();
+		this.events_away = new ArrayList<Event>();
+	}
+	
+	public Match(int id, int day) {
 		this.id = id;
 		this.day = day;
 		
-		events_home = new ArrayList<Event>();
-		events_away = new ArrayList<Event>();
+		this.events_home = new ArrayList<Event>();
+		this.events_away = new ArrayList<Event>();
 	}
-	
+
 	public void addEventHome(Event e){
 		events_home.add(e);
 	}
@@ -86,6 +94,11 @@ private int team_away;
 
 	public int getTeam_away() {
 		return team_away;
+	}
+
+	public void setDay(int d) {
+		this.day = d;
+		
 	}
 
 	public void setTeam_home(int team_home) {
