@@ -151,6 +151,12 @@ public class Game {
 				+ "]";
 	}
 	
-	
+	public static String[] getQuotes() {
+		return new String[] {
+				"That is another koek",
+				"Ben ik nou zo slim, of ben jij zo dom?",
+				""
+		};
+	}
 	
 }

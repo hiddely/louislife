@@ -44,7 +44,6 @@ public class MainApplication extends Application {
 		MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
 
-
 		mainContainer.setScreen(MainApplication.OVERVIEW); // Voor nu
 		
 		primaryStage.setTitle("Louis life");
