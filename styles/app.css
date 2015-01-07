@@ -18,4 +18,12 @@
 	-fx-background-image: url(../images/formationbg.jpg);
 	-fx-background-repeat: no-repeat;
 	-fx-background-position: center top;
+	-fx-background-size: contain;	
+}
+
+.playercard {
+	-fx-background-image: url(../images/user.png);
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center top;
+	-fx-background-size: contain;	
 }
