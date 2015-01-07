@@ -4,11 +4,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+=======
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
+>>>>>>> OverviewUI
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
@@ -17,6 +24,9 @@ import com.louislife.model.Player;
 
 public class TeamController implements Initializable,
 ControlledScreen {
+	
+	
+	private static ListView teamList;
 
 	ScreensController controller;
 	
@@ -31,6 +41,7 @@ ControlledScreen {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+<<<<<<< HEAD
 		ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
 		String[] playerListDisplay = new String[players.size()];
 		
@@ -43,5 +54,7 @@ ControlledScreen {
 		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
 		playerList.setItems(items);
 
+=======
+>>>>>>> OverviewUI
 	}
 }
