@@ -1,6 +1,7 @@
 package com.louislife.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a Game object with leagues and played matches. This holds all the
@@ -46,7 +47,7 @@ public class Game {
 	
 	/**
 	 * Get static singleton for Game
-	 * @return
+	 * @return - Returns the Game Singleton object
 	 */
 	public static Game getInstance() {
 		if (sGame == null) {
@@ -158,5 +159,61 @@ public class Game {
 				""
 		};
 	}
-	
+	/**
+	 * Creates the match schedule for the current league.
+	 * 
+	 * The match schedule is created by shuffling the League.Teams ArrayList and
+	 * then matching all combinations against each other according to the 
+	 * Premier League system (double round-robin)
+	 */
+	public void createMatchSchedule() {
+		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
+		ArrayList<Team> shuffledList = curLeague.getTeams();
+		Collections.shuffle(shuffledList);
+		
+		int idCounter = 0;
+		
+		// Adds all matches that the User will play.
+		for (int p = 0; p < shuffledList.size(); p++) {
+			if (!Game.getInstance().getUserTeam().equals(shuffledList.get(p) ) ) {
+				Game.getInstance().addMatch(new Match(idCounter, currentTeam, shuffledList.get(p).getId() ) );
+				idCounter++;
+				Game.getInstance().addMatch(new Match(idCounter, shuffledList.get(p).getId(), currentTeam ) );
+				idCounter++;
+			}
+		}
+		
+		Collections.shuffle(matches);
+		
+		int day = 0;
+		for (int i = 0; i < matches.size(); i++) {
+			matches.get(i).setDay(day);
+			day += 7;
+		}
+		
+		
+		
+		shuffledList.remove(Game.getInstance().getUserTeam());
+		day = 0;
+		int weeklyCounter = 1;
+		
+		for (int i = 0; i < shuffledList.size(); i++) {
+			
+			for (int j = 0; j < shuffledList.size(); j++) {
+				
+				if (i != j) {
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
+					idCounter++;
+					
+					// Go to next week
+					if (weeklyCounter < curLeague.weeklyMatches() ) {
+						day += 7;
+						weeklyCounter = 1;
+					}
+				}
+			}
+		}
+		
+	}
+		
 }
