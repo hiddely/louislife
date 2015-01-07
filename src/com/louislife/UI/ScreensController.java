@@ -96,7 +96,7 @@ public class ScreensController extends StackPane {
 						getChildren().add(0, screens.get(screenId));
 						Timeline fadeIn = new Timeline(new KeyFrame(
 								Duration.ZERO, new KeyValue(opacity, 0.0)),
-								new KeyFrame(new Duration(300), new KeyValue(
+								new KeyFrame(new Duration(800), new KeyValue(
 										opacity, 1.0)));
 						fadeIn.play();
 					}
@@ -111,7 +111,7 @@ public class ScreensController extends StackPane {
 				getChildren().add(screens.get(screenId));
 				Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO,
 						new KeyValue(opacity, 0.0)), new KeyFrame(new Duration(
-						300), new KeyValue(opacity, 1.0)));
+						2500), new KeyValue(opacity, 1.0)));
 				fadeIn.play();
 			}
 			return true;

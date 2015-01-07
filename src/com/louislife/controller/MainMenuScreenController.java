@@ -16,13 +16,9 @@ import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-<<<<<<< Updated upstream:src/com/louislife/controller/MainMenuScreenController.java
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
-=======
-import com.louislife.UI.*;
->>>>>>> Stashed changes:src/com/louislife/controller/MainMenuScreenController.java
 import com.louislife.model.Game;
 import com.louislife.util.XMLParser;
 
