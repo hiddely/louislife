@@ -20,11 +20,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-<<<<<<< HEAD
-      <TabPane prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-=======
-      <TabPane fx:id="navigationPane" prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
->>>>>>> OverviewUI
+      <TabPane fx:id="navigationPane"  prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="3">
         <tabs>
           <Tab text="Dashboard">
           	<content>

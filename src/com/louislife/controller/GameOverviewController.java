@@ -6,11 +6,9 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-<<<<<<< HEAD
 import javafx.scene.control.Label;
-=======
+
 import javafx.scene.control.TabPane;
->>>>>>> OverviewUI
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
@@ -36,7 +34,6 @@ ControlledScreen {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-<<<<<<< HEAD
 		updateBalance();
 		updateDate();
 		
@@ -56,10 +53,8 @@ ControlledScreen {
 		
 		dateLabel.setText(currentDate.toString());
 		
-=======
 		// Laad de load games
 		DashboardController.setNavigationPane(navigationPane);
 
->>>>>>> OverviewUI
 	}
 }

@@ -20,16 +20,12 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-<<<<<<< HEAD
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
          <children>
             <ListView fx:id="playerList" layoutX="1.0" layoutY="-1.0" prefHeight="410.0" prefWidth="300.0" />
          </children>
       </Pane>
       <Pane id="team-field" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
-=======
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
->>>>>>> OverviewUI
          <children>
             <Label layoutX="52.0" layoutY="179.0" text="Team designer view hier" textFill="WHITE">
                <font>
