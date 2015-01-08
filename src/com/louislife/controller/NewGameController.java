@@ -115,6 +115,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 	}
 	
 	@FXML protected void onClickBack(Event e) {
-		System.out.println("Back");
+		System.out.println("Returned to 'Main Menu' from 'New Game'");
+        
+        controller.setScreen(MainApplication.MAIN_MENU);
 	}
 }
