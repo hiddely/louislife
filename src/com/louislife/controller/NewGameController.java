@@ -99,8 +99,6 @@ public class NewGameController implements Initializable, ControlledScreen {
 						g.setCurrentTeam(selected_teamId);
 						
 						parser.writeGame(g); // Write game back to savefile. The game can now start..
-						
-						controller.setScreen(MainApplication.OVERVIEW);
 					} catch (SAXException | IOException | GameLoadException e1) {
 						// Error parsing game
 						e1.printStackTrace();
@@ -111,6 +109,10 @@ public class NewGameController implements Initializable, ControlledScreen {
 				// Name already exists
 				e1.printStackTrace();
 			}
+			
+			controller.setScreen(MainApplication.OVERVIEW);
+			
+			Game.getInstance().createMatchSchedule();
 		}
 	}
 	
