@@ -156,11 +156,12 @@ public class Game {
 		return new String[] {
 				"That is another koek",
 				"Ben ik nou zo slim, of ben jij zo dom?",
+				"It is the dead or the gladiolie",
 				""
 		};
 	}
 	/**
-	 * Creates the match schedule for the current league.
+	 * Creates the match schedule for the current league. The first match happens on day 0.
 	 * 
 	 * The match schedule is created by shuffling the League.Teams ArrayList and
 	 * then matching all combinations against each other according to the 
@@ -192,7 +193,7 @@ public class Game {
 		}
 		
 		
-		
+		// Adds all remaining matches to the match list
 		shuffledList.remove(Game.getInstance().getUserTeam());
 		day = 0;
 		int weeklyCounter = 1;
