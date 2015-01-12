@@ -72,7 +72,7 @@ public class TeamManagementControllerTest {
 		Game game = new Game(1, "TMCTestGame", 0, 0);
 		game.addLeague(league);
 
-		TeamManagementController.selPlayer(0, 15);
+		TeamManagementController.selPlayer(0, 15, 500);
 		assertEquals(tm3.getPlayers().contains(pl1), false);
 		assertEquals(tm2.getPlayers().contains(pl1), true);
 		assertEquals(tm1.getPlayers().contains(pl1), false);

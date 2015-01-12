@@ -1,5 +1,6 @@
 package com.louislife.controller;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
@@ -58,27 +59,18 @@ public class TeamManagementController extends Observable {
 	 * 
 	 * @author Shane
 	 */
-	public static void selPlayer(int leagueIndex, int playerId) {
+	public static void selPlayer(int leagueIndex, int playerId, long seed) {
 		int userTeamId = Game.getInstance().getUserTeam().getId();
 		Player pl = Game.getInstance().getLeagues().get(leagueIndex)
 				.findTeam(userTeamId).findPlayer(playerId);
-		int loop = 1;
-		int looptimes = 0;
-		int randomTeam = 0;
-		while (loop == 1) {
-			looptimes++;
-			Random generator = new Random();
-			randomTeam = generator.nextInt(Game.getInstance().getLeagues()
-					.get(leagueIndex).getTeams().size());
-			if (randomTeam != userTeamId) {
-				if (pl.getPrice() <= Game.getInstance().getLeagues()
-						.get(leagueIndex).getTeams().get(randomTeam)
-						.getBalance()
-						|| looptimes > 100) {
-					loop = 0;
-				}
+		ArrayList<Team> tm = new ArrayList<Team>();
+		for(int i = 0; i < Game.getInstance().getLeagues().get(leagueIndex).getTeams().size(); i++){
+			if(Game.getInstance().getLeagues().get(leagueIndex).getTeams().get(i).getBalance() > pl.getPrice()*2){
+				tm.add(Game.getInstance().getLeagues().get(leagueIndex).getTeams().get(i));
 			}
 		}
+		Random r = new Random(seed);
+		int randomTeam = tm.get(r.nextInt(tm.size())).getId();
 		transferPlayer(leagueIndex, userTeamId, randomTeam, playerId);
 	}
 
