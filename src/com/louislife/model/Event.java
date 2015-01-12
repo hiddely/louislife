@@ -28,5 +28,13 @@ private int minute;
 	public int getMinute() {
 		return minute;
 	}
+
+	@Override
+	public String toString() {
+		return "Event [player=" + player + ", type=" + type + ", minute="
+				+ minute + "]";
+	}
+	
+	
 	
 }

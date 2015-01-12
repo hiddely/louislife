@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
+import com.louislife.model.Game;
 
 public class DashboardController implements Initializable, ControlledScreen {
 
@@ -30,6 +31,14 @@ public class DashboardController implements Initializable, ControlledScreen {
 	
 	@FXML protected void onClickNextGame(Event e) {
 		System.out.println("Next game");
+		int day = Game.getInstance().getCurrentDay();
+		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
+			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
+				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
+				System.out.println("Played: " + Game.getInstance().getMatches().get(i).toString());
+			}
+		}
+		Game.getInstance().nextWeek();
 	}
 	
 	@FXML protected void onClickTeam(Event e) {

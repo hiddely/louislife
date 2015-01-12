@@ -1,66 +1,77 @@
 package com.louislife.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Represents match to be played or that is already played
+ * 
  * @author hidde
  *
  */
 public class Match {
 
-private int id;
-private int day;
+	private int id;
+	private int day;
 
-private ArrayList<Event> events_home;
-private ArrayList<Event> events_away;
+	private ArrayList<Event> events_home;
+	private ArrayList<Event> events_away;
 
-private int team_home;
-private int team_away;
-	
-	
+	private int team_home;
+	private int team_away;
+
 	/**
 	 * Creates a new match.
 	 * 
-	 * A match is played on the day that the overview screen shows before pressing the next round button.
-	 * Thus, nextWeek() happens after creating the match object.
-	 * @param id - int. Match ID
-	 * @param day - int. Day the match is played on
-	 * @param team_home - int. Team ID that played home
-	 * @param team_away - int. Team ID that played away
+	 * A match is played on the day that the overview screen shows before
+	 * pressing the next round button. Thus, nextWeek() happens after creating
+	 * the match object.
+	 * 
+	 * @param id
+	 *            - int. Match ID
+	 * @param day
+	 *            - int. Day the match is played on
+	 * @param team_home
+	 *            - int. Team ID that played home
+	 * @param team_away
+	 *            - int. Team ID that played away
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
 		this.day = day;
-		
+
 		this.team_home = team_home;
 		this.team_away = team_away;
-		
+
 		events_home = new ArrayList<Event>();
 		events_away = new ArrayList<Event>();
 	}
-	
+
 	/**
 	 * Creates a new match without specifying the participating teams.
 	 * 
-	 * A match is played on the day that the overview screen shows before pressing the next round button.
-	 * Thus, nextWeek() happens after creating the match object.
-	 * @param id - int. Match ID
-	 * @param day - int. Day the match is played on.
+	 * A match is played on the day that the overview screen shows before
+	 * pressing the next round button. Thus, nextWeek() happens after creating
+	 * the match object.
+	 * 
+	 * @param id
+	 *            - int. Match ID
+	 * @param day
+	 *            - int. Day the match is played on.
 	 */
-	public Match(int id, int day){
+	public Match(int id, int day) {
 		this.id = id;
 		this.day = day;
-		
+
 		events_home = new ArrayList<Event>();
 		events_away = new ArrayList<Event>();
 	}
-	
-	public void addEventHome(Event e){
+
+	public void addEventHome(Event e) {
 		events_home.add(e);
 	}
-	
-	public void addEventAway(Event e){
+
+	public void addEventAway(Event e) {
 		events_away.add(e);
 	}
 
@@ -96,6 +107,54 @@ private int team_away;
 		this.team_away = team_away;
 	}
 
+	public void play(long seed) {
+		Team home = Game.getInstance().getLeagues().get(0).findTeam(team_home);
+		Team away = Game.getInstance().getLeagues().get(0).findTeam(team_away);
+		Random r = new Random(seed);
+		
+		int homeChances = home.getTotStamina() / 120;
+		int awayChances = away.getTotStamina() / 110;
+		int homeGoalChance = 50 + ((home.getTotOff() - away.getTotDef()) / 2 * away.getTotDef());
+		if(homeGoalChance < 5){
+			homeGoalChance = 5;
+		}else if(homeGoalChance > 90){
+			homeGoalChance = 90;
+		}
+		int awayGoalChance = 50 + ((away.getTotOff() - home.getTotDef()) / 2 * home.getTotDef());
+		if(awayGoalChance < 5){
+			awayGoalChance = 5;
+		}else if(awayGoalChance > 90){
+			awayGoalChance = 90;
+		}
+		int homeTime = 0;
+		int awayTime = 0;
+		ArrayList<Player> slh = home.getScoreList();
+		ArrayList<Player> sla = away.getScoreList();
+		
+		for(int i = 0; i < homeChances; i++){
+			homeTime += 90/homeChances;
+			int random = r.nextInt(100);
+			if(random > homeGoalChance){
+				int eventTime = homeTime - 45/homeChances + r.nextInt(90/homeChances);
+				Player pl = slh.get(r.nextInt(slh.size()));
+				Event e = new Event(pl.getId(), EventType.GOAL, eventTime);
+				events_home.add(e);
+				System.out.println(e.toString());
+			}
+		}
+		
+		for(int i = 0; i < awayChances; i++){
+			awayTime += 90/awayChances;
+			int random = r.nextInt(100);
+			if(random > awayGoalChance){
+				Player pl = slh.get(r.nextInt(sla.size()));
+				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
+				events_home.add(e);
+			}
+		}
+		
+	}
+
 	@Override
 	public String toString() {
 		return "Match [id=" + id + ", day=" + day + ", events_home="
@@ -103,7 +162,5 @@ private int team_away;
 				+ team_home + ", team_away=" + team_away + "]";
 	}
 	
-	
 
 }
-
