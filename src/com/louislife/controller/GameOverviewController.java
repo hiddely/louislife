@@ -6,8 +6,11 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+<<<<<<< HEAD
 import javafx.scene.control.Label;
 
+=======
+>>>>>>> OverviewUI
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
