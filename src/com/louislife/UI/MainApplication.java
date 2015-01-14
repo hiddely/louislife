@@ -23,8 +23,7 @@ public class MainApplication extends Application {
 	public static final String MAIN_MENU_NEW_GAME_FXML = "NewGame.fxml";
 	public static final String OVERVIEW = "game_overview";
 	public static final String OVERVIEW_FXML = "GameOverview.fxml";
-	public static final String TEAM = "game_team";
-	public static final String TEAM_FXML = "Team.fxml";
+
 
 	
 	public static ScreensController mainContainer = new ScreensController(); 
@@ -39,18 +38,13 @@ public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// Load all screens here
-<<<<<<< HEAD
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
-		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
-=======
-		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
-		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
-		mainContainer.loadScreen(MainApplication.TEAM, MainApplication.TEAM_FXML);
->>>>>>> OverviewUI
 
-		mainContainer.setScreen(MainApplication.OVERVIEW); // Voor nu
+
+		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
+		
 		
 		primaryStage.setTitle("Louis life");
 		
