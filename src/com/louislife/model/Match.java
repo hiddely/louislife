@@ -177,7 +177,6 @@ public class Match {
 				Player pl = slh.get(r.nextInt(slh.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, eventTime);
 				events_home.add(e);
-				System.out.println(e.toString());
 			}
 		}
 		
@@ -188,7 +187,6 @@ public class Match {
 				Player pl = slh.get(r.nextInt(sla.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
 				events_home.add(e);
-				System.out.println(e.toString());
 			}
 		}
 		
