@@ -53,20 +53,14 @@ public class DashboardController implements Initializable, ControlledScreen {
 	
 	@FXML protected void onClickTeam(Event e) {
 		navigationPane.getSelectionModel().select(1);
-
-
 	}
 	
 	@FXML protected void onClickLeaderboard(Event e) {
 		navigationPane.getSelectionModel().select(2);
-
-		
 	}
 	
 	@FXML protected void onClickMarket(Event e) {
 		navigationPane.getSelectionModel().select(3);
-
-
 	}
 	
 }

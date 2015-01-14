@@ -45,7 +45,10 @@ ControlledScreen {
 		int playerNumber = 1;
 		for (Player player : team.getPlayers()) {
 			Label label = new Label(player.getSurname());
-			getPane(playerNumber).getChildren().add(label);
+			Pane pane = getPane(playerNumber);
+			if (pane != null) {
+				pane.getChildren().add(label);
+			}
 			playerNumber++;
 		}
 	}

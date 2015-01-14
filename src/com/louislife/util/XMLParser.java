@@ -188,7 +188,8 @@ public class XMLParser {
 							byte number = Byte.parseByte(getChildValue(player, "number"));
 							
 							int player_type = Integer.parseInt(getChildValue(player, "type"));
-							int player_state = Integer.parseInt(getChildValue(player, "status"));
+							//int player_state = Integer.parseInt(getChildValue(player, "status"));
+							int player_state = 0;
 							byte rating_offensive = Byte.parseByte(getChildValue(player, "offensiveRating"));
 							byte rating_def = Byte.parseByte(getChildValue(player, "defensiveRating"));
 							byte stamina = Byte.parseByte(getChildValue(player, "stamina"));
@@ -364,7 +365,7 @@ public class XMLParser {
 			return false;
 		}
 		if (!f.exists()) {
-			File src = new File("example.xml");
+			File src = new File(SAVE_FOLDER + "example.xml");
 			File target = new File(SAVE_FOLDER + name);
 
 			try {
@@ -373,6 +374,7 @@ public class XMLParser {
 
 				return true;
 			} catch (IOException e) {
+				e.printStackTrace();
 				return false;
 			}
 		}
