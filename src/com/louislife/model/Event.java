@@ -28,6 +28,14 @@ private int minute;
 	public int getMinute() {
 		return minute;
 	}
+
+	@Override
+	public String toString() {
+		return "Event [player=" + player + ", type=" + type + ", minute="
+				+ minute + "]";
+	}
+	
+	
 	
 	public boolean equals(Event e) {
 		if (this.player == e.getPlayer() && this.type.equals(e.getType()) && this.minute == e.minute) {

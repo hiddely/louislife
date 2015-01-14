@@ -52,8 +52,6 @@ public class Player {
 		this.price = price;
 	}
 
-	// Getters and Setters
-
 	public int getId() {
 		return id;
 	}
@@ -150,8 +148,6 @@ public class Player {
 				+ defensiveRating + ", staminaRating=" + stamina + ", teamId="
 				+ teamId + ", price=" + price + "]";
 	}
-
-	// Getters and Setters end
 
 	public boolean equals(Player pl) {
 		if (this.id == pl.id && this.firstname.equals(pl.getFirstname())

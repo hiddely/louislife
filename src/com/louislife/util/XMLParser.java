@@ -56,9 +56,9 @@ public class XMLParser {
 	 * @return the Game object, also accessable by Game.getInstance()
 	 * @throws SAXException
 	 * @throws IOException
-	 * @throws Exception
+	 * @throws GameLoadException 
 	 */
-	public Game parseGame() throws SAXException, IOException, Exception {		
+	public Game parseGame() throws SAXException, IOException, GameLoadException {		
 		String loadFile = SAVE_FOLDER + filename;
 		System.out.println("LOAD: "+loadFile);
 		InputStream input = new FileInputStream(loadFile);
@@ -188,7 +188,8 @@ public class XMLParser {
 							byte number = Byte.parseByte(getChildValue(player, "number"));
 							
 							int player_type = Integer.parseInt(getChildValue(player, "type"));
-							int player_state = Integer.parseInt(getChildValue(player, "status"));
+							//int player_state = Integer.parseInt(getChildValue(player, "status"));
+							int player_state = 0;
 							byte rating_offensive = Byte.parseByte(getChildValue(player, "offensiveRating"));
 							byte rating_def = Byte.parseByte(getChildValue(player, "defensiveRating"));
 							byte stamina = Byte.parseByte(getChildValue(player, "stamina"));
@@ -210,7 +211,7 @@ public class XMLParser {
 				}
 			}
 		} else {
-			throw new Exception("XML: No game data element found.");
+			throw new GameLoadException("XML: No game data element found.");
 		}
 				
 		return game;
@@ -364,18 +365,21 @@ public class XMLParser {
 			return false;
 		}
 		if (!f.exists()) {
-			File src = new File("example.xml");
+			File src = new File(SAVE_FOLDER + "example.xml");
 			File target = new File(SAVE_FOLDER + name);
 
 			try {
 				Files.copy(src.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				this.filename = name;
+
 				return true;
 			} catch (IOException e) {
+				e.printStackTrace();
 				return false;
 			}
 		}
-		
-		return false;
+
+		return false; // Never reached
 	}
 	
 	/**
@@ -389,7 +393,7 @@ public class XMLParser {
 		File[] listOfFiles = folder.listFiles();
 		
 		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".xml")) {
+			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".xml") && !listOfFiles[i].getName().equalsIgnoreCase("example.xml")) { // We willen geen example.xml, is de reference xml
 				out.add(listOfFiles[i].getName().replaceFirst(".xml", ""));
 			}
 		}

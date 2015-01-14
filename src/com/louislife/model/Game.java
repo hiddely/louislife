@@ -1,6 +1,7 @@
 package com.louislife.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a Game object with leagues and played matches. This holds all the
@@ -46,7 +47,7 @@ public class Game {
 	
 	/**
 	 * Get static singleton for Game
-	 * @return
+	 * @return - Returns the Game Singleton object
 	 */
 	public static Game getInstance() {
 		if (sGame == null) {
@@ -119,10 +120,19 @@ public class Game {
 		this.matches.add(m);
 	}
 
+	public void setCurrentTeam(int currentTeam) {
+		this.currentTeam = currentTeam;
+	}
+
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 *  Can be removed? (Unnecessary because we can find players in ArrayList<Player> Team.Players)
+	 * @param pl
+	 * @return
+	 */
 	public Team getPlayerTeam(Player pl){
 		int day = 0;
 		int newTeamId = 0;
@@ -157,5 +167,73 @@ public class Game {
 		}
 		return false;
 	}
+
 	
+	public static String[] getQuotes() {
+		return new String[] {
+				"That is another koek",
+				"Ben ik nou zo slim, of ben jij zo dom?",
+				"It is the dead or the gladiolie",
+				""
+		};
+	}
+	
+	/**
+	 * Creates the match schedule for the current league. The first match happens on day 0.
+	 * 
+	 * The match schedule is created by shuffling the League.Teams ArrayList and
+	 * then matching all combinations against each other according to the 
+	 * Premier League system (double round-robin)
+	 */
+	public void createMatchSchedule() {
+		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
+		ArrayList<Team> shuffledList = curLeague.getTeams();
+		Collections.shuffle(shuffledList);
+		
+		int idCounter = 0;
+		
+		// Adds all matches that the User will play.
+		for (int p = 0; p < shuffledList.size(); p++) {
+			if (!Game.getInstance().getUserTeam().equals(shuffledList.get(p) ) ) {
+				Game.getInstance().addMatch(new Match(idCounter, currentTeam, shuffledList.get(p).getId() ) );
+				idCounter++;
+				Game.getInstance().addMatch(new Match(idCounter, shuffledList.get(p).getId(), currentTeam ) );
+				idCounter++;
+			}
+		}
+		
+		Collections.shuffle(matches);
+		
+		int day = 0;
+		for (int i = 0; i < matches.size(); i++) {
+			matches.get(i).setDay(day);
+			day += 7;
+		}
+		
+		
+		// Adds all remaining matches to the match list
+		shuffledList.remove(Game.getInstance().getUserTeam());
+		day = 0;
+		int weeklyCounter = 1;
+		
+		for (int i = 0; i < shuffledList.size(); i++) {
+			
+			for (int j = 0; j < shuffledList.size(); j++) {
+				
+				if (i != j) {
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
+					idCounter++;
+					
+					// Go to next week
+					if (weeklyCounter < curLeague.weeklyMatches() ) {
+						day += 7;
+						weeklyCounter = 1;
+					}
+				}
+			}
+		}
+		
+	}
+		
 }
+

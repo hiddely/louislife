@@ -54,11 +54,13 @@ public class League {
 	public void addTeam(Team t) {
 		this.teams.add(t);
 	}
+	
 	@Override
 	public String toString() {
 		return "League [id=" + id + ", name=" + name + ", country=" + country
 				+ ", teams=" + teams + "]";
 	}
+	
 	public Team findTeam(int id) {
 		for (Team t : this.teams) {
 			if (t.getId() == id)
@@ -73,6 +75,12 @@ public class League {
 		return false;
 	}
 	
-	
+	/**
+	 * Returns the amount of matches that should be played in one week (one in-game round)
+	 * @return int.
+	 */
+	public int weeklyMatches() {
+		return getTeams().size() * ( getTeams().size() - 1 ) / ( ( getTeams().size() - 1 ) * 2 );
+	}
 	
 }

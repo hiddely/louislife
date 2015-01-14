@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Pane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.TeamFormationController">
+   <children>
+      <Label layoutX="14.0" layoutY="27.0" text="Pane 4 3 3" />
+      <Pane fx:id="p1" layoutX="268.0" layoutY="354.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <Pane fx:id="p2" layoutX="31.0" layoutY="270.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <Pane fx:id="p3" layoutX="141.0" layoutY="291.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <Pane fx:id="p4" layoutX="385.0" layoutY="291.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <Pane fx:id="p5" layoutX="507.0" layoutY="270.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+   </children>
+</Pane>
