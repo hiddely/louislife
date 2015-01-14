@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -13,11 +14,17 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="135.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TabPane prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+<<<<<<< HEAD
+      <TabPane fx:id="navigationPane"  prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+=======
+      <TabPane fx:id="navigationPane" prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+>>>>>>> OverviewUI
         <tabs>
           <Tab text="Dashboard">
           	<content>
@@ -25,7 +32,7 @@
             </content>
           	 
           </Tab>
-            <Tab text="Manage team">
+            <Tab text="Team Management">
             <content>
               <fx:include fx:id="team" source="Team.fxml" />
             </content>
@@ -36,7 +43,36 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
+            <Tab text="Transfer Market">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="balanceString" layoutX="822.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="746.0" prefHeight="30.0" prefWidth="76.0" text="Balance:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="574.0" prefHeight="30.0" prefWidth="46.0" text="Date:" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateLabel" layoutX="620.0" layoutY="1.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </GridPane>

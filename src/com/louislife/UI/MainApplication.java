@@ -9,6 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The main application class, that preloads the screens and runs the game.
+ * @author Matthijs
+ *
+ */
 public class MainApplication extends Application {
 
 	/** Schermen **/
@@ -18,9 +23,11 @@ public class MainApplication extends Application {
 	public static final String MAIN_MENU_NEW_GAME_FXML = "NewGame.fxml";
 	public static final String OVERVIEW = "game_overview";
 	public static final String OVERVIEW_FXML = "GameOverview.fxml";
+	public static final String TEAM = "game_team";
+	public static final String TEAM_FXML = "Team.fxml";
 
 	
-	ScreensController mainContainer = new ScreensController(); 
+	public static ScreensController mainContainer = new ScreensController(); 
 	
 	public MainApplication() {
 	}
@@ -32,15 +39,21 @@ public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// Load all screens here
+
+		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
+		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
+		MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
+		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
 		mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
-		mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 		mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
-		mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu
+		mainContainer.loadScreen(MainApplication.TEAM, MainApplication.TEAM_FXML);
+
+		mainContainer.setScreen(MainApplication.OVERVIEW); // Voor nu
 		
 		primaryStage.setTitle("Louis life");
 		
 		Group root = new Group();
-		root.getChildren().addAll(mainContainer);
+		root.getChildren().addAll(MainApplication.mainContainer);
 		Scene scene= new Scene(root);
 		primaryStage.setScene(scene);
 		//primaryStage.setFullScreen(true);

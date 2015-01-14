@@ -124,7 +124,7 @@
 	            <price>
 	                1000000000
 	            </price>
-	        </player>
+	            <status>0</status></player>
 	        <player id="1">
 	            <name>
 	                Dennis
@@ -153,6 +153,7 @@
 	            <price>
 	                500000
 	            </price>
+	            <status>0</status>
 	        </player>
 	        <player id="2">
 	            <name>
@@ -182,7 +183,38 @@
 	            <price>
 	                15000000
 	            </price>
+	            <status>0</status>
+	        </player>
+	        <player id="3">
+	            <name>
+	                Hidde
+	            </name>
+	            <surname>
+	                Lycklama a Nijeholt
+	            </surname>
+	            <number>
+	                14
+	            </number>
+	            <type>
+	                0
+	            </type>
+	            <offensiveRating>
+	               99
+	            </offensiveRating>
+	            <defensiveRating>
+	                99
+	            </defensiveRating>
+	            <stamina>
+	                99
+	            </stamina>
+	            <teamId>
+	                0
+	            </teamId>
+	            <price>
+	                150000000
+	            </price>
+	            <status>0</status>
 	        </player>
 	    </team>
-	</league>
+    </league>
 </game>
