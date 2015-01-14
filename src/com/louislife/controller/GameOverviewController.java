@@ -36,6 +36,8 @@ ControlledScreen {
 
 		updateBalance();
 		updateDate();
+		DashboardController.setNavigationPane(navigationPane);
+
 		
 	}
 	
@@ -54,7 +56,6 @@ ControlledScreen {
 		dateLabel.setText(currentDate.toString());
 		
 		// Laad de load games
-		//DashboardController.setNavigationPane(navigationPane);
 
 	}
 }
