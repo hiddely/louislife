@@ -54,7 +54,7 @@ ControlledScreen {
 		dateLabel.setText(currentDate.toString());
 		
 		// Laad de load games
-		DashboardController.setNavigationPane(navigationPane);
+		//DashboardController.setNavigationPane(navigationPane);
 
 	}
 }
