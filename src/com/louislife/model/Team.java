@@ -73,7 +73,67 @@ public class Team {
 		}
 		return null;
 	}
+	
+	public int getTotScore(){
+		int res = 0;
+		for(int i = 0; i < 11; i++){
+			if(players.get(i).getType() == PlayerType.STRIKER){
+				res += players.get(i).getOffensiveScore(); 
+			}else if(players.get(i).getType() == PlayerType.DEFENDER || players.get(i).getType() == PlayerType.GOALKEEPER){
+				res += players.get(i).getDefensiveScore();
+			}else if(players.get(i).getType() == PlayerType.MIDFIELDER){
+				int sum = players.get(i).getDefensiveScore() + players.get(i).getOffensiveScore();
+				res += sum/2;
+			}
+		}
+		return res;
+	}
 
+	public int getTotStamina(){
+		int res = 0;
+		for(int i = 0; i < 11; i++){
+			res += players.get(i).getStaminaScore();
+		}
+		return res;
+	}
+	
+	public int getTotOff(){
+		int res = 0;
+		for(int i = 0; i < 11; i++){
+			if(players.get(i).getType() == PlayerType.STRIKER){
+				res += players.get(i).getOffensiveScore();
+			}else if(players.get(i).getType() == PlayerType.MIDFIELDER){
+				res += players.get(i).getOffensiveScore()*0.75;
+			}
+		}
+		return res;
+	}
+	
+	public int getTotDef(){
+		int res = 0;
+		for(int i = 0; i < 11; i++){
+			if(players.get(i).getType() == PlayerType.DEFENDER || players.get(i).getType() == PlayerType.GOALKEEPER){
+				res += players.get(i).getDefensiveScore();
+			}else if(players.get(i).getType() == PlayerType.MIDFIELDER){
+				res += players.get(i).getDefensiveScore() * 0.75;
+			}
+		}
+		return res;
+	}
+	
+	public ArrayList<Player> getScoreList(){
+		ArrayList<Player> res = new ArrayList<Player>();
+		for(int i = 0; i < 11; i++){
+			if(players.get(i).getType() == PlayerType.STRIKER){
+				res.add(players.get(i));
+				res.add(players.get(i));
+			}else if(players.get(i).getType() == PlayerType.MIDFIELDER){
+				res.add(players.get(i));
+			}
+		}
+		return res;
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", players=" + players

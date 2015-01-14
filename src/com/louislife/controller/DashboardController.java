@@ -10,6 +10,7 @@ import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
+import com.louislife.model.Game;
 
 /**
  * Controller of the Dashboard, the main navigation screen within gameoverview
@@ -49,6 +50,16 @@ public class DashboardController implements Initializable, ControlledScreen {
 	}
 	
 	@FXML protected void onClickNextGame(Event e) {
+
+		System.out.println("Next game");
+		int day = Game.getInstance().getCurrentDay();
+		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
+			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
+				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
+				System.out.println("Played: " + Game.getInstance().getMatches().get(i).toString());
+			}
+		}
+		Game.getInstance().nextWeek();
 	}
 	
 	@FXML protected void onClickTeam(Event e) {

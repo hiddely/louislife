@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
@@ -37,6 +36,8 @@ ControlledScreen {
 
 		updateBalance();
 		updateDate();
+		DashboardController.setNavigationPane(navigationPane);
+
 		
 	}
 	
@@ -55,7 +56,6 @@ ControlledScreen {
 		dateLabel.setText(currentDate.toString());
 		
 		// Laad de load games
-		//DashboardController.setNavigationPane(navigationPane);
 
 	}
 }
