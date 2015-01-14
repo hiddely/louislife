@@ -24,12 +24,11 @@ public class TeamController implements Initializable,
 ControlledScreen {
 	
 	
-	private static ListView teamList;
 
 	ScreensController controller;
 	
 	/** XML Properties **/
-	@FXML private ListView<String> playerList;
+	@FXML private ListView<String> teamList;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -44,12 +43,12 @@ ControlledScreen {
 		
 		for (int i = 0; i < players.size(); i++) {
 			Player p = players.get(i);
-			playerListDisplay[i] = p.getJerseyNumber() + " - " + p.getFirstname() + " " + p.getSurname();
-		}
+			playerListDisplay[i] = p.getJerseyNumber() + " - " + p.getFirstname() + " " + p.getSurname()+"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
 		
+		}
 		// En zet ze dynamisch in de UI
 		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
-		playerList.setItems(items);
+		teamList.setItems(items);
 
 
 	}
