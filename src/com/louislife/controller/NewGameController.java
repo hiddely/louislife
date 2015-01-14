@@ -111,6 +111,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 				// Name already exists
 				e1.printStackTrace();
 			}
+			
+			Game.getInstance().createMatchSchedule();
 		}
 	}
 	
