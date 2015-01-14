@@ -99,8 +99,6 @@ public class NewGameController implements Initializable, ControlledScreen {
 						g.setCurrentTeam(selected_teamId);
 						
 						parser.writeGame(g); // Write game back to savefile. The game can now start..
-						
-						controller.setScreen(MainApplication.OVERVIEW);
 					} catch (SAXException | IOException | GameLoadException e1) {
 						// Error parsing game
 						e1.printStackTrace();
@@ -112,11 +110,15 @@ public class NewGameController implements Initializable, ControlledScreen {
 				e1.printStackTrace();
 			}
 			
+			controller.setScreen(MainApplication.OVERVIEW);
+			
 			Game.getInstance().createMatchSchedule();
 		}
 	}
 	
 	@FXML protected void onClickBack(Event e) {
-		System.out.println("Back");
+		System.out.println("Returned to 'Main Menu' from 'New Game'");
+        
+        controller.setScreen(MainApplication.MAIN_MENU);
 	}
 }

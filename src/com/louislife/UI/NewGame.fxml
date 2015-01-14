@@ -37,7 +37,8 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#onNewGame" text="Start game" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onNewGame" text="Start game" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onClickBack" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
