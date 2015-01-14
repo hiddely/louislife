@@ -32,7 +32,6 @@
                   <Font size="43.0" />
                </font></Label>
               <fx:include fx:id="formation433" source="TeamFormation_4-3-3.fxml" />
-               
          </children></Pane>
       <ListView fx:id="teamList" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
