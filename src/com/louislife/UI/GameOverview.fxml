@@ -15,12 +15,10 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="675.0" minHeight="10.0" prefHeight="675.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TabPane fx:id="navigationPane"  prefHeight="581.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TabPane fx:id="navigationPane" prefHeight="680.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <tabs>
           <Tab text="Dashboard">
           	<content>
@@ -46,7 +44,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
             <Label fx:id="balanceString" layoutX="822.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
                <font>

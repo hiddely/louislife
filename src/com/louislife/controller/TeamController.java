@@ -43,7 +43,7 @@ ControlledScreen {
 		
 		for (int i = 0; i < players.size(); i++) {
 			Player p = players.get(i);
-			playerListDisplay[i] = p.getJerseyNumber() + " - " + p.getFirstname() + " " + p.getSurname()+"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+			playerListDisplay[i] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
 		
 		}
 		// En zet ze dynamisch in de UI
