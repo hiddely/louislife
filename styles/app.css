@@ -9,6 +9,11 @@
 .dashboard-pane:hover {
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+.navigation-Bar {
+	-fx-background-color: rgba(0, 0, 0, 0.35);
+	
+}
+
 
 .pane-1 {
 	-fx-background-image: url(../images/menu-block_louis.png); 

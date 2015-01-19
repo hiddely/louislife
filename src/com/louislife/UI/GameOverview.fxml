@@ -18,7 +18,7 @@
     <RowConstraints maxHeight="675.0" minHeight="10.0" prefHeight="675.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TabPane fx:id="navigationPane" prefHeight="680.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TabPane fx:id="navigationPane" prefHeight="680.0" prefWidth="920.0" styleClass="navigation-Bar" stylesheets="@../../../../styles/app.css" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <tabs>
           <Tab text="Dashboard">
           	<content>

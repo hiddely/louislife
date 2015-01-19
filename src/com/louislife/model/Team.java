@@ -134,6 +134,15 @@ public class Team {
 		return res;
 	}
 	
+	public Player getPlayerWithJerseyNumber(int number){
+		for (Player player:players){
+			if (player.getJerseyNumber()==number)
+					return player;
+		}
+		return null;
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", players=" + players
