@@ -99,6 +99,10 @@ public class Game {
 	public ArrayList<Match> getMatches() {
 		return matches;
 	}
+	
+	public ArrayList<Transfer> getTransfers() {
+		return transfers;
+	}
 
 	public void setLeagues(ArrayList<League> leagues) {
 		this.leagues = leagues;
@@ -152,6 +156,19 @@ public class Game {
 				+ "]";
 	}
 	
+	public boolean equals(Game that) {
+		if (this.id == that.id && this.name.equals(that.getName())
+				&& this.currentDay == that.currentDay
+				&& this.currentTeam == that.currentTeam
+				&& this.leagues.equals(that.getLeagues())
+				&& this.transfers.equals(that.getTransfers())
+				&& this.matches.equals(that.getMatches())) {
+			return true;
+		}
+		return false;
+	}
+
+	
 	public static String[] getQuotes() {
 		return new String[] {
 				"That is another koek",
@@ -160,6 +177,7 @@ public class Game {
 				""
 		};
 	}
+	
 	/**
 	 * Creates the match schedule for the current league. The first match happens on day 0.
 	 * 
@@ -218,3 +236,4 @@ public class Game {
 	}
 		
 }
+

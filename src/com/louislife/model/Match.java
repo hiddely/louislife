@@ -23,7 +23,6 @@ public class Match {
 	/**
 	 * Creates a new match.
 	 * 
-<<<<<<< HEAD
 	 * A match is played on the day that the overview screen shows before
 	 * pressing the next round button. Thus, nextWeek() happens after creating
 	 * the match object.
@@ -43,7 +42,6 @@ public class Match {
 	 * @param day - int. Day the match is played on.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
@@ -60,7 +58,6 @@ public class Match {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Creates a new match without specifying the participating teams.
 	 * 
 	 * A match is played on the day that the overview screen shows before
@@ -76,7 +73,6 @@ public class Match {
 	 * @param id -int. match ID.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 
 	public Match(int id, int team_home, int team_away) {
@@ -127,10 +123,12 @@ public class Match {
 	public int getTeam_home() {
 		return team_home;
 	}
+	public Team getTH() { return Game.getInstance().getLeagues().get(0).findTeam(team_home); }
 
 	public int getTeam_away() {
 		return team_away;
 	}
+	public Team getTA() { return Game.getInstance().getLeagues().get(0).findTeam(team_away); }
 
 	public void setDay(int d) {
 		this.day = d;
@@ -143,6 +141,44 @@ public class Match {
 
 	public void setTeam_away(int team_away) {
 		this.team_away = team_away;
+	}
+
+	public int getScore_home() {
+		int score = 0;
+		for (Event e : events_home) {
+			if (e.getType() == EventType.GOAL) {
+				score++;
+			}
+		}
+		return score;
+	}
+
+	public int getScore_away() {
+		int score = 0;
+		for (Event e : events_away) {
+			if (e.getType() == EventType.GOAL) {
+				score++;
+			}
+		}
+		return score;
+	}
+
+	public Team getWinningTeam() {
+		if (getScore_home()-getScore_away() < 0) {
+			return getTA();
+		} else if (getScore_home()-getScore_away() > 0) {
+			return getTH();
+		}
+		return null;
+	}
+
+	public Team getLosingTeam() {
+		if (getScore_home()-getScore_away() < 0) {
+			return getTH();
+		} else if (getScore_home()-getScore_away() > 0) {
+			return getTA();
+		}
+		return null;
 	}
 
 	public void play(long seed) {
