@@ -1,26 +1,25 @@
 package com.louislife.controller;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
+import com.louislife.UI.ScreensController;
+import com.louislife.model.Game;
+import com.louislife.util.XMLParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
-import com.louislife.UI.ControlledScreen;
-import com.louislife.UI.MainApplication;
-import com.louislife.UI.ScreensController;
-import com.louislife.model.Game;
-import com.louislife.util.XMLParser;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MainMenuScreenController implements Initializable,
 		ControlledScreen {
@@ -51,7 +50,12 @@ public class MainMenuScreenController implements Initializable,
 		// En zet ze dynamisch in de UI
 		ObservableList<String> items =FXCollections.observableArrayList (games);
 		loadGameList.setItems(items);
-                      
+
+		String bip = "sounds/louisquotes.mp3";
+		Media hit = new Media(new File(bip).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+		mediaPlayer.play();
+
 	}
 	
 	@FXML protected void actionButtonNew(ActionEvent event) {
