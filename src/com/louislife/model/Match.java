@@ -23,7 +23,6 @@ public class Match {
 	/**
 	 * Creates a new match.
 	 * 
-<<<<<<< HEAD
 	 * A match is played on the day that the overview screen shows before
 	 * pressing the next round button. Thus, nextWeek() happens after creating
 	 * the match object.
@@ -43,7 +42,6 @@ public class Match {
 	 * @param day - int. Day the match is played on.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
@@ -60,7 +58,6 @@ public class Match {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Creates a new match without specifying the participating teams.
 	 * 
 	 * A match is played on the day that the overview screen shows before
@@ -76,7 +73,6 @@ public class Match {
 	 * @param id -int. match ID.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 
 	public Match(int id, int team_home, int team_away) {
