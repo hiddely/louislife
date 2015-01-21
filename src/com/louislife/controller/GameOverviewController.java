@@ -43,9 +43,9 @@ ControlledScreen {
 	
 	public void updateBalance() {
 		
-		String balance = "TBD";
+		String balance = Integer.toString(Game.getInstance().getUserTeam().getBalance());
 		balanceString.setText(balance);
-		
+		;
 	}
 	
 	public void updateDate() {

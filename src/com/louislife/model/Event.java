@@ -37,4 +37,11 @@ private int minute;
 	
 	
 	
+	public boolean equals(Event e) {
+		if (this.player == e.getPlayer() && this.type.equals(e.getType()) && this.minute == e.minute) {
+			return true;
+		}
+		return false;
+	}
+	
 }

@@ -15,12 +15,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class ScreensController extends StackPane {
 
 	private HashMap<String, Node> screens = new HashMap<>();
+	private HashMap<String, ControlledScreen> controllers = new HashMap<>();
 
 	public ScreensController() {
 		// TODO Auto-generated constructor stub
@@ -39,6 +41,10 @@ public class ScreensController extends StackPane {
 	 */
 	public void addScreen(String id, Node screen) {
 		screens.put(id, screen);
+	}
+	
+	public ControlledScreen getController(String id) {
+		return controllers.get(id);
 	}
 
 	/**
@@ -59,6 +65,7 @@ public class ScreensController extends StackPane {
 			Parent loadScreen =  (Parent)myLoader.load();
 			ControlledScreen screenController = ((ControlledScreen) myLoader.getController());
 			screenController.setScreenParent(this);
+			controllers.put(id, screenController);
 			addScreen(id, loadScreen);
 
 			return true;
