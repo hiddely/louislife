@@ -78,7 +78,7 @@ public class XMLParser {
 			
 			game = new Game(id, name, currentDay, currentTeam);
 			
-			
+			game.setXmlName(this.filename);
 			// Get match data
 			
 			NodeList matchData = gameNode.getElementsByTagName("match");
@@ -231,7 +231,8 @@ public class XMLParser {
 			rootElement.setAttribute("id", g.getId()+"");
 			rootElement.setAttribute("name", g.getName()+"");
 			rootElement.setAttribute("currentday", g.getCurrentDay()+"");
-			rootElement.setAttribute("currentteam", g.getUserTeam().getId()+"");
+			Team tguser = g.getUserTeam();
+			rootElement.setAttribute("currentteam", tguser.getId()+"");
 			
 			for (League l : g.getLeagues()) {
 				Element eLeague = doc.createElement("league");
@@ -302,7 +303,7 @@ public class XMLParser {
 					Element eE = doc.createElement("event");
 					eE.setAttribute("player", e.getPlayer()+"");
 					Element eEType = doc.createElement("type");
-					eEType.appendChild(doc.createTextNode(e.getType()+""));
+					eEType.appendChild(doc.createTextNode(e.getType().ordinal()+""));
 					Element eEMinute = doc.createElement("minute");
 					eEMinute.appendChild(doc.createTextNode(e.getMinute()+""));
 					eE.appendChild(eEType);
@@ -317,7 +318,7 @@ public class XMLParser {
 					Element eE = doc.createElement("event");
 					eE.setAttribute("player", e.getPlayer()+"");
 					Element eEType = doc.createElement("type");
-					eEType.appendChild(doc.createTextNode(e.getType()+""));
+					eEType.appendChild(doc.createTextNode(e.getType().ordinal()+""));
 					Element eEMinute = doc.createElement("minute");
 					eEMinute.appendChild(doc.createTextNode(e.getMinute()+""));
 					eE.appendChild(eEType);

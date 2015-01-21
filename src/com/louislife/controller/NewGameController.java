@@ -63,7 +63,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 		try {
 			XMLParser parser = new XMLParser("example.xml");
 			Game g = parser.parseGame();
-			ArrayList<Team> teams = g.getLeagues().get(0).getTeams();
+			final ArrayList<Team> teams = g.getLeagues().get(0).getTeams();
 			
 			GridPane gp = new GridPane();
 			
@@ -84,7 +84,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 						public void handle(MouseEvent event) {
 							// Select this team
 							System.out.println("TEAMID: "+teamid);
-							selected_teamId = teamid;
+							selected_teamId = teams.get(teamid).getId();
 						}
 					});
 					
@@ -124,8 +124,11 @@ public class NewGameController implements Initializable, ControlledScreen {
 						// Edit game data to set new team
 						Game g = Game.getInstance();
 						g.setName(fieldName.getText());
+						g.setXmlName(fieldName.getText()+".xml");
 						g.setCurrentTeam(selected_teamId);
-						
+
+						Game.getInstance().createMatchSchedule();
+
 						parser.writeGame(g); // Write game back to savefile. The game can now start..
 					} catch (SAXException | IOException | GameLoadException e1) {
 						// Error parsing game
@@ -139,8 +142,6 @@ public class NewGameController implements Initializable, ControlledScreen {
 			}
 			
 			controller.setScreen(MainApplication.OVERVIEW);
-			
-			Game.getInstance().createMatchSchedule();
 		}
 	}
 	

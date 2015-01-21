@@ -3,6 +3,7 @@ package com.louislife.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.louislife.util.XMLParser;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,8 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Controller of the Dashboard, the main navigation screen within gameoverview
@@ -64,6 +67,18 @@ public class DashboardController implements Initializable, ControlledScreen {
 		
 		GameOverviewController g = (GameOverviewController)MainApplication.mainContainer.getController(MainApplication.OVERVIEW);
 		g.updateDate();
+
+		MatchController m = (MatchController)MainApplication.mainContainer.getController(MainApplication.MATCH);
+		m.updateMatches();
+
+		// Save game
+		XMLParser parser = null;
+		try {
+			parser = new XMLParser(Game.getInstance().getXmlName());
+		} catch (ParserConfigurationException e1) {
+			e1.printStackTrace();
+		}
+		parser.writeGame(Game.getInstance());
 	}
 	
 	@FXML protected void onClickTeam(Event e) {

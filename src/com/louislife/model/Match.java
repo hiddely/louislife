@@ -181,6 +181,10 @@ public class Match {
 		return null;
 	}
 
+	public boolean isPlayed() {
+		return !getEvents_home().isEmpty() || !getEvents_away().isEmpty();
+	}
+
 	public void play(long seed) {
 		Team home = Game.getInstance().getLeagues().get(0).findTeam(team_home);
 		Team away = Game.getInstance().getLeagues().get(0).findTeam(team_away);
@@ -208,7 +212,7 @@ public class Match {
 		for(int i = 0; i < homeChances; i++){
 			homeTime += 90/homeChances;
 			int random = r.nextInt(100);
-			if(random > homeGoalChance){
+			if(random < homeGoalChance){
 				int eventTime = homeTime - 45/homeChances + r.nextInt(90/homeChances);
 				Player pl = slh.get(r.nextInt(slh.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, eventTime);
@@ -219,8 +223,8 @@ public class Match {
 		for(int i = 0; i < awayChances; i++){
 			awayTime += 90/awayChances;
 			int random = r.nextInt(100);
-			if(random > awayGoalChance){
-				Player pl = slh.get(r.nextInt(sla.size()));
+			if(random < awayGoalChance){
+				Player pl = sla.get(r.nextInt(sla.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
 				events_home.add(e);
 			}
