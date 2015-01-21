@@ -43,7 +43,11 @@ public class MainApplication extends Application {
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
+<<<<<<< HEAD
 		MainApplication.mainContainer.loadScreen(MainApplication.TEAM, MainApplication.TEAM_FXML);
+=======
+
+>>>>>>> TeamManagementBranch
 
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu		
 		
