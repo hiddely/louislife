@@ -74,6 +74,16 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Pane onMouseClicked="#onClickMainMenu" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <children>
+            <Label layoutX="42.0" layoutY="9.0" prefHeight="127.0" prefWidth="123.0" text="Main Menu" textFill="#ffffffe5" wrapText="true">
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+            </Label>
+         </children></Pane>
    </children>
 </GridPane>

@@ -1,8 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.TransferMarketController">
+   <children>
+      <ListView fx:id="teamsList" layoutX="0." layoutY="41.0" prefHeight="561.0" prefWidth="270.0" />
+      <ListView fx:id="playerList" layoutX="271.0" layoutY="41.0" prefHeight="561.0" prefWidth="270.0" />
+      <Label alignment="CENTER" layoutY="2.0" prefHeight="38.0" prefWidth="269.0" styleClass="pane-team" stylesheets="@../../../../styles/app.css" text="Teams" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Label alignment="CENTER" layoutX="272.0" layoutY="2.0" prefHeight="38.0" prefWidth="269.0" styleClass="pane-team" stylesheets="@../../../../styles/app.css" text="Players" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <GridPane layoutX="537.0" layoutY="112.0" prefHeight="79.0" prefWidth="379.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.5587158203125" minWidth="10.0" prefWidth="107.878173828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.94512939453125" minWidth="10.0" prefWidth="123.121826171875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.60919189453125" minWidth="10.0" prefWidth="123.60919189453125" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="117.63447570800781" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="124.36552429199219" minHeight="10.0" prefHeight="124.36552429199219" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="defLabel" alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="attLabel" alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="ATT" textFill="RED" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="stamLabel" alignment="CENTER" prefHeight="41.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="ATT" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="643.0" layoutY="45.0" prefHeight="63.0" prefWidth="164.0" text="Piet Jansen" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Slider fx:id="bidSlider" layoutX="617.0" layoutY="396.0" prefHeight="29.0" prefWidth="241.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="642.0" layoutY="306.0" prefHeight="32.0" prefWidth="177.0" text="0" textFill="WHITE">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="bidButton" layoutX="670.0" layoutY="487.0" mnemonicParsing="false" text="Place Bid">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>
-

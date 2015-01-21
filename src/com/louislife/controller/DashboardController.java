@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
@@ -73,6 +74,10 @@ public class DashboardController implements Initializable, ControlledScreen {
 	
 	@FXML protected void onClickMarket(Event e) {
 		navigationPane.getSelectionModel().select(3);
+	}
+	
+	@FXML protected void onClickMainMenu(Event e){
+		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU);
 	}
 	
 }
