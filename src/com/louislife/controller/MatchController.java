@@ -1,6 +1,7 @@
 package com.louislife.controller;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.model.Match;
@@ -13,13 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
 import javafx.scene.input.*;
+import sun.applet.Main;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MatchController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	
 
@@ -38,6 +40,8 @@ ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		MainApplication.addListener(this);
+
 		updateMatches();
 	}
 
@@ -91,5 +95,10 @@ ControlledScreen {
 
 	public void setMatchDetails(Match m) {
 		matchTitle.setText("Match " + m.getTH().getName() + " vs. " + m.getTA().getName() + " " + m.getScore_home() + " - " + m.getScore_away());
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateMatches();
 	}
 }

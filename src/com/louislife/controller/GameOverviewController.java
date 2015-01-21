@@ -15,7 +15,7 @@ import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
 public class GameOverviewController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	@FXML
 	private TabPane navigationPane;
@@ -57,5 +57,11 @@ ControlledScreen {
 		
 		// Laad de load games
 
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateBalance();
+		updateDate();
 	}
 }

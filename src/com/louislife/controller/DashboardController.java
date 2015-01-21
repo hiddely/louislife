@@ -70,11 +70,7 @@ public class DashboardController implements Initializable, ControlledScreen {
 		}
 		Game.getInstance().nextWeek();
 		
-		GameOverviewController g = (GameOverviewController)MainApplication.mainContainer.getController(MainApplication.OVERVIEW);
-		g.updateDate();
-
-		MatchController m = (MatchController)MainApplication.mainContainer.getController(MainApplication.MATCH);
-		m.updateMatches();
+		MainApplication.sendNextGame();
 
 		// Save game
 		XMLParser parser = null;

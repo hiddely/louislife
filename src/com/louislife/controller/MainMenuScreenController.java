@@ -51,11 +51,6 @@ public class MainMenuScreenController implements Initializable,
 		ObservableList<String> items =FXCollections.observableArrayList (games);
 		loadGameList.setItems(items);
 
-		String bip = "sounds/louisquotes.mp3";
-		Media hit = new Media(new File(bip).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(hit);
-		mediaPlayer.play();
-
 	}
 	
 	@FXML protected void actionButtonNew(ActionEvent event) {
