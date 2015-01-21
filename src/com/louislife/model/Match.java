@@ -190,15 +190,15 @@ public class Match {
 		Team away = Game.getInstance().getLeagues().get(0).findTeam(team_away);
 		Random r = new Random(seed);
 		
-		int homeChances = home.getTotStamina() / 120;
-		int awayChances = away.getTotStamina() / 110;
-		int homeGoalChance = 50 + ((home.getTotOff() - away.getTotDef()) / 2 * away.getTotDef());
+		int homeChances = home.getTotStamina() / 110;
+		int awayChances = away.getTotStamina() / 120;
+		double homeGoalChance = (50 + ((home.getTotOff() - away.getTotDef()) * 100 / away.getTotDef()));
+		double awayGoalChance = (50 + ((away.getTotOff() - home.getTotDef()) *100 / home.getTotDef()));
 		if(homeGoalChance < 5){
 			homeGoalChance = 5;
 		}else if(homeGoalChance > 90){
 			homeGoalChance = 90;
 		}
-		int awayGoalChance = 50 + ((away.getTotOff() - home.getTotDef()) / 2 * home.getTotDef());
 		if(awayGoalChance < 5){
 			awayGoalChance = 5;
 		}else if(awayGoalChance > 90){
