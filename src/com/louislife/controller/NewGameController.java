@@ -71,19 +71,20 @@ public class NewGameController implements Initializable, ControlledScreen {
 				for (int j = 0; j < ITEMS_ROW; j++) {
 					if (teams.size() <= ITEMS_ROW*i + j)
 						break;
-					Team t = teams.get(ITEMS_ROW*i + j);
+					final int teamid = ITEMS_ROW*i + j;
+					Team t = teams.get(teamid);
 					StackPane p = new StackPane(); // Make clickable
 					p.getStylesheets().add("../../../../styles/app.css");
 					p.getStyleClass().add("pane-team");
 					p.setPadding(new Insets(10, 10, 10, 10));
 					p.setPrefWidth(200.0);
 					p.setPrefHeight(100.0);
-					//p.addEventHandler(EventType, eventHandler);
 					p.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							// Select this team
-							selected_teamId = 2;
+							System.out.println("TEAMID: "+teamid);
+							selected_teamId = teamid;
 						}
 					});
 					

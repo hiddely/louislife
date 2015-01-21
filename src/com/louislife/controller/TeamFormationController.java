@@ -80,7 +80,7 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	 */
 	public void setupDragDrop(){
 		for (int i=1;i<12;i++){
-			Pane pane= getPane(i);
+			StackPane pane= getPane(i);
 
 			pane.setOnDragOver(new EventHandler<DragEvent>() {
 			    public void handle(DragEvent event) {
