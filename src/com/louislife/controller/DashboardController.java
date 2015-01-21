@@ -57,6 +57,11 @@ public class DashboardController implements Initializable, ControlledScreen {
 		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
 			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
 				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
+				
+				// Award prize money
+				Game.getInstance().getMatches().get(i).calculateHomeCredit();
+				Game.getInstance().getMatches().get(i).calculateAwayCredit();
+				
 				System.out.println("Played: " + Game.getInstance().getMatches().get(i).toString());
 			}
 		}

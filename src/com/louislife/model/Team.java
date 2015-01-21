@@ -95,13 +95,6 @@ public class Team {
 		}
 		return null;
 	}
-	
-	public boolean equals(Team t) {
-		if (this.id == t.id && this.name.equals(t.getName()) && this.players.equals(t.getPlayers()) && this.balance == t.balance) {
-			return true;
-		}
-		return false;
-	}
 
 	/**
 	 * 

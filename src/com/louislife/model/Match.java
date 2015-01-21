@@ -243,24 +243,24 @@ public class Match {
 			Event curEvent = events_home.get(i);
 			
 			if (curEvent.getType() == EventType.GOAL) {
-				credit += 100000;
+				getTH().addToBalance(100000);
 			}
 			
 			else if (curEvent.getType() == EventType.YELLOWCARD) {
-				credit -= 100000;
+				getTH().removeFromBalance(100000);
 			}
 			
 			else if (curEvent.getType() == EventType.REDCARD) {
-				credit -= 500000;
+				getTH().removeFromBalance(500000);
 			}
 		}
 		
 		// Credit based on win / tie / loss
 		if (this.getWinningTeam().equals(this.getTH())) {
-			credit += 500000;
+			getTH().addToBalance(500000);
 		}
 		else if (this.getWinningTeam() == null) {
-			credit += 250000;
+			getTH().addToBalance(250000);
 		}
 		
 		return credit;
@@ -274,31 +274,31 @@ public class Match {
 	 * @author Wouter
 	 */
 	public int calculateAwayCredit() {	
-		int credit = 0;
+	int credit = 0;
 		
 		// Credit based on events
-		for (int i = 0; i < events_away.size(); i++) {
-			Event curEvent = events_away.get(i);
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
 			
 			if (curEvent.getType() == EventType.GOAL) {
-				credit += 100000;
+				getTA().addToBalance(100000);
 			}
 			
 			else if (curEvent.getType() == EventType.YELLOWCARD) {
-				credit -= 100000;
+				getTA().removeFromBalance(100000);
 			}
 			
 			else if (curEvent.getType() == EventType.REDCARD) {
-				credit -= 500000;
+				getTA().removeFromBalance(500000);
 			}
 		}
 		
 		// Credit based on win / tie / loss
-		if (this.getWinningTeam().equals(this.getTA() ) ) {
-			credit += 500000;
+		if (this.getWinningTeam().equals(this.getTH())) {
+			getTA().addToBalance(500000);
 		}
 		else if (this.getWinningTeam() == null) {
-			credit += 250000;
+			getTA().addToBalance(250000);
 		}
 		
 		return credit;

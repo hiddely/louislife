@@ -155,18 +155,6 @@ public class Game {
 				+ leagues + ", transfers=" + transfers + ", matches=" + matches
 				+ "]";
 	}
-	
-	public boolean equals(Game that) {
-		if (this.id == that.id && this.name.equals(that.getName())
-				&& this.currentDay == that.currentDay
-				&& this.currentTeam == that.currentTeam
-				&& this.leagues.equals(that.getLeagues())
-				&& this.transfers.equals(that.getTransfers())
-				&& this.matches.equals(that.getMatches())) {
-			return true;
-		}
-		return false;
-	}
 
 	
 	public static String[] getQuotes() {
@@ -184,9 +172,11 @@ public class Game {
 	 * The match schedule is created by shuffling the League.Teams ArrayList and
 	 * then matching all combinations against each other according to the 
 	 * Premier League system (double round-robin)
+	 * 
+	 * @author Wouter
 	 */
 	public void createMatchSchedule() {
-		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
+		League curLeague = this.leagues.get(0); // current league hardcoded because we only have one for now.
 		ArrayList<Team> shuffledList = curLeague.getTeams();
 		Collections.shuffle(shuffledList);
 		
