@@ -260,7 +260,7 @@ public class Match {
 		}
 		
 		// Credit based on win / tie / loss
-		if (this.getWinningTeam().equals(this.getTH())) {
+		if (this.getTH().equals(this.getWinningTeam())) {
 			getTH().addToBalance(500000);
 		}
 		else if (this.getWinningTeam() == null) {
