@@ -160,5 +160,222 @@ public class TeamTest {
 		
 		assertTrue(team1.equals(team2));
 	}
+	
+	@Test
+	public void testGetTotOff() {
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl2 = new Player(2, "Piet", "Niet", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl3 = new Player(3, "Jan", "Hoog", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl4 = new Player(4, "Jan", "Laag", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl5 = new Player(5, "Jan", "Links", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl6 = new Player(6, "Jan", "Rechts", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl7 = new Player(7, "Jan", "Voor", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl8 = new Player(8, "Jan", "Achter", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl9 = new Player(9, "Jan", "Beneden", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl10 = new Player(10, "Jan", "Boven", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl11 = new Player(11, "Jan", "Midden", jn, PlayerType.GOALKEEPER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		pll1.add(pl10);
+		pll1.add(pl11);
+		
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		
+		Team tm1 = new Team(1, "Ajax", 50000, pll1);
+		Team tm2 = new Team(1, "PSV", 50000, pll2);
+
+		assertEquals(tm1.getTotOff(), 408);
+		assertEquals(tm2.getTotOff(), -1);
+	}
+	
+	@Test
+	public void testGetTotDef() {
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl2 = new Player(2, "Piet", "Niet", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl3 = new Player(3, "Jan", "Hoog", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl4 = new Player(4, "Jan", "Laag", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl5 = new Player(5, "Jan", "Links", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl6 = new Player(6, "Jan", "Rechts", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl7 = new Player(7, "Jan", "Voor", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl8 = new Player(8, "Jan", "Achter", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl9 = new Player(9, "Jan", "Beneden", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl10 = new Player(10, "Jan", "Boven", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl11 = new Player(11, "Jan", "Midden", jn, PlayerType.GOALKEEPER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		pll1.add(pl10);
+		pll1.add(pl11);
+		
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		
+		Team tm1 = new Team(1, "Ajax", 50000, pll1);
+		Team tm2 = new Team(1, "PSV", 50000, pll2);
+
+		assertEquals(tm1.getTotDef(), 568);
+		assertEquals(tm2.getTotDef(), -1);
+	}
+	
+	@Test
+	public void testGetTotStamina(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl2 = new Player(2, "Piet", "Niet", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl3 = new Player(3, "Jan", "Hoog", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl4 = new Player(4, "Jan", "Laag", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl5 = new Player(5, "Jan", "Links", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl6 = new Player(6, "Jan", "Rechts", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl7 = new Player(7, "Jan", "Voor", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl8 = new Player(8, "Jan", "Achter", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl9 = new Player(9, "Jan", "Beneden", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl10 = new Player(10, "Jan", "Boven", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl11 = new Player(11, "Jan", "Midden", jn, PlayerType.GOALKEEPER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl12 = new Player(11, "Jan", "NietSpeel", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl13 = new Player(11, "Jan", "Bank", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		pll1.add(pl10);
+		pll1.add(pl11);
+		pll1.add(pl12);
+		pll1.add(pl13);
+		
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		
+		Team tm1 = new Team(1, "Ajax", 50000, pll1);
+		Team tm2 = new Team(1, "PSV", 50000, pll2);
+		
+		assertEquals(tm1.getTotStamina(), 825);
+		assertEquals(tm2.getTotStamina(), -1);
+	}
+	
+	@Test
+	public void testGetScoreList(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl2 = new Player(2, "Piet", "Niet", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl3 = new Player(3, "Jan", "Hoog", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		Player pl4 = new Player(4, "Jan", "Laag", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl5 = new Player(5, "Jan", "Links", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl6 = new Player(6, "Jan", "Rechts", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, v, v, v, 0, 500);
+		Player pl7 = new Player(7, "Jan", "Voor", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl8 = new Player(8, "Jan", "Achter", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl9 = new Player(9, "Jan", "Beneden", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl10 = new Player(10, "Jan", "Boven", jn, PlayerType.DEFENDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl11 = new Player(11, "Jan", "Midden", jn, PlayerType.GOALKEEPER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl12 = new Player(11, "Jan", "NietSpeel", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+		Player pl13 = new Player(11, "Jan", "Bank", jn, PlayerType.MIDFIELDER, PlayerStatus.NORMAL, z, t, v, 0, 500);
+
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		pll1.add(pl10);
+		pll1.add(pl11);
+		pll1.add(pl12);
+		pll1.add(pl13);
+		
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll1.add(pl1);
+		pll1.add(pl2);
+		pll1.add(pl3);
+		pll1.add(pl4);
+		pll1.add(pl5);
+		pll1.add(pl6);
+		pll1.add(pl7);
+		pll1.add(pl8);
+		pll1.add(pl9);
+		
+		Team tm1 = new Team(1, "Ajax", 50000, pll1);
+		Team tm2 = new Team(1, "PSV", 50000, pll2);
+		
+		ArrayList<Player> res1 = new ArrayList<Player>();
+		res1.add(pl1);
+		res1.add(pl1);
+		res1.add(pl2);
+		res1.add(pl2);
+		res1.add(pl3);
+		res1.add(pl3);
+		res1.add(pl4);
+		res1.add(pl5);
+		res1.add(pl6);
+		
+		assertEquals(tm1.getScoreList(), res1);
+		assertEquals(tm2.getScoreList(), null);
+		
+		
+	}
 
 }

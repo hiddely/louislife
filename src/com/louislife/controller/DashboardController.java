@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
@@ -60,6 +61,9 @@ public class DashboardController implements Initializable, ControlledScreen {
 			}
 		}
 		Game.getInstance().nextWeek();
+		
+		GameOverviewController g = (GameOverviewController)MainApplication.mainContainer.getController(MainApplication.OVERVIEW);
+		g.updateDate();
 	}
 	
 	@FXML protected void onClickTeam(Event e) {

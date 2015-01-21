@@ -1,5 +1,8 @@
 package com.louislife.model;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Represents football player
  * 
@@ -8,6 +11,7 @@ package com.louislife.model;
  */
 public class Player {
 
+	private static int transferIdentifier = 0;
 	private int id;
 	private String firstname;
 	private String surname;
@@ -139,6 +143,65 @@ public class Player {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	/**
+	 * Creates Transfer, adds it to the list of transfer and sets new balances
+	 *
+	 * @param leagueIndex
+	 *            We have one League so leagueIndex = 0
+	 * @param teamFromId
+	 * @param teamToId
+	 * @param playerId
+	 * 
+	 * @author Shane
+	 */
+	public void transferPlayer(int leagueIndex, int teamFromId,
+			int teamToId) {
+		Team teamFrom = Game.getInstance().getLeagues().get(leagueIndex)
+				.findTeam(teamFromId);
+		Team teamTo = Game.getInstance().getLeagues().get(leagueIndex)
+				.findTeam(teamToId);
+		int playerId = this.id;
+
+		if (teamTo.getBalance() >= this.price) {
+			Transfer transfer = new Transfer(transferIdentifier, teamFromId,
+					teamToId, playerId, this.price, Game.getInstance()
+							.getCurrentDay());
+			Game.getInstance().addTransfer(transfer);
+			transferIdentifier++;
+			for (int i = 0; i < teamFrom.getPlayers().size(); i++) {
+				if (teamFrom.getPlayers().get(i).getId() == this.id) {
+					teamFrom.getPlayers().remove(i);
+				}
+			}
+			;
+			teamTo.getPlayers().add(this);
+			teamFrom.setBalance(teamFrom.getBalance() + this.price);
+			teamTo.setBalance(teamTo.getBalance() - this.price);
+			this.setTeamId(teamToId);
+		}
+	}
+
+	/**
+	 * Sells a player to a random team which has enough balance
+	 * 
+	 * @param leagueIndex
+	 * @param playerId
+	 * 
+	 * @author Shane
+	 */
+	public void sellPlayer(int leagueIndex, long seed) {
+		int userTeamId = Game.getInstance().getUserTeam().getId();
+		ArrayList<Team> tm = new ArrayList<Team>();
+		for(int i = 0; i < Game.getInstance().getLeagues().get(leagueIndex).getTeams().size(); i++){
+			if(Game.getInstance().getLeagues().get(leagueIndex).getTeams().get(i).getBalance() > this.price*2){
+				tm.add(Game.getInstance().getLeagues().get(leagueIndex).getTeams().get(i));
+			}
+		}
+		Random r = new Random(seed);
+		int randomTeam = tm.get(r.nextInt(tm.size())).getId();
+		this.transferPlayer(leagueIndex, userTeamId, randomTeam);
+	}
 
 	@Override
 	public String toString() {
@@ -149,16 +212,19 @@ public class Player {
 				+ teamId + ", price=" + price + "]";
 	}
 
-	public boolean equals(Player pl) {
-		if (this.id == pl.id && this.firstname.equals(pl.getFirstname())
-				&& this.surname.equals(pl.getSurname())
-				&& this.number == pl.getJerseyNumber()
-				&& this.type == pl.getType()
-				&& this.offensiveRating == pl.getDefensiveScore()
-				&& this.defensiveRating == pl.getDefensiveScore()
-				&& this.stamina == pl.getStaminaScore()
-				&& this.teamId == pl.teamId && this.price == pl.getPrice()) {
-			return true;
+	public boolean equals(Object o) {
+		if(o instanceof Player){
+			Player pl = (Player) o;
+			if (this.id == pl.id && this.firstname.equals(pl.getFirstname())
+					&& this.surname.equals(pl.getSurname())
+					&& this.number == pl.getJerseyNumber()
+					&& this.type == pl.getType()
+					&& this.offensiveRating == pl.getDefensiveScore()
+					&& this.defensiveRating == pl.getDefensiveScore()
+					&& this.stamina == pl.getStaminaScore()
+					&& this.teamId == pl.teamId && this.price == pl.getPrice()) {
+				return true;
+			}
 		}
 		return false;
 	}
