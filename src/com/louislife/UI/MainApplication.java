@@ -25,6 +25,8 @@ public class MainApplication extends Application {
 	public static final String OVERVIEW_FXML = "GameOverview.fxml";
 	public static final String TEAM = "team_view";
 	public static final String TEAM_FXML = "Team.fxml";
+	public static final String STATISTICS = "statistics";
+	public static final String STATISTICS_FXML = "statistics.fxml";
 
 
 	
@@ -44,6 +46,7 @@ public class MainApplication extends Application {
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.TEAM, MainApplication.TEAM_FXML);
+		MainApplication.mainContainer.loadScreen(MainApplication.STATISTICS, MainApplication.STATISTICS_FXML);
 
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu		
 		

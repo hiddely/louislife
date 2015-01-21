@@ -134,6 +134,25 @@ public class Team {
 		return res;
 	}
 	
+	/**
+	 * Creates a String[] of the players ArrayList to allow display in the view.
+	 * 
+	 * @return String[]
+	 * 
+	 * @author Wouter
+	 */
+	public String[] playersToString() {
+		String[] displayList = new String[this.getPlayers().size()];
+		
+		for (int i = 0; i < players.size(); i++) {
+			Player p = players.get(i);
+			displayList[i] = p.getJerseyNumber() + " - " + p.getFirstname() + " " + p.getSurname()+"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+		
+		}
+		
+		return displayList;
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", players=" + players
