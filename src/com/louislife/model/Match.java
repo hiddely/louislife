@@ -23,7 +23,6 @@ public class Match {
 	/**
 	 * Creates a new match.
 	 * 
-<<<<<<< HEAD
 	 * A match is played on the day that the overview screen shows before
 	 * pressing the next round button. Thus, nextWeek() happens after creating
 	 * the match object.
@@ -43,7 +42,6 @@ public class Match {
 	 * @param day - int. Day the match is played on.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 	public Match(int id, int day, int team_home, int team_away) {
 		this.id = id;
@@ -60,7 +58,6 @@ public class Match {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Creates a new match without specifying the participating teams.
 	 * 
 	 * A match is played on the day that the overview screen shows before
@@ -76,7 +73,6 @@ public class Match {
 	 * @param id -int. match ID.
 	 * @param team_home - int. Team ID that played home.
 	 * @param team_away - int. Team ID that played away.
->>>>>>> branch 'master' of https://github.com/hidde1000/louislife
 	 */
 
 	public Match(int id, int team_home, int team_away) {
@@ -127,10 +123,12 @@ public class Match {
 	public int getTeam_home() {
 		return team_home;
 	}
+	public Team getTH() { return Game.getInstance().getLeagues().get(0).findTeam(team_home); }
 
 	public int getTeam_away() {
 		return team_away;
 	}
+	public Team getTA() { return Game.getInstance().getLeagues().get(0).findTeam(team_away); }
 
 	public void setDay(int d) {
 		this.day = d;
@@ -145,20 +143,62 @@ public class Match {
 		this.team_away = team_away;
 	}
 
+	public int getScore_home() {
+		int score = 0;
+		for (Event e : events_home) {
+			if (e.getType() == EventType.GOAL) {
+				score++;
+			}
+		}
+		return score;
+	}
+
+	public int getScore_away() {
+		int score = 0;
+		for (Event e : events_away) {
+			if (e.getType() == EventType.GOAL) {
+				score++;
+			}
+		}
+		return score;
+	}
+
+	public Team getWinningTeam() {
+		if (getScore_home()-getScore_away() < 0) {
+			return getTA();
+		} else if (getScore_home()-getScore_away() > 0) {
+			return getTH();
+		}
+		return null;
+	}
+
+	public Team getLosingTeam() {
+		if (getScore_home()-getScore_away() < 0) {
+			return getTH();
+		} else if (getScore_home()-getScore_away() > 0) {
+			return getTA();
+		}
+		return null;
+	}
+
+	public boolean isPlayed() {
+		return !getEvents_home().isEmpty() || !getEvents_away().isEmpty();
+	}
+
 	public void play(long seed) {
 		Team home = Game.getInstance().getLeagues().get(0).findTeam(team_home);
 		Team away = Game.getInstance().getLeagues().get(0).findTeam(team_away);
 		Random r = new Random(seed);
 		
-		int homeChances = home.getTotStamina() / 120;
-		int awayChances = away.getTotStamina() / 110;
-		int homeGoalChance = 50 + ((home.getTotOff() - away.getTotDef()) / 2 * away.getTotDef());
+		int homeChances = home.getTotStamina() / 110;
+		int awayChances = away.getTotStamina() / 120;
+		double homeGoalChance = (50 + ((home.getTotOff() - away.getTotDef()) * 100 / away.getTotDef()));
+		double awayGoalChance = (50 + ((away.getTotOff() - home.getTotDef()) *100 / home.getTotDef()));
 		if(homeGoalChance < 5){
 			homeGoalChance = 5;
 		}else if(homeGoalChance > 90){
 			homeGoalChance = 90;
 		}
-		int awayGoalChance = 50 + ((away.getTotOff() - home.getTotDef()) / 2 * home.getTotDef());
 		if(awayGoalChance < 5){
 			awayGoalChance = 5;
 		}else if(awayGoalChance > 90){
@@ -172,7 +212,7 @@ public class Match {
 		for(int i = 0; i < homeChances; i++){
 			homeTime += 90/homeChances;
 			int random = r.nextInt(100);
-			if(random > homeGoalChance){
+			if(random < homeGoalChance){
 				int eventTime = homeTime - 45/homeChances + r.nextInt(90/homeChances);
 				Player pl = slh.get(r.nextInt(slh.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, eventTime);
@@ -183,15 +223,91 @@ public class Match {
 		for(int i = 0; i < awayChances; i++){
 			awayTime += 90/awayChances;
 			int random = r.nextInt(100);
-			if(random > awayGoalChance){
-				Player pl = slh.get(r.nextInt(sla.size()));
+			if(random < awayGoalChance){
+				Player pl = sla.get(r.nextInt(sla.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
 				events_home.add(e);
 			}
 		}
 		
 	}
-
+	
+	/**
+	 * Calculates the money gained by the home team in this match.
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
+	 */
+	public int calculateHomeCredit() {	
+		int credit = 0;
+		
+		// Credit based on events
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				getTH().addToBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				getTH().removeFromBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				getTH().removeFromBalance(500000);
+			}
+		}
+		
+		// Credit based on win / tie / loss
+		if (this.getTH().equals(this.getWinningTeam())) {
+			getTH().addToBalance(500000);
+		}
+		else if (this.getWinningTeam() == null) {
+			getTH().addToBalance(250000);
+		}
+		
+		return credit;
+	}
+	
+	/**
+	 * Calculates the money gained by the away team in this match.
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
+	 */
+	public int calculateAwayCredit() {	
+	int credit = 0;
+		
+		// Credit based on events
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				getTA().addToBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				getTA().removeFromBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				getTA().removeFromBalance(500000);
+			}
+		}
+		
+		// Credit based on win / tie / loss
+		if (this.getTA().equals(this.getWinningTeam())) {
+			getTA().addToBalance(500000);
+		}
+		else if (this.getWinningTeam() == null) {
+			getTA().addToBalance(250000);
+		}
+		
+		return credit;
+	}
+	
 	@Override
 	public String toString() {
 		return "Match [id=" + id + ", day=" + day + ", events_home="

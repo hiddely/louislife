@@ -125,6 +125,5 @@ public class Transfer {
 				+ ", price=" + price + ", day=" + day + "]";
 	}
 	
-	
 
 }

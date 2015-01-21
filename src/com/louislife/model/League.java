@@ -72,6 +72,8 @@ public class League {
 	/**
 	 * Returns the amount of matches that should be played in one week (one in-game round)
 	 * @return int.
+	 * 
+	 * @author Wouter
 	 */
 	public int weeklyMatches() {
 		return getTeams().size() * ( getTeams().size() - 1 ) / ( ( getTeams().size() - 1 ) * 2 );

@@ -42,6 +42,11 @@
               <fx:include fx:id="market" source="TransferMarket.fxml" />
               </content>
             </Tab>
+            <Tab text="Matches">
+                <content>
+                    <fx:include fx:id="matches" source="Matches.fxml" />
+                </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

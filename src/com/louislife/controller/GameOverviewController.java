@@ -15,7 +15,7 @@ import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
 public class GameOverviewController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	@FXML
 	private TabPane navigationPane;
@@ -43,9 +43,9 @@ ControlledScreen {
 	
 	public void updateBalance() {
 		
-		String balance = "TBD";
+		String balance = Integer.toString(Game.getInstance().getUserTeam().getBalance());
 		balanceString.setText(balance);
-		
+		;
 	}
 	
 	public void updateDate() {
@@ -57,5 +57,11 @@ ControlledScreen {
 		
 		// Laad de load games
 
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateBalance();
+		updateDate();
 	}
 }
