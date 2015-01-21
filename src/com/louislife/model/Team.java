@@ -51,6 +51,28 @@ public class Team {
 		this.balance = balance;
 	}
 
+	/**
+	 * Adds the specified amount to the team's balance.
+	 * 
+	 * @param amount - int. The amount that is to be added to the balance.
+	 * 
+	 * @author Wouter
+	 */
+	public void addToBalance(int amount) {
+		this.balance += amount;
+	}
+
+	/**
+	 * Removes the specified amount from the team's balance.
+	 * 
+	 * @param amount - int. The amount that is to be removed from the balance.
+	 * 
+	 * @author Wouter
+	 */
+	public void removeFromBalance(int amount) {
+		this.balance -= amount;
+	}
+
 	public Team(int id, String name, int balance, ArrayList<Player> players) {
 		super();
 		this.id = id;

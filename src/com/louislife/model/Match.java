@@ -191,7 +191,39 @@ public class Match {
 		}
 		
 	}
-
+	
+	/**
+	 * Calculates the money gained by the home team in this match.
+	 * @return
+	 */
+	public int calculateHomeCredit() {	
+		int credit = 0;
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				credit += 100000;
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				credit -= 100000;
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				credit -= 500000;
+			}
+		}
+		
+		if () {
+			credit += 500000;
+		}
+		else if () {
+			credit += 250000;
+		}
+		
+		return credit;
+	}
+	
 	@Override
 	public String toString() {
 		return "Match [id=" + id + ", day=" + day + ", events_home="
