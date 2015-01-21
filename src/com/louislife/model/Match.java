@@ -230,10 +230,15 @@ public class Match {
 	
 	/**
 	 * Calculates the money gained by the home team in this match.
-	 * @return
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
 	 */
 	public int calculateHomeCredit() {	
 		int credit = 0;
+		
+		// Credit based on events
 		for (int i = 0; i < events_home.size(); i++) {
 			Event curEvent = events_home.get(i);
 			
@@ -250,10 +255,49 @@ public class Match {
 			}
 		}
 		
-		if () {
+		// Credit based on win / tie / loss
+		if (this.getWinningTeam().equals(this.getTH())) {
 			credit += 500000;
 		}
-		else if () {
+		else if (this.getWinningTeam() == null) {
+			credit += 250000;
+		}
+		
+		return credit;
+	}
+	
+	/**
+	 * Calculates the money gained by the away team in this match.
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
+	 */
+	public int calculateAwayCredit() {	
+		int credit = 0;
+		
+		// Credit based on events
+		for (int i = 0; i < events_away.size(); i++) {
+			Event curEvent = events_away.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				credit += 100000;
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				credit -= 100000;
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				credit -= 500000;
+			}
+		}
+		
+		// Credit based on win / tie / loss
+		if (this.getWinningTeam().equals(this.getTA() ) ) {
+			credit += 500000;
+		}
+		else if (this.getWinningTeam() == null) {
 			credit += 250000;
 		}
 		
