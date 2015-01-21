@@ -42,6 +42,11 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
+            <Tab text="Matches">
+                <content>
+                    <fx:include fx:id="matches" source="Matches.fxml" />
+                </content>
+            </Tab>
         </tabs>
       </TabPane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

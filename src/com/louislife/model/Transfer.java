@@ -125,6 +125,12 @@ public class Transfer {
 				+ ", price=" + price + ", day=" + day + "]";
 	}
 	
+	public boolean equals(Transfer that) {
+		if (this.id == that.id && this.from == that.from && this.to == that.to && this.player == that.player && this.price == that.price && this.day == that.day) {
+			return true;
+		}
+		return false;
+	}
 	
 
 }
