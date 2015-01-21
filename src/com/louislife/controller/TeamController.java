@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
@@ -48,7 +49,7 @@ ControlledScreen {
 		
 		for (int i = 11; i < players.size(); i++) {
 			Player p = players.get(i);
-			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+			playerListDisplay[i-11] = p.getJerseyNumber() + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
 		
 		}
 		// En zet ze dynamisch in de UI
@@ -65,12 +66,37 @@ ControlledScreen {
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(teamList.getSelectionModel().getSelectedItem());
 		        db.setContent(content);
-		       
+		       //TODO set db image.
 		        
 		        
 		        event.consume();
 		    }
+		
 		    
+		});
+		
+		teamList.setOnDragDone(new EventHandler<DragEvent>() {
+		    public void handle(DragEvent event) {
+		        /* the drag and drop gesture ended */
+		        /* if the data was successfully moved, clear it */
+		    	//update list
+		        if (event.getTransferMode() == TransferMode.MOVE) {
+		        	teamList.setItems(null);
+		        	
+		        	ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
+		    		String[] playerListDisplay = new String[players.size()-11];
+		    		
+		    		for (int i = 11; i < players.size(); i++) {
+		    			Player p = players.get(i);
+		    			playerListDisplay[i-11] = p.getJerseyNumber() + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+		    		
+		    		}
+		    		// En zet ze dynamisch in de UI
+		    		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
+		    		teamList.setItems(items);
+		        }
+		        event.consume();
+		    }
 		});
 
 

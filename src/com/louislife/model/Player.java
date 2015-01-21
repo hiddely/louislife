@@ -44,7 +44,7 @@ public class Player {
 		this.id = id;
 		this.firstname = firstname;
 		this.surname = surname;
-		this.number = jerseyNumber;
+		this.number = (byte) (jerseyNumber+1);
 		this.type = type;
 		this.status = status;
 		this.offensiveRating = offensiveScore;
