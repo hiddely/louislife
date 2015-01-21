@@ -1,5 +1,6 @@
 package com.louislife.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -66,8 +67,7 @@ ControlledScreen {
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString(teamList.getSelectionModel().getSelectedItem());
 		        db.setContent(content);
-		       //TODO set db image.
-		        
+		        db.setDragView(new Image(new File("images/user.png").toURI().toString(),42,42,true,true));
 		        
 		        event.consume();
 		    }
