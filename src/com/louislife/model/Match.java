@@ -231,7 +231,83 @@ public class Match {
 		}
 		
 	}
-
+	
+	/**
+	 * Calculates the money gained by the home team in this match.
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
+	 */
+	public int calculateHomeCredit() {	
+		int credit = 0;
+		
+		// Credit based on events
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				getTH().addToBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				getTH().removeFromBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				getTH().removeFromBalance(500000);
+			}
+		}
+		
+		// Credit based on win / tie / loss
+		if (this.getWinningTeam().equals(this.getTH())) {
+			getTH().addToBalance(500000);
+		}
+		else if (this.getWinningTeam() == null) {
+			getTH().addToBalance(250000);
+		}
+		
+		return credit;
+	}
+	
+	/**
+	 * Calculates the money gained by the away team in this match.
+	 * 
+	 * @return credit - int. The complete amount of money that should be credited to the home team, including all events and win/tie.
+	 * 
+	 * @author Wouter
+	 */
+	public int calculateAwayCredit() {	
+	int credit = 0;
+		
+		// Credit based on events
+		for (int i = 0; i < events_home.size(); i++) {
+			Event curEvent = events_home.get(i);
+			
+			if (curEvent.getType() == EventType.GOAL) {
+				getTA().addToBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.YELLOWCARD) {
+				getTA().removeFromBalance(100000);
+			}
+			
+			else if (curEvent.getType() == EventType.REDCARD) {
+				getTA().removeFromBalance(500000);
+			}
+		}
+		
+		// Credit based on win / tie / loss
+		if (this.getWinningTeam().equals(this.getTH())) {
+			getTA().addToBalance(500000);
+		}
+		else if (this.getWinningTeam() == null) {
+			getTA().addToBalance(250000);
+		}
+		
+		return credit;
+	}
+	
 	@Override
 	public String toString() {
 		return "Match [id=" + id + ", day=" + day + ", events_home="

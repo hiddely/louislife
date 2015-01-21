@@ -68,16 +68,12 @@ public class League {
 		}
 		return null;
 	}
-	public boolean equals(League l) {
-		if (this.id == l.id && this.name.equals(l.getName()) && this.country.equals(l.getCountry()) && this.teams.equals(l.getTeams())) {
-			return true;
-		}
-		return false;
-	}
 	
 	/**
 	 * Returns the amount of matches that should be played in one week (one in-game round)
 	 * @return int.
+	 * 
+	 * @author Wouter
 	 */
 	public int weeklyMatches() {
 		return getTeams().size() * ( getTeams().size() - 1 ) / ( ( getTeams().size() - 1 ) * 2 );
