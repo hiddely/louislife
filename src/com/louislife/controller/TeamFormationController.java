@@ -1,7 +1,6 @@
 package com.louislife.controller;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
 
@@ -12,13 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -41,27 +38,27 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	private Pane container;
 
 	@FXML
-	private StackPane p1;
+	private Pane p1;
 	@FXML
-	private StackPane p2;
+	private Pane p2;
 	@FXML
-	private StackPane p3;
+	private Pane p3;
 	@FXML
-	private StackPane p4;
+	private Pane p4;
 	@FXML
-	private StackPane p5;
+	private Pane p5;
 	@FXML
-	private StackPane p6;
+	private Pane p6;
 	@FXML
-	private StackPane p7;
+	private Pane p7;
 	@FXML
-	private StackPane p8;
+	private Pane p8;
 	@FXML
-	private StackPane p9;
+	private Pane p9;
 	@FXML
-	private StackPane p10;
+	private Pane p10;
 	@FXML
-	private StackPane p11;
+	private Pane p11;
 
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -126,33 +123,17 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 			        Dragboard db = event.getDragboard();
 			        boolean success = false;
 			        if (db.hasString()) {
-
 			        	//get jerseyNumber of player and number of pane
-			        	String [] newPlayerNumber= db.getString().split(" ");
-			        	int jerseyNumber= Integer.parseInt(newPlayerNumber[0]);
-			        	Player player= currentTeam.getPlayerWithJerseyNumber(jerseyNumber);
-
-			        	int newIndex= currentTeam.getPlayers().indexOf(player);
-
+			        	String [] newPlayerNumber= db.getString().split("");
+			        	int jerseyNumber= Integer.getInteger(newPlayerNumber[0]);
 			        	String[] paneNumberString=pane.getId().split("p");
-			        	int paneNumber=Integer.parseInt(paneNumberString[1]);
-			        	
+			        	int paneNumber=Integer.getInteger(paneNumberString[0]);
 			        	
 			        	//switch players and update
-			        	
-			        	Collections.swap(currentTeam.getPlayers(), newIndex, paneNumber-1);
-			        	
-			        	
-			        	Label nameLabel= (Label)pane.getChildren().get(0);
-			        	Label jerseyLabel=(Label)pane.getChildren().get(1);
-			        	Label statLabel= (Label)pane.getChildren().get(2);
-
-			        	nameLabel.setText(player.getSurname());
-			        	jerseyLabel.setText(Integer.toString(jerseyNumber));
-			        	
-			        	pane.getChildren().removeAll(pane.getChildren());
-			        	setUpLabels(pane,player);
-			        	
+			        	Player newPlayer=currentTeam.getPlayerWithJerseyNumber(jerseyNumber);
+			        	Player oldPlayer=currentTeam.getPlayers().get(paneNumber-1);
+			        	currentTeam.getPlayers().set(paneNumber-1, newPlayer) ;
+			        	currentTeam.addPlayer(oldPlayer);
 			        	formationChanged();
 			        	
 			        	success = true;
@@ -172,82 +153,6 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 		
 		
 	}
-	/**
-	 * Returns the type of position a pane is depending on its y coordinate. Default return is goalkeeper.
-	 * @param pane Pane to be valued
-	 * @return Playertype of player on pane
-	 */
-	
-	public PlayerType returnPlayerType(Pane pane){
-		if (pane.getLayoutY() > 300)
-			return PlayerType.DEFENDER;
-		else if (pane.getLayoutY()>100)
-			return PlayerType.MIDFIELDER;
-		else if (pane.getLayoutY()>50)
-			return PlayerType.STRIKER;
-		return PlayerType.GOALKEEPER;
-	}
-	
-	/**setsUp and creates Labels for pane
-	 * 
-	 * @param pane
-	 * @param player
-	 */
-	
-	public void setUpLabels (Pane pane, Player player){
-		Label nameLabel = new Label(player.getSurname());
-
-
-		Label jerseyLabel = new Label(Integer.toString(player
-				.getJerseyNumber() ));
-		Font myFont = Font.font(null, FontWeight.BOLD, 30);
-		jerseyLabel.setFont(myFont);
-		
-		
-
-		
-		if (pane != null) {
-			pane.getChildren().add(nameLabel);
-			pane.getChildren().add(jerseyLabel);
-
-			
-		}
-
-		
-		String[] paneNumberString=pane.getId().split("p");
-    	int paneNumber=Integer.parseInt(paneNumberString[1]);
-    	
-		Label statLabel = new Label();
-
-    	
-		if (paneNumber == 1) {
-			player.setType(PlayerType.GOALKEEPER);
-			statLabel.setText("Keeper:"
-					+ player.getDefensiveScore());
-			
-			pane.getChildren().add(statLabel);
-
-		}
-
-		else {
-			player.setType(returnPlayerType(pane));
-			if (player.getType()==PlayerType.DEFENDER)
-				statLabel.setText("Def: "+player.getDefensiveScore() );
-			else if (player.getType()==PlayerType.MIDFIELDER)
-				statLabel.setText("Stam: "+player.getStaminaScore() );
-			else 
-				statLabel.setText("Att: "+player.getOffensiveScore() );
-			
-			pane.getChildren().add(statLabel);
-			
-		}
-		StackPane.setAlignment(nameLabel, Pos.TOP_CENTER);
-		nameLabel.setTranslateY(-15.);
-		StackPane.setAlignment(statLabel, Pos.BOTTOM_CENTER);
-		statLabel.setTranslateY(15.);
-		StackPane.setAlignment(jerseyLabel, Pos.CENTER);
-		
-	}
 	
 	/**
 	 * Fills the screen with the current players' team and places labels. Also sets player type depending on position. The player type is determined from the y coordinate of the player.
@@ -257,13 +162,94 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	public void setTeam(Team team) {
 		currentTeam=team;
 		
-		
-		for (int i=1;i<12;i++) {
-			Pane pane=getPane(i);
-			Player player=currentTeam.getPlayers().get(i-1);
-			
-			setUpLabels(pane,player);
-			
+		int playerNumber = 1;
+
+		for (Player player : team.getPlayers()) {
+			Label nameLabel = new Label(player.getSurname());
+			nameLabel.setTranslateY(-20);
+
+			Label jerseyLabel = new Label(Integer.toString(player
+					.getJerseyNumber() + 1));
+			Font myFont = Font.font(null, FontWeight.BOLD, 30);
+			jerseyLabel.setFont(myFont);
+
+			jerseyLabel.widthProperty().addListener(
+					new ChangeListener<Number>() {
+						@Override
+						public void changed(
+								ObservableValue<? extends Number> o,
+								Number oldVal, Number newVal) {
+							jerseyLabel.setTranslateX(jerseyLabel
+									.getTranslateX() - (double) newVal / 2);
+
+						}
+					});
+
+			nameLabel.widthProperty().addListener(new ChangeListener<Number>() {
+				@Override
+				public void changed(ObservableValue<? extends Number> o,
+						Number oldVal, Number newVal) {
+					nameLabel.setTranslateX(jerseyLabel.getTranslateX()
+							- (double) newVal / 2);
+
+				}
+			});
+
+			Pane pane = getPane(playerNumber);
+
+			if (pane != null) {
+				pane.getChildren().add(nameLabel);
+				pane.getChildren().add(jerseyLabel);
+
+				pane.widthProperty().addListener(new ChangeListener<Number>() {
+					@Override
+					public void changed(ObservableValue<? extends Number> o,
+							Number oldVal, Number newVal) {
+						jerseyLabel.setTranslateX((double) newVal / 2);
+						nameLabel.setTranslateX((double) newVal / 2);
+
+					}
+				});
+
+				if (playerNumber == 1) {
+					player.setType(PlayerType.GOALKEEPER);
+					Label statLabel = new Label("Keeper:"
+							+ player.getDefensiveScore());
+					statLabel.setTranslateY(40);
+					statLabel.setTranslateX(15);
+					pane.getChildren().add(statLabel);
+
+				}
+
+				else if (pane.getLayoutY() > 300) {
+					player.setType(PlayerType.DEFENDER);
+					Label statLabel = new Label("Def: "
+							+ player.getDefensiveScore());
+					statLabel.setTranslateY(40);
+					statLabel.setTranslateX(15);
+					pane.getChildren().add(statLabel);
+				}
+
+				else if (pane.getLayoutY() > 100) {
+					player.setType(PlayerType.MIDFIELDER);
+
+					Label statLabel = new Label("Stam: "
+							+ player.getStaminaScore());
+					statLabel.setTranslateY(40);
+					statLabel.setTranslateX(15);
+					pane.getChildren().add(statLabel);
+				}
+
+				else if (pane.getLayoutY() > 50) {
+					player.setType(PlayerType.STRIKER);
+					Label statLabel = new Label("Att: "
+							+ player.getOffensiveScore());
+					statLabel.setTranslateY(40);
+					statLabel.setTranslateX(15);
+					pane.getChildren().add(statLabel);
+				}
+			}
+			playerNumber++;
 		}
 	}
 	
@@ -271,7 +257,6 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	 * updates the users' formation.
 	 */
 	private void formationChanged(){
-
 		Game.getInstance().getUserTeam().setPlayers(currentTeam.getPlayers());
 	}
 
@@ -280,7 +265,7 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	 * @param i pane to be returned
 	 * @return player pane
 	 */
-	private StackPane getPane(int i) {
+	private Pane getPane(int i) {
 		switch (i) {
 		case 1:
 			return p1;
