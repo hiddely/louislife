@@ -8,16 +8,16 @@
 
 <Pane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.TeamFormationController">
    <children>
-      <Pane fx:id="p8" layoutX="440.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p7" layoutX="279.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p6" layoutX="122.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p1" layoutX="279.0" layoutY="381.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p4" layoutX="389.0" layoutY="367.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p3" layoutX="159.0" layoutY="367.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p2" layoutX="48.0" layoutY="346.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p5" layoutX="500.0" layoutY="346.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p9" layoutX="141.0" layoutY="94.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p10" layoutX="279.0" layoutY="100.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
-      <Pane fx:id="p11" layoutX="418.0" layoutY="94.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p8" layoutX="440.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p7" layoutX="279.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p6" layoutX="122.0" layoutY="214.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p1" layoutX="279.0" layoutY="381.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p4" layoutX="389.0" layoutY="367.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p3" layoutX="159.0" layoutY="367.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p2" layoutX="48.0" layoutY="346.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p5" layoutX="500.0" layoutY="346.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p9" layoutX="141.0" layoutY="94.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p10" layoutX="279.0" layoutY="100.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
+      <StackPane fx:id="p11" layoutX="418.0" layoutY="94.0" prefHeight="42.0" prefWidth="74.0" styleClass="playercard" stylesheets="@../../../../styles/app.css" />
    </children>
 </Pane>
