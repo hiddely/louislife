@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane fx:id="parentGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.NewGameController">
+<GridPane id="newgame" fx:id="parentGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../../../../styles/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.NewGameController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -29,7 +29,7 @@
         </rowConstraints>
          <children>
             <TextField fx:id="fieldName" GridPane.columnIndex="1" />
-            <Label text="Your name" textAlignment="RIGHT" GridPane.halignment="RIGHT">
+            <Label text="Your name" textAlignment="RIGHT" textFill="WHITE" GridPane.halignment="RIGHT">
                <font>
                   <Font size="17.0" />
                </font>

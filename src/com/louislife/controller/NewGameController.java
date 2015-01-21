@@ -6,15 +6,24 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import org.xml.sax.SAXException;
 
 import com.louislife.UI.ControlledScreen;
@@ -63,11 +72,29 @@ public class NewGameController implements Initializable, ControlledScreen {
 					if (teams.size() <= ITEMS_ROW*i + j)
 						break;
 					Team t = teams.get(ITEMS_ROW*i + j);
-					Pane p = new Pane(); // Make clickable
+					StackPane p = new StackPane(); // Make clickable
+					p.getStylesheets().add("../../../../styles/app.css");
+					p.getStyleClass().add("pane-team");
+					p.setPadding(new Insets(10, 10, 10, 10));
+					p.setPrefWidth(200.0);
+					p.setPrefHeight(100.0);
 					//p.addEventHandler(EventType, eventHandler);
+					p.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							// Select this team
+							selected_teamId = 2;
+						}
+					});
 					
 					//p.setOnMousePressed(new TeamSelectHandler());
 					Label name = new Label(t.getName());
+					name.setTextFill(Color.WHITE);
+					name.setLayoutY(10.0);
+					name.setFont(Font.font("Avenir Medium", 18.0));
+					//name.setPrefWidth(200.0);
+					name.setTextAlignment(TextAlignment.CENTER);
+					StackPane.setAlignment(name, Pos.CENTER);
 					p.getChildren().add(name);
 					
 					gp.add(p, j, i);

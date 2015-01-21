@@ -27,3 +27,29 @@
 	-fx-background-position: center top;
 	-fx-background-size: contain;	
 }
+
+#gridmenu {
+	-fx-background-image: url(../images/vangaalhighfive.jpg);
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center top;
+	-fx-background-size: contain;	
+}
+
+#newgame {
+	-fx-background-image: url(../images/gaalnewgame.jpg);
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center top;
+	-fx-background-size: contain;
+}
+
+.pane-team {
+	-fx-background-color: rgba(0, 0, 0, 0.35);
+}
+
+.pane-team:hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.pane-team:focused {
+	-fx-background-color: rgba(0, 0, 0, 1.0);
+}
