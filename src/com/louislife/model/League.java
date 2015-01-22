@@ -68,6 +68,17 @@ public class League {
 		}
 		return null;
 	}
+
+	public Player findPlayer(int id) {
+		for (Team t : this.teams) {
+			for (Player p : t.getPlayers()) {
+				if (p.getId() == id) {
+					return p;
+				}
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * Returns the amount of matches that should be played in one week (one in-game round)

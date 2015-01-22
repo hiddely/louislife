@@ -36,6 +36,11 @@
                   <Font name="Avenir Medium" size="24.0" />
                </font>
             </Label>
+            <ScrollPane fx:id="eventsPane" layoutX="14.0" layoutY="57.0" prefHeight="405.0" prefWidth="604.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
          </children>
       </Pane>
    </children>
