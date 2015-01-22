@@ -68,7 +68,11 @@ ControlledScreen {
 		        content.putString(teamList.getSelectionModel().getSelectedItem());
 		        db.setContent(content);
 		        db.setDragView(new Image(new File("images/user.png").toURI().toString(),42,42,true,true));
+<<<<<<< Updated upstream
 		        
+=======
+		      
+>>>>>>> Stashed changes
 		        event.consume();
 		    }
 		
