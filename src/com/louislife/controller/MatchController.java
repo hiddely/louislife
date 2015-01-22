@@ -1,10 +1,9 @@
 package com.louislife.controller;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
-import com.louislife.model.Game;
-import com.louislife.model.Match;
-import com.louislife.model.Player;
+import com.louislife.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -12,14 +11,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import sun.applet.Main;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MatchController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	
 
@@ -28,6 +36,7 @@ ControlledScreen {
 	/** XML Properties **/
 	@FXML private ListView<String> teamList;
 	@FXML private Label matchTitle;
+	@FXML private ScrollPane eventsPane;
 
 	private ArrayList<Match> matches;
 	
@@ -38,6 +47,8 @@ ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		MainApplication.addListener(this);
+
 		updateMatches();
 	}
 
@@ -91,5 +102,39 @@ ControlledScreen {
 
 	public void setMatchDetails(Match m) {
 		matchTitle.setText("Match " + m.getTH().getName() + " vs. " + m.getTA().getName() + " " + m.getScore_home() + " - " + m.getScore_away());
+
+		Pane content = new Pane();
+		eventsPane.setContent(content);
+
+		for (int i = 0; i < m.getEvents_home().size(); i++) {
+			String label = "";
+			String icon = "";
+			Event e = m.getEvents_home().get(i);
+			switch (e.getType()) {
+				case GOAL:
+					//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
+					label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " scored a goal";
+					icon = "icon_football.png";
+					break;
+
+			}
+			Label l = new Label(label);
+			l.setTextFill(Color.BLACK);
+			l.setFont(new Font("Avenir Medium", 20.0));
+			l.setLayoutX(40.0);
+			Image ii = new Image(new File("images/"+icon).toURI().toString(), 30, 30, false, false);
+			final ImageView iconview = new ImageView();
+			iconview.setImage(ii);
+			Pane p = new Pane();
+			p.getChildren().add(l);
+			p.getChildren().add(iconview);
+			p.setLayoutY(i * 30.0);
+			content.getChildren().add(p);
+		}
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateMatches();
 	}
 }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
+import com.louislife.UI.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +16,7 @@ import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
 public class GameOverviewController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	@FXML
 	private TabPane navigationPane;
@@ -38,7 +39,7 @@ ControlledScreen {
 		updateDate();
 		DashboardController.setNavigationPane(navigationPane);
 
-		
+		MainApplication.addListener(this);
 	}
 	
 	public void updateBalance() {
@@ -57,5 +58,11 @@ ControlledScreen {
 		
 		// Laad de load games
 
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateBalance();
+		updateDate();
 	}
 }
