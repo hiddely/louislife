@@ -192,8 +192,9 @@ public class Match {
 		
 		int homeChances = home.getTotStamina() / 110;
 		int awayChances = away.getTotStamina() / 120;
-		double homeGoalChance = (50 + ((home.getTotOff() - away.getTotDef()) * 100 / away.getTotDef()));
-		double awayGoalChance = (50 + ((away.getTotOff() - home.getTotDef()) *100 / home.getTotDef()));
+		System.out.println(homeChances + " / "+ awayChances);
+		double homeGoalChance = (50 + ((home.getTotOff() * 2 - away.getTotDef()) * 100 / away.getTotDef()));
+		double awayGoalChance = (50 + ((away.getTotOff() * 2 - home.getTotDef()) *100 / home.getTotDef()));
 		if(homeGoalChance < 5){
 			homeGoalChance = 5;
 		}else if(homeGoalChance > 90){
@@ -204,6 +205,9 @@ public class Match {
 		}else if(awayGoalChance > 90){
 			awayGoalChance = 90;
 		}
+		System.out.println("50 + " + home.getTotOff() + " - " + away.getTotDef() + " * 100 / " + away.getTotDef());
+		System.out.println(homeGoalChance + " / "+ awayGoalChance);
+
 		int homeTime = 0;
 		int awayTime = 0;
 		ArrayList<Player> slh = home.getScoreList();
@@ -226,7 +230,7 @@ public class Match {
 			if(random < awayGoalChance){
 				Player pl = sla.get(r.nextInt(sla.size()));
 				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
-				events_home.add(e);
+				events_away.add(e);
 			}
 		}
 		
