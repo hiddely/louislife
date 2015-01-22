@@ -13,13 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.model.Player;
 import com.louislife.model.Team;
 
 public class TransferMarketController implements Initializable,
-		ControlledScreen {
+		ControlledScreen, GamePlayListener {
 	ScreensController controller;
 	ArrayList<Team> teams;
 	
@@ -66,6 +67,8 @@ public class TransferMarketController implements Initializable,
 		
 		updateTeamsList();
 		updatePlayerList();
+		
+		MainApplication.addListener(this);
 	}
 	
 	public void updateTeamsList(){
@@ -103,6 +106,13 @@ public class TransferMarketController implements Initializable,
 			playerList.setItems(items);
 		};
 		
+		
+	}
+
+	@Override
+	public void onGamePlayed() {
+		updateTeamsList();
+		updatePlayerList();
 		
 	}
 

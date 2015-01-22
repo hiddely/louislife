@@ -129,26 +129,23 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 
 			        	//get jerseyNumber of player and number of pane
 			        	String [] newPlayerNumber= db.getString().split(" ");
-			        	int jerseyNumber= Integer.parseInt(newPlayerNumber[0]);
+			        	int jerseyNumber= Integer.parseInt(newPlayerNumber[0])-1;
 			        	Player player= currentTeam.getPlayerWithJerseyNumber(jerseyNumber);
+			        	int newIndex=currentTeam.getPlayers().indexOf(player);
+			        	
 
-			        	int newIndex= currentTeam.getPlayers().indexOf(player);
 
+			        	
 			        	String[] paneNumberString=pane.getId().split("p");
 			        	int paneNumber=Integer.parseInt(paneNumberString[1]);
 			        	
 			        	
-			        	//switch players and update
 			        	
+			       
+			        	//switch players and update
 			        	Collections.swap(currentTeam.getPlayers(), newIndex, paneNumber-1);
 			        	
 			        	
-			        	Label nameLabel= (Label)pane.getChildren().get(0);
-			        	Label jerseyLabel=(Label)pane.getChildren().get(1);
-			        	Label statLabel= (Label)pane.getChildren().get(2);
-
-			        	nameLabel.setText(player.getSurname());
-			        	jerseyLabel.setText(Integer.toString(jerseyNumber));
 			        	
 			        	pane.getChildren().removeAll(pane.getChildren());
 			        	setUpLabels(pane,player);
@@ -199,7 +196,7 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 
 
 		Label jerseyLabel = new Label(Integer.toString(player
-				.getJerseyNumber() ));
+				.getJerseyNumber() +1));
 		Font myFont = Font.font(null, FontWeight.BOLD, 30);
 		jerseyLabel.setFont(myFont);
 		

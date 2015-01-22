@@ -80,11 +80,11 @@ public class PlayerTest {
 	@Test
 	public void testSetJerseyNumber() {
 		byte b1 = 10;
-		byte b2 = 10;
+		byte b2 = 12;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
 		player1.setJerseyNumber(b2);
 		
-		assertEquals(player1.getJerseyNumber(),10);
+		assertEquals(player1.getJerseyNumber(),12);
 	}
 
 	@Test
