@@ -8,10 +8,10 @@ import com.louislife.UI.MainApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
@@ -35,8 +35,7 @@ ControlledScreen, GamePlayListener {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		updateBalance();
-		updateDate();
+		
 		DashboardController.setNavigationPane(navigationPane);
 
 		MainApplication.addListener(this);

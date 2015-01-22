@@ -50,7 +50,7 @@ ControlledScreen {
 		
 		for (int i = 11; i < players.size(); i++) {
 			Player p = players.get(i);
-			playerListDisplay[i-11] = p.getJerseyNumber() + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
 		
 		}
 		// En zet ze dynamisch in de UI
@@ -92,7 +92,7 @@ ControlledScreen {
 		    		
 		    		for (int i = 11; i < players.size(); i++) {
 		    			Player p = players.get(i);
-		    			playerListDisplay[i-11] = p.getJerseyNumber() + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+		    			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
 		    		
 		    		}
 		    		// En zet ze dynamisch in de UI

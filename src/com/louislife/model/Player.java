@@ -46,7 +46,7 @@ public class Player {
 		this.id = id;
 		this.firstname = firstname;
 		this.surname = surname;
-		this.number = (byte) (jerseyNumber+1);
+		this.number =  jerseyNumber;
 		this.type = type;
 		this.status = status;
 		this.offensiveRating = offensiveScore;
@@ -219,7 +219,7 @@ public class Player {
 					&& this.surname.equals(pl.getSurname())
 					&& this.number == pl.getJerseyNumber()
 					&& this.type == pl.getType()
-					&& this.offensiveRating == pl.getDefensiveScore()
+					&& this.offensiveRating == pl.getOffensiveScore()
 					&& this.defensiveRating == pl.getDefensiveScore()
 					&& this.stamina == pl.getStaminaScore()
 					&& this.teamId == pl.teamId && this.price == pl.getPrice()) {

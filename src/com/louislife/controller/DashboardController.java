@@ -95,4 +95,8 @@ public class DashboardController implements Initializable, ControlledScreen {
 		navigationPane.getSelectionModel().select(3);
 	}
 	
+	@FXML protected void onClickMainMenu(Event e){
+		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU);
+	}
+	
 }
