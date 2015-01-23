@@ -118,6 +118,16 @@ public class PlayerTest {
 		player1.setJerseyNumber(b2);
 		assertEquals(player1.getJerseyNumber(), b2);		
 	}
+	
+	
+	@Test
+	public void testGetPlayerType() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Piet", "Snot", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 50, 302020);
+		Player player2 = new Player(1, "Piet", "Snot", b1, PlayerType.DEFENDER, PlayerStatus.NORMAL, b1, b1, b1, 50, 302020);
+		assertEquals(player1.getType(), PlayerType.STRIKER);
+		assertNotEquals(player2.getType(), PlayerType.STRIKER);
+	}
 /*
 	@Test
 	public void testGetId() {
