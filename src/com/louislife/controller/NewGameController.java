@@ -6,15 +6,24 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import org.xml.sax.SAXException;
 
 import com.louislife.UI.ControlledScreen;
@@ -54,7 +63,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 		try {
 			XMLParser parser = new XMLParser("example.xml");
 			Game g = parser.parseGame();
-			ArrayList<Team> teams = g.getLeagues().get(0).getTeams();
+			final ArrayList<Team> teams = g.getLeagues().get(0).getTeams();
 			
 			GridPane gp = new GridPane();
 			
@@ -62,12 +71,31 @@ public class NewGameController implements Initializable, ControlledScreen {
 				for (int j = 0; j < ITEMS_ROW; j++) {
 					if (teams.size() <= ITEMS_ROW*i + j)
 						break;
-					Team t = teams.get(ITEMS_ROW*i + j);
-					Pane p = new Pane(); // Make clickable
-					//p.addEventHandler(EventType, eventHandler);
+					final int teamid = ITEMS_ROW*i + j;
+					Team t = teams.get(teamid);
+					StackPane p = new StackPane(); // Make clickable
+					p.getStylesheets().add("../../../../styles/app.css");
+					p.getStyleClass().add("pane-team");
+					p.setPadding(new Insets(10, 10, 10, 10));
+					p.setPrefWidth(200.0);
+					p.setPrefHeight(100.0);
+					p.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							// Select this team
+							System.out.println("TEAMID: "+teamid);
+							selected_teamId = teams.get(teamid).getId();
+						}
+					});
 					
 					//p.setOnMousePressed(new TeamSelectHandler());
 					Label name = new Label(t.getName());
+					name.setTextFill(Color.WHITE);
+					name.setLayoutY(10.0);
+					name.setFont(Font.font("Avenir Medium", 18.0));
+					//name.setPrefWidth(200.0);
+					name.setTextAlignment(TextAlignment.CENTER);
+					StackPane.setAlignment(name, Pos.CENTER);
 					p.getChildren().add(name);
 					
 					gp.add(p, j, i);
@@ -96,11 +124,12 @@ public class NewGameController implements Initializable, ControlledScreen {
 						// Edit game data to set new team
 						Game g = Game.getInstance();
 						g.setName(fieldName.getText());
+						g.setXmlName(fieldName.getText()+".xml");
 						g.setCurrentTeam(selected_teamId);
-						
+
+						Game.getInstance().createMatchSchedule();
+
 						parser.writeGame(g); // Write game back to savefile. The game can now start..
-						
-						controller.setScreen(MainApplication.OVERVIEW);
 					} catch (SAXException | IOException | GameLoadException e1) {
 						// Error parsing game
 						e1.printStackTrace();
@@ -111,10 +140,14 @@ public class NewGameController implements Initializable, ControlledScreen {
 				// Name already exists
 				e1.printStackTrace();
 			}
+			
+			controller.setScreen(MainApplication.OVERVIEW);
 		}
 	}
 	
 	@FXML protected void onClickBack(Event e) {
-		System.out.println("Back");
+		System.out.println("Returned to 'Main Menu' from 'New Game'");
+        
+        controller.setScreen(MainApplication.MAIN_MENU);
 	}
 }

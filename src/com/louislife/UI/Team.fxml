@@ -10,29 +10,28 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.louislife.controller.TeamController">
   <columnConstraints>
-      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
-      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="610.0" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="295.3595886230469" minWidth="10.0" prefWidth="280.3595886230469" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="636.6824340820312" minWidth="10.0" prefWidth="630.6404113769531" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="410.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="571.0" minHeight="10.0" prefHeight="474.6404113769531" vgrow="NEVER" />
+    <RowConstraints maxHeight="503.0371627807617" minHeight="0.0" prefHeight="96.35958862304688" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="1">
          <children>
-            <ListView fx:id="playerList" layoutX="1.0" layoutY="-1.0" prefHeight="410.0" prefWidth="300.0" />
+            <ListView fx:id="teamList" layoutX="1.0" layoutY="27.0" prefHeight="448.0" prefWidth="279.0" />
+            <Label layoutX="86.0" prefHeight="29.0" prefWidth="194.0" text="On the bench:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Pane id="team-field" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Pane id="team-field" prefHeight="522.0" prefWidth="610.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="52.0" layoutY="179.0" text="Team designer view hier" textFill="WHITE">
-               <font>
-                  <Font size="43.0" />
-               </font></Label>
               <fx:include fx:id="formation433" source="TeamFormation_4-3-3.fxml" />
          </children></Pane>
-      <ListView fx:id="teamList" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
 </GridPane>

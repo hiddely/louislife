@@ -13,6 +13,8 @@ local.properties
 .classpath
 /bin/
 
+classes/
+
 .DS_Store
 
 # External tool builders

@@ -17,7 +17,17 @@ public class Game {
 	
 	private int id;
 	private String name;
+	private String xmlName;
 	private int currentDay;
+
+	public String getXmlName() {
+		return xmlName;
+	}
+
+	public void setXmlName(String xmlName) {
+		this.xmlName = xmlName;
+	}
+
 	private int currentTeam;
 	private ArrayList<League> leagues;
 	private ArrayList<Transfer> transfers;
@@ -187,7 +197,8 @@ public class Game {
 	 */
 	public void createMatchSchedule() {
 		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
-		ArrayList<Team> shuffledList = curLeague.getTeams();
+		ArrayList<Team> shuffledList = new ArrayList<>();
+		shuffledList.addAll(curLeague.getTeams());
 		Collections.shuffle(shuffledList);
 		
 		int idCounter = 0;

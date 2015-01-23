@@ -51,6 +51,28 @@ public class Team {
 		this.balance = balance;
 	}
 
+	/**
+	 * Adds the specified amount to the team's balance.
+	 * 
+	 * @param amount - int. The amount that is to be added to the balance.
+	 * 
+	 * @author Wouter
+	 */
+	public void addToBalance(int amount) {
+		this.balance += amount;
+	}
+
+	/**
+	 * Removes the specified amount from the team's balance.
+	 * 
+	 * @param amount - int. The amount that is to be removed from the balance.
+	 * 
+	 * @author Wouter
+	 */
+	public void removeFromBalance(int amount) {
+		this.balance -= amount;
+	}
+
 	public Team(int id, String name, int balance, ArrayList<Player> players) {
 		super();
 		this.id = id;
@@ -72,13 +94,6 @@ public class Team {
 				return p;
 		}
 		return null;
-	}
-	
-	public boolean equals(Team t) {
-		if (this.id == t.id && this.name.equals(t.getName()) && this.players.equals(t.getPlayers()) && this.balance == t.balance) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -159,6 +174,15 @@ public class Team {
 			}
 		}
 		return res;
+	}
+	
+	public Player getPlayerWithJerseyNumber(int number){
+		for (Player player:players){
+			if (player.getJerseyNumber()==number)
+					return player;
+		}
+		return null;
+		
 	}
 	
 	@Override
