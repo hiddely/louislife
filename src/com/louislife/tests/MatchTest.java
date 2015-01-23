@@ -252,16 +252,39 @@ public class MatchTest {
 		game.addMatch(m1);
 		game.addMatch(m2);
 		
-		m1.play(600);
-		m2.play(714);
+		m1.play(55403);
+		m2.play(348463654);
 		
 		Match res1 = new Match(0, 0, 0, 1);
-		Event e1 = new Event(5, EventType.GOAL, 83);
-		Event e2 = new Event(21, EventType.GOAL, 45);
+		Event e1 = new Event(2, EventType.GOAL, 64);
+		Event e2 = new Event(5, EventType.GOAL, 76);
+		Event e3 = new Event(22, EventType.GOAL, 15);
+		Event e4 = new Event(21, EventType.GOAL, 60);
+		
+		Match res2 = new Match(1, 0, 2, 3);
+		Event e5 = new Event(2, EventType.GOAL, 15);
+		Event e6 = new Event(5, EventType.GOAL, 27);
+		Event e7 = new Event(3, EventType.GOAL, 41);
+		Event e8 = new Event(6, EventType.GOAL, 43);
+		Event e9 = new Event(3, EventType.GOAL, 63);
+		Event e10 = new Event(1, EventType.GOAL, 67);
+		Event e11 = new Event(6, EventType.GOAL, 84);
+
 		res1.addEventHome(e1);
 		res1.addEventHome(e2);
+		res1.addEventAway(e3);
+		res1.addEventAway(e4);
+		
+		res2.addEventHome(e5);
+		res2.addEventHome(e6);
+		res2.addEventHome(e7);
+		res2.addEventHome(e8);
+		res2.addEventHome(e9);
+		res2.addEventHome(e10);
+		res2.addEventHome(e11);
 		
 		assertEquals(m1, res1);
+		assertEquals(m2, res2);
 		
 	}
 	

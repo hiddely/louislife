@@ -192,8 +192,8 @@ public class Match {
 		
 		int homeChances = home.getTotStamina() / 110;
 		int awayChances = away.getTotStamina() / 120;
-		double homeGoalChance = (50 + ((home.getTotOff() * 2 - away.getTotDef()) * 100 / away.getTotDef()));
-		double awayGoalChance = (50 + ((away.getTotOff() * 2 - home.getTotDef()) *100 / home.getTotDef()));
+		double homeGoalChance = 0.4 * (40 + ((home.getTotOff() * 2 - away.getTotDef()) * 100 / away.getTotDef()));
+		double awayGoalChance = 0.4 * (40 + ((away.getTotOff() * 2 - home.getTotDef()) *100 / home.getTotDef()));
 		if(homeGoalChance < 5){
 			homeGoalChance = 5;
 		}else if(homeGoalChance > 90){
@@ -316,5 +316,30 @@ public class Match {
 				+ team_home + ", team_away=" + team_away + "]";
 	}
 	
-
+	public boolean equals(Object o){
+		if(o instanceof Match){
+			Match that = (Match) o;
+			if(this.id == that.id
+				&& this.day == that.day
+				&& this.team_away == that.team_away
+				&& this.team_home == that.team_home
+				&& this.events_away.size() == that.events_away.size()
+				&& this.events_home.size() == that.events_home.size()
+				){
+					for(int i = 0; i < this.events_away.size(); i++){
+						if(this.events_away.get(i).equals(that.events_away.get(i)) == false){
+							return false;
+						}
+					}
+					for(int n = 0; n < this.events_away.size(); n++){
+						if(this.events_home.get(n).equals(that.events_home.get(n)) == false){
+							return false;
+						}
+					}
+					return true;
+			}
+		}
+		return false;
+	}
+	
 }
