@@ -34,7 +34,7 @@
             
           <Tab text="Statistics">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <fx:include fx:id="statistics" source="Statistics.fxml" />
             </content>
           </Tab>
             <Tab text="Transfer Market">
@@ -67,6 +67,16 @@
                </font>
             </Label>
             <Label fx:id="dateLabel" layoutX="620.0" layoutY="1.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="449.0" layoutY="1.0" prefHeight="30.0" prefWidth="57.0" text="Rank" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="rankLabel" layoutX="506.0" layoutY="-1.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
