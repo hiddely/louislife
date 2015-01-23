@@ -331,7 +331,7 @@ public class Match {
 							return false;
 						}
 					}
-					for(int n = 0; n < this.events_away.size(); n++){
+					for(int n = 0; n < this.events_home.size(); n++){
 						if(this.events_home.get(n).equals(that.events_home.get(n)) == false){
 							return false;
 						}

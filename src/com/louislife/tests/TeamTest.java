@@ -11,6 +11,14 @@ import org.junit.Test;
 public class TeamTest {
 
 	@Test
+	public void testTeam(){
+		Team tm1 = new Team(0, "Ajax");
+		Team tm2 = new Team(0, "Ajax");
+		
+		assertEquals(tm1, tm2);
+	}
+	
+	@Test
 	public void testGetId() {
 		byte b1 = 10;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
@@ -136,6 +144,19 @@ public class TeamTest {
 		Team team1 = new Team(1, "United States", 10000, players1);
 		
 		assertEquals(player1, team1.findPlayer(1));
+		assertEquals(null, team1.findPlayer(80));
+	}
+	
+	@Test
+	public void testgetPlayerWithJerseyNumber() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		ArrayList<Player> players1 = new ArrayList<Player>();
+		players1.add(player1);
+		Team team1 = new Team(1, "United States", 10000, players1);
+		
+		assertEquals(player1, team1.getPlayerWithJerseyNumber(10));
+		assertEquals(null, team1.getPlayerWithJerseyNumber(80));
 	}
 
 	@Test
@@ -153,12 +174,18 @@ public class TeamTest {
 	public void testEquals() {
 		byte b1 = 10;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		Player player2 = new Player(2, "Jan", "Mans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
 		ArrayList<Player> players1 = new ArrayList<Player>();
+		ArrayList<Player> players2 = new ArrayList<Player>();
 		players1.add(player1);
+		players2.add(player2);
 		Team team1 = new Team(1, "United States", 10000, players1);
 		Team team2 = new Team(1, "United States", 10000, players1);
+		Team team3 = new Team(1, "United States", 10000, players2);
 		
-		assertTrue(team1.equals(team2));
+		assertEquals(team1, team2);
+		assertNotEquals(team2, team3);
+		assertNotEquals(team1, player1);
 	}
 	
 	@Test
@@ -375,7 +402,23 @@ public class TeamTest {
 		assertEquals(tm1.getScoreList(), res1);
 		assertEquals(tm2.getScoreList(), null);
 		
-		
 	}
 
+	@Test
+	public void testAddToBalance(){
+		ArrayList<Player> pll = new ArrayList<Player>();
+		Team tm1 = new Team(1, "Ajax", 500, pll);
+		tm1.addToBalance(500);
+		
+		assertEquals(1000, tm1.getBalance());
+	}
+	
+	@Test
+	public void testRemoveFromBalance(){
+		ArrayList<Player> pll = new ArrayList<Player>();
+		Team tm1 = new Team(1, "Ajax", 1000, pll);
+		tm1.removeFromBalance(500);
+		
+		assertEquals(500, tm1.getBalance());
+	}
 }

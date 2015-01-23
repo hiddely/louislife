@@ -133,31 +133,15 @@ public class Game {
 	public void setCurrentTeam(int currentTeam) {
 		this.currentTeam = currentTeam;
 	}
+	
+	public int getCurrentTeam() {
+		return this.currentTeam;
+	}
 
 	public int getId() {
 		return id;
 	}
 	
-	/**
-	 *  Can be removed? (Unnecessary because we can find players in ArrayList<Player> Team.Players)
-	 * @param pl
-	 * @return
-	 */
-	public Team getPlayerTeam(Player pl){
-		int day = 0;
-		int newTeamId = 0;
-		for(int i = 0; i < this.transfers.size(); i++){
-			if(pl.equals(transfers.get(i).getPlayer()) && transfers.get(i).getDay() > day){
-				newTeamId = transfers.get(i).getTo();
-			}
-		}
-		if(day != 0){
-			return leagues.get(0).findTeam(newTeamId);
-		}else{
-			return leagues.get(0).findTeam(pl.getTeamId());
-		}
-	}
-
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", name=" + name + ", currentDay="
@@ -166,14 +150,32 @@ public class Game {
 				+ "]";
 	}
 	
-	public boolean equals(Game that) {
-		if (this.id == that.id && this.name.equals(that.getName())
-				&& this.currentDay == that.currentDay
-				&& this.currentTeam == that.currentTeam
-				&& this.leagues.equals(that.getLeagues())
-				&& this.transfers.equals(that.getTransfers())
-				&& this.matches.equals(that.getMatches())) {
-			return true;
+	public boolean equals(Object o) {
+		if(o instanceof Game){
+			Game that = (Game) o;
+			if (this.id == that.id && this.name.equals(that.getName())
+					&& this.currentDay == that.currentDay
+					&& this.currentTeam == that.currentTeam
+					&& this.leagues.size() == that.leagues.size()
+					&& this.transfers.size() == that.transfers.size()
+					&& this.matches.size() == that.matches.size()) {
+				for(int i = 0; i < this.leagues.size(); i++){
+					if(this.leagues.get(i).equals(that.leagues.get(i)) == false){
+						return false;
+					}
+				}
+				for(int i = 0; i < this.transfers.size(); i++){
+					if(this.transfers.get(i).equals(that.transfers.get(i)) == false){
+						return false;
+					}
+				}
+				for(int i = 0; i < this.matches.size(); i++){
+					if(this.matches.get(i).equals(that.matches.get(i)) == false){
+						return false;
+					}
+				}
+				return true;
+			}
 		}
 		return false;
 	}

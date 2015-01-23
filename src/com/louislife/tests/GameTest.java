@@ -14,14 +14,51 @@ public class GameTest {
 	public void testGame() {
 		Game game1 = new Game(1,"Test",1,1);
 		Game game2 = new Game(1,"Test",1,1);
+		Game game3 = new Game(2,"Test2",3,4);
+		Game game4 = new Game(3,"Test3",1,1);
+		Game game5 = new Game(3,"Test3",1,1);
+		Game game6 = new Game(3,"Test3",1,1);
+		Game game7 = new Game(3,"Test3",1,1);
+		Game game8 = new Game(3,"Test3",1,1);
+		Game game9 = new Game(3,"Test3",1,1);
+		Game game10 = new Game(3,"Test3",1,1);
+		Game game11 = new Game(3,"Test3",1,1);
+		Game game12 = new Game(3,"Test3",1,1);
+		Match match1 = new Match(0, 0, 0 ,1);
+		Match match2 = new Match(1, 0, 2 ,3);
 		
-		assertTrue(game1.equals(game2));
+		League league1 = new League(1, "Eredivisie", "Nederland");
+		League league2 = new League(2, "Premier League", "Nederland");
+		Transfer transfer1 = new Transfer(0, 0, 1, 0 ,0, 0);
+		Transfer transfer2 = new Transfer(1, 0, 3, 0 ,0, 5);
+		game4.addLeague(league1);
+		game5.addLeague(league2);
+		game6.addLeague(league1);
+		game7.addTransfer(transfer1);
+		game8.addTransfer(transfer2);
+		game9.addTransfer(transfer1);
+		game10.addMatch(match1);
+		game11.addMatch(match2);
+		game12.addMatch(match1);
+		
+		
+		assertEquals(game1, game2);
+		assertNotEquals(game1, game3);
+		assertNotEquals(game1, match1);
+		assertNotEquals(game4, game5);
+		assertEquals(game4, game6);
+		assertNotEquals(game7, game8);
+		assertEquals(game7, game9);
+		assertNotEquals(game10, game11);
+		assertEquals(game10, game12);
+		
 	}
 
 	@Test
 	public void testGetInstance() {
 		Game game1 = new Game(1,"Test",1,1);
 		assertEquals(game1, Game.getInstance());
+		
 	}
 
 	@Test
@@ -221,32 +258,30 @@ public class GameTest {
 	}
 
 	@Test
-	public void testGetPlayerTeam() {
-		Game game1 = new Game(1,"Test",1,1);
-		
-		byte b1 = 10;
-		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
-		ArrayList<Player> players1 = new ArrayList<Player>();
-		players1.add(player1);
-		Team team1 = new Team(1, "United States", 10000, players1);
-		
-		ArrayList<Team> teams1 = new ArrayList<Team>();
-		teams1.add(team1);
-		
-		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
-		ArrayList<League> leagues1 = new ArrayList<League>();
-		leagues1.add(league1);
-		
-		game1.addLeague(league1);
-		
-		assertEquals(team1, game1.getPlayerTeam(player1));
-	}
-
-	@Test
 	public void testToString() {
 		Game game1 = new Game(1,"Test",1,1);
 		
 		assertEquals("Game [id=1, name=Test, currentDay=1, currentTeam=1, leagues=[], transfers=[], matches=[]]", game1.toString());
+	}
+	
+	@Test
+	public void testGetXmlName(){
+		Game game1 = new Game(1,"Test",1,1);
+		game1.setXmlName("TestSave");
+		assertEquals("TestSave", game1.getXmlName());
+	}
+	
+	@Test
+	public void testGetCurrentTeam(){
+		Game game1 = new Game(1,"Test",1,23);
+		assertEquals(23, game1.getCurrentTeam());
+	}
+	
+	@Test
+	public void testSetCurrentTeam(){
+		Game game1 = new Game(1,"Test",1,1);
+		game1.setCurrentTeam(50);
+		assertEquals(50, game1.getCurrentTeam());
 	}
 
 }
