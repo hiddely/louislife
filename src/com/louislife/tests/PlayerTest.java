@@ -7,17 +7,34 @@ import org.junit.Test;
 public class PlayerTest {
 	
 	@Test
-	public void testPlayer() {
-		//New player1
+	public void testPlayerExists() {
 		byte b1 = 10;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
-		//New player2
+	
+		assertNotNull(player1);
+	}
+	
+	@Test
+	public void testEquals() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
 		byte b2 = 10;
 		Player player2 = new Player(1, "Elgar", "Weijtmans", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
 	
-		assertTrue(player1.equals(player2));
+		assertEquals(player1,player2);
 	}
-
+	
+	@Test
+	public void testNotEquals() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		byte b2 = 10;
+		byte b3 = 10;
+		Player player2 = new Player(1, "Elgar", "Weijtmans", b3, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
+	
+		assertNotEquals(player1,player2);
+	}
+/*
 	@Test
 	public void testGetId() {
 		byte b1 = 10;
@@ -226,5 +243,5 @@ public class PlayerTest {
 
 		assertTrue(player1.equals(player2));
 	}
-
+*/
 }
