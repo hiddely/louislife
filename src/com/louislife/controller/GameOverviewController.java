@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 
 import com.louislife.UI.MainApplication;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+import javafx.util.Duration;
 
 public class GameOverviewController implements Initializable,
 ControlledScreen, GamePlayListener {
