@@ -90,4 +90,22 @@ public class League {
 		return getTeams().size() * ( getTeams().size() - 1 ) / ( ( getTeams().size() - 1 ) * 2 );
 	}
 	
+	public boolean equals(Object o){
+		if(o instanceof League){
+			League that = (League) o;
+			if(this.id == that.id
+				&& this.country.equals(that.country)
+				&& this.name.equals(that.name)
+				&& this.teams.size() == that.teams.size()){
+				for(int i = 0; i < this.teams.size(); i++){
+					if(this.teams.get(i).equals(that.teams.get(i)) == false){
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

@@ -17,14 +17,21 @@ public class LeagueTest {
 		ArrayList<Player> players1 = new ArrayList<Player>();
 		players1.add(player1);
 		Team team1 = new Team(1, "United States", 10000, players1);
+		Team team2 = new Team(2, "Nederland", 1000, players1);
 		
 		ArrayList<Team> teams1 = new ArrayList<Team>();
 		teams1.add(team1);
+		ArrayList<Team> teams2 = new ArrayList<Team>();
+		teams2.add(team2);
 		
 		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
 		League league2 = new League(1, "Jupiler League", "Belgie", teams1);
+		League league3 = new League(1, "Jupiler League", "Belgie", teams2);
+		Match match1 = new Match(0, 0, 0 ,1);
 		
-		assertTrue(league1.equals(league2));
+		assertEquals(league1, league2);
+		assertNotEquals(league1, match1);
+		assertNotEquals(league1, league3);
 	}
 
 	@Test

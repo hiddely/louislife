@@ -12,8 +12,10 @@ public class TransferTest {
 	public void testTransfer() {
 		Transfer transfer1 = new Transfer(1, 1, 2, 1, 100, 1);
 		Transfer transfer2 = new Transfer(1, 1, 2, 1, 100, 1);
+		Match match1 = new Match(0, 0, 0, 1);
 		
-		assertTrue(transfer1.equals(transfer2));
+		assertEquals(transfer1, transfer2);
+		assertNotEquals(transfer1, match1);
 	}
 
 	@Test
