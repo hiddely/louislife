@@ -2,10 +2,13 @@ package com.louislife.controller;
 
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import com.louislife.UI.MainApplication;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -56,10 +59,9 @@ ControlledScreen, GamePlayListener {
 		
 		int days = Game.getInstance().getCurrentDay();
 		Date currentDate = new Date(1409522400000L + (days * 24 * 60 * 60 * 1000)); // 01/09/2014 00:00:00 + days
-		
-		dateLabel.setText(currentDate.toString());
-		
-		// Laad de load games
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, ''yy");
+
+		dateLabel.setText(sdf.format(currentDate));
 
 	}
 

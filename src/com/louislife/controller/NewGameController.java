@@ -143,7 +143,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 				// Name already exists
 				e1.printStackTrace();
 			}
-			
+
+			MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 			controller.setScreen(MainApplication.OVERVIEW);
 		}
 	}

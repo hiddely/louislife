@@ -44,6 +44,7 @@ public class TransferMarketController implements Initializable,
 	public TransferMarketController() {
 		teams= new ArrayList<Team>();
 		teams.addAll(Game.getInstance().getLeagues().get(0).getTeams());
+		teams.remove(Game.getInstance().getUserTeam());
 		
 	}
 

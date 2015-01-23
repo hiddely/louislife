@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<game currentday="0" currentteam="-1" id="0" name="Ajax_career">
+<game currentday="0" currentteam="-1" id="0" name="Louis">
     <league country="Nederland" id="0" name="Eredivisie">
         <team city="Kyocera Stadion" id="0" name="ADO Den Haag">
             <budget>13600000</budget>
@@ -280,6 +280,381 @@
                 <position>0</position>
             </player>
         </team>
+        <club city="Amsterdam ArenA" id="1" name="Ajax">
+            <budget>65000000</budget>
+            <player id="122">
+                <name>Anwar</name>
+                <surname>El Gh2i</surname>
+                <number>0</number>
+                <type>3</type>
+                <offensiveRating>66</offensiveRating>
+                <defensiveRating>27</defensiveRating>
+                <stamina>66</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>14</position>
+            </player>
+            <player id="323">
+                <name>Ricardo</name>
+                <surname>van Rhijn</surname>
+                <number>1</number>
+                <type>1</type>
+                <offensiveRating>55</offensiveRating>
+                <defensiveRating>73</defensiveRating>
+                <stamina>78</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>4</position>
+            </player>
+            <player id="324">
+                <name>Ricardo</name>
+                <surname>van Rhijn</surname>
+                <number>2</number>
+                <type>1</type>
+                <offensiveRating>52</offensiveRating>
+                <defensiveRating>70</defensiveRating>
+                <stamina>75</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>4</position>
+            </player>
+            <player id="161">
+                <name>Mike</name>
+                <surname>van der Hoorn</surname>
+                <number>3</number>
+                <type>1</type>
+                <offensiveRating>29</offensiveRating>
+                <defensiveRating>72</defensiveRating>
+                <stamina>78</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>3</position>
+            </player>
+            <player id="11">
+                <name>Lucas</name>
+                <surname>Andersen</surname>
+                <number>4</number>
+                <type>3</type>
+                <offensiveRating>57</offensiveRating>
+                <defensiveRating>33</defensiveRating>
+                <stamina>39</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>11</position>
+            </player>
+            <player id="33">
+                <name>Riechedly</name>
+                <surname>B2oer</surname>
+                <number>5</number>
+                <type>2</type>
+                <offensiveRating>51</offensiveRating>
+                <defensiveRating>61</defensiveRating>
+                <stamina>73</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>7</position>
+            </player>
+            <player id="46">
+                <name>Diederik</name>
+                <surname>Boer</surname>
+                <number>6</number>
+                <type>0</type>
+                <offensiveRating>68</offensiveRating>
+                <defensiveRating>31</defensiveRating>
+                <stamina>71</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>0</position>
+            </player>
+            <player id="48">
+                <name>Nicolai</name>
+                <surname>Boilesen</surname>
+                <number>7</number>
+                <type>1</type>
+                <offensiveRating>48</offensiveRating>
+                <defensiveRating>72</defensiveRating>
+                <stamina>72</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>2</position>
+            </player>
+            <player id="75">
+                <name>Jasper</name>
+                <surname>Cillessen</surname>
+                <number>8</number>
+                <type>0</type>
+                <offensiveRating>80</offensiveRating>
+                <defensiveRating>54</defensiveRating>
+                <stamina>81</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>0</position>
+            </player>
+            <player id="92">
+                <name>Stefano</name>
+                <surname>Denswil</surname>
+                <number>9</number>
+                <type>1</type>
+                <offensiveRating>56</offensiveRating>
+                <defensiveRating>70</defensiveRating>
+                <stamina>75</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>3</position>
+            </player>
+            <player id="103">
+                <name>Lerin</name>
+                <surname>Duarte</surname>
+                <number>10</number>
+                <type>2</type>
+                <offensiveRating>68</offensiveRating>
+                <defensiveRating>60</defensiveRating>
+                <stamina>74</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>9</position>
+            </player>
+            <player id="116">
+                <name>Viktor</name>
+                <surname>Fischer</surname>
+                <number>11</number>
+                <type>3</type>
+                <offensiveRating>71</offensiveRating>
+                <defensiveRating>35</defensiveRating>
+                <stamina>60</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>12</position>
+            </player>
+            <player id="194">
+                <name>Ricardo</name>
+                <surname>Kishna</surname>
+                <number>12</number>
+                <type>3</type>
+                <offensiveRating>59</offensiveRating>
+                <defensiveRating>29</defensiveRating>
+                <stamina>60</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>12</position>
+            </player>
+            <player id="196">
+                <name>Davy</name>
+                <surname>Klaassen</surname>
+                <number>13</number>
+                <type>2</type>
+                <offensiveRating>77</offensiveRating>
+                <defensiveRating>65</defensiveRating>
+                <stamina>77</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>9</position>
+            </player>
+            <player id="197">
+                <name>Davy</name>
+                <surname>Klaassen</surname>
+                <number>14</number>
+                <type>3</type>
+                <offensiveRating>75</offensiveRating>
+                <defensiveRating>62</defensiveRating>
+                <stamina>76</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>11</position>
+            </player>
+            <player id="225">
+                <name>Peter</name>
+                <surname>Leeuwenburgh</surname>
+                <number>15</number>
+                <type>0</type>
+                <offensiveRating>62</offensiveRating>
+                <defensiveRating>44</defensiveRating>
+                <stamina>58</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>0</position>
+            </player>
+            <player id="229">
+                <name>Ruben</name>
+                <surname>Ligeon</surname>
+                <number>16</number>
+                <type>1</type>
+                <offensiveRating>46</offensiveRating>
+                <defensiveRating>64</defensiveRating>
+                <stamina>57</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>4</position>
+            </player>
+            <player id="266">
+                <name>Arkadiusz</name>
+                <surname>Milik</surname>
+                <number>17</number>
+                <type>3</type>
+                <offensiveRating>68</offensiveRating>
+                <defensiveRating>37</defensiveRating>
+                <stamina>73</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>13</position>
+            </player>
+            <player id="268">
+                <name>Niklas</name>
+                <surname>Moisander</surname>
+                <number>18</number>
+                <type>1</type>
+                <offensiveRating>49</offensiveRating>
+                <defensiveRating>76</defensiveRating>
+                <stamina>74</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>3</position>
+            </player>
+            <player id="275">
+                <name>Robert</name>
+                <surname>Murić</surname>
+                <number>19</number>
+                <type>3</type>
+                <offensiveRating>51</offensiveRating>
+                <defensiveRating>26</defensiveRating>
+                <stamina>44</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>14</position>
+            </player>
+            <player id="326">
+                <name>Jaïro</name>
+                <surname>Riedewald</surname>
+                <number>20</number>
+                <type>1</type>
+                <offensiveRating>44</offensiveRating>
+                <defensiveRating>62</defensiveRating>
+                <stamina>68</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>2</position>
+            </player>
+            <player id="344">
+                <name>Tobias</name>
+                <surname>Sana</surname>
+                <number>21</number>
+                <type>3</type>
+                <offensiveRating>59</offensiveRating>
+                <defensiveRating>30</defensiveRating>
+                <stamina>43</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>14</position>
+            </player>
+            <player id="358">
+                <name>Lasse</name>
+                <surname>Schøne</surname>
+                <number>22</number>
+                <type>3</type>
+                <offensiveRating>77</offensiveRating>
+                <defensiveRating>52</defensiveRating>
+                <stamina>60</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>14</position>
+            </player>
+            <player id="360">
+                <name>Thulani</name>
+                <surname>Serero</surname>
+                <number>23</number>
+                <type>3</type>
+                <offensiveRating>55</offensiveRating>
+                <defensiveRating>47</defensiveRating>
+                <stamina>57</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>11</position>
+            </player>
+            <player id="361">
+                <name>Thulani</name>
+                <surname>Serero</surname>
+                <number>24</number>
+                <type>3</type>
+                <offensiveRating>59</offensiveRating>
+                <defensiveRating>48</defensiveRating>
+                <stamina>59</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>11</position>
+            </player>
+            <player id="364">
+                <name>Kolbeinn</name>
+                <surname>Sigþórsson</surname>
+                <number>25</number>
+                <type>3</type>
+                <offensiveRating>72</offensiveRating>
+                <defensiveRating>42</defensiveRating>
+                <stamina>77</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>13</position>
+            </player>
+            <player id="386">
+                <name>Kenny</name>
+                <surname>Tete</surname>
+                <number>26</number>
+                <type>1</type>
+                <offensiveRating>33</offensiveRating>
+                <defensiveRating>62</defensiveRating>
+                <stamina>68</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>4</position>
+            </player>
+            <player id="400">
+                <name>Joël</name>
+                <surname>Veltman</surname>
+                <number>27</number>
+                <type>1</type>
+                <offensiveRating>37</offensiveRating>
+                <defensiveRating>77</defensiveRating>
+                <stamina>71</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>3</position>
+            </player>
+            <player id="409">
+                <name>Nick</name>
+                <surname>Viergever</surname>
+                <number>28</number>
+                <type>2</type>
+                <offensiveRating>50</offensiveRating>
+                <defensiveRating>73</defensiveRating>
+                <stamina>72</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>7</position>
+            </player>
+            <player id="443">
+                <name>Niki</name>
+                <surname>Zimling</surname>
+                <number>29</number>
+                <type>2</type>
+                <offensiveRating>66</offensiveRating>
+                <defensiveRating>72</defensiveRating>
+                <stamina>80</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>9</position>
+            </player>
+            <player id="444">
+                <name>Richairo</name>
+                <surname>Živković</surname>
+                <number>30</number>
+                <type>3</type>
+                <offensiveRating>72</offensiveRating>
+                <defensiveRating>30</defensiveRating>
+                <stamina>56</stamina>
+                <teamid>1</teamid>
+                <price>0</price>
+                <position>13</position>
+            </player>
+        </club>
         <team city="AFAS Stadion" id="2" name="AZ">
             <budget>28000000</budget>
             <player id="430">

@@ -53,22 +53,17 @@
          <children>
             <Label fx:id="balanceString" layoutX="822.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Avenir Medium" size="17.0" />
                </font>
             </Label>
             <Label layoutX="746.0" prefHeight="30.0" prefWidth="76.0" text="Balance:" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Avenir Medium" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="574.0" prefHeight="30.0" prefWidth="46.0" text="Date:" textFill="WHITE">
+            <Label fx:id="dateLabel" layoutX="563.0" layoutY="1.0" prefHeight="30.0" prefWidth="158.0" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="dateLabel" layoutX="620.0" layoutY="1.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
-               <font>
-                  <Font size="17.0" />
+                  <Font name="Avenir Next Medium" size="17.0" />
                </font>
             </Label>
             <Label layoutX="449.0" layoutY="1.0" prefHeight="30.0" prefWidth="57.0" text="Rank" textFill="WHITE">
@@ -76,9 +71,9 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="rankLabel" layoutX="506.0" layoutY="-1.0" prefHeight="30.0" prefWidth="101.0" text="181.00" textFill="WHITE">
+            <Label fx:id="rankLabel" layoutX="506.0" layoutY="1.0" prefHeight="30.0" prefWidth="43.0" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Avenir Medium" size="17.0" />
                </font>
             </Label>
          </children>
