@@ -7,6 +7,7 @@ import com.louislife.util.XMLParser;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
@@ -28,7 +29,7 @@ public class DashboardController implements Initializable, ControlledScreen {
 	ScreensController controller;
 
 	/** XML Properties **/
-	
+	@FXML private Label teamLabel;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -42,7 +43,7 @@ public class DashboardController implements Initializable, ControlledScreen {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		// Laad de load games
-
+		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 	}
 	
 	/**

@@ -32,6 +32,11 @@
       <Pane id="team-field" prefHeight="522.0" prefWidth="610.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
               <fx:include fx:id="formation433" source="TeamFormation_4-3-3.fxml" />
+            <Label fx:id="teamLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" prefHeight="54.0" prefWidth="414.0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Medium" size="37.0" />
+               </font>
+            </Label>
          </children></Pane>
    </children>
 </GridPane>

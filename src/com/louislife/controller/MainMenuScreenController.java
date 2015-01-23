@@ -71,7 +71,8 @@ public class MainMenuScreenController implements Initializable,
 			
 			// The instance is now set
 			System.out.println("Game loaded: "+Game.getInstance().toString());
-			
+
+			MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 			controller.setScreen(MainApplication.OVERVIEW);
 		} catch (Exception e) {
 			e.printStackTrace();

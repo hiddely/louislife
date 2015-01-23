@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<game currentday="0" currentteam="0" id="0" name="Ajax_career">
+<game currentday="0" currentteam="-1" id="0" name="Ajax_career">
     <league country="Nederland" id="0" name="Eredivisie">
         <team city="Kyocera Stadion" id="0" name="ADO Den Haag">
             <budget>13600000</budget>

@@ -43,7 +43,7 @@ ControlledScreen, GamePlayListener {
 
 		MainApplication.addListener(this);
 
-		//this.onGamePlayed(); // Invoke for first time
+		this.onGamePlayed(); // Invoke for first time
 	}
 	
 	public void updateBalance() {

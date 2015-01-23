@@ -201,7 +201,7 @@ public class Game {
 	 */
 	public void createMatchSchedule() {
 		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
-		ArrayList<Team> shuffledList = new ArrayList<>();
+		ArrayList<Team> shuffledList = new ArrayList<Team>();
 		shuffledList.addAll(curLeague.getTeams());
 		Collections.shuffle(shuffledList);
 		
