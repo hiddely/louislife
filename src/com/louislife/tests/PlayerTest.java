@@ -29,10 +29,94 @@ public class PlayerTest {
 		byte b1 = 10;
 		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
 		byte b2 = 10;
-		byte b3 = 10;
+		byte b3 = 34;
 		Player player2 = new Player(1, "Elgar", "Weijtmans", b3, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b2, 1, 100);
 	
 		assertNotEquals(player1,player2);
+	}
+	
+	@Test
+	public void testGetId() {
+		byte b1 = 10;
+		byte b2 = 24;
+		byte b3 = 56;
+		byte b4 = 30;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b3, b4, 1, 100);
+		Player player2 = new Player(3, "Elgar", "Weijtmans", b3, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b3, b1, 1, 100);
+		assertEquals(player1.getId(), 1);
+		assertNotEquals(player2.getId(), 1);
+	}
+	
+	@Test
+	public void testSetId() {
+		byte b1 = 10;
+		byte b2 = 45;
+		byte b3 = 22;
+		Player player1 = new Player(3, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b3, b2, 1, 100);
+		assertEquals(player1.getId(), 3);
+		
+		player1.setId(55);
+		assertEquals(player1.getId(), 55);
+	}
+
+	@Test
+	public void testGetFirstname() {
+		byte b1 = 34;
+		byte b2 = 85;
+		Player player1 = new Player(3, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b1, b2, 1, 100);
+		Player player2 = new Player(3, "Wouter", "Wumbo", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b1, b1, 1, 100);
+		assertEquals(player1.getFirstname(), "Elgar");
+		assertNotEquals(player2.getFirstname(), "Henk");
+	}
+	
+	@Test
+	public void testsetFirstname() {
+		byte b1 = 45;
+		byte b2 = 33;
+		Player player1 = new Player(3, "Wouter", "Smit", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b2, b2, b1, 1, 100);
+		assertEquals(player1.getFirstname(), "Wouter");
+		player1.setFirstname("Pieter");
+		assertEquals(player1.getFirstname(), "Pieter");
+	}
+
+	@Test
+	public void testGetSurname() {
+		byte b1 = 34;
+		Player player1 = new Player(35, "Piet", "Snot", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 30, 3000);
+		Player player2 = new Player(35, "Piet", "Gappie", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 30, 3000);
+		assertEquals(player1.getSurname(), "Snot");
+		assertNotEquals(player2.getSurname(), "Snot");
+	}
+
+	@Test
+	public void testSetSurname() {
+		byte b1 = 32;
+		Player player1 = new Player(34, "Hans", "Yan", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 50, 302020);
+		assertEquals(player1.getSurname(), "Yan");
+		player1.setSurname("Yin");
+		assertEquals(player1.getSurname(), "Yin");
+	}
+	
+	@Test
+	public void testGetJerseyNumber() {
+		byte b1 = 35;
+		byte b2 = 60;
+		byte b3 = 2;
+		Player player1 = new Player(1, "Piet", "Snot", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b3, b3, b3, 50, 302020);
+		Player player2 = new Player(1, "Piet", "Snot", b2, PlayerType.STRIKER, PlayerStatus.NORMAL, b3, b3, b3, 50, 302020);
+		assertEquals(player1.getJerseyNumber(), b1);
+		assertNotEquals(player2.getJerseyNumber(), b1);
+	}
+	
+	@Test
+	public void testSetJerseyNumber() {
+		byte b1 = 34;
+		byte b2 = 10;
+		byte b3 = 15;
+		Player player1 = new Player(1, "Piet", "Snot", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b3, b3, b3, 50, 302020);
+		assertEquals(player1.getJerseyNumber(), b1);
+		player1.setJerseyNumber(b2);
+		assertEquals(player1.getJerseyNumber(), b2);		
 	}
 /*
 	@Test

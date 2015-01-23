@@ -80,7 +80,7 @@ public class Player {
 		this.surname = surname;
 	}
 
-	public short getJerseyNumber() {
+	public byte getJerseyNumber() {
 		return number;
 	}
 
