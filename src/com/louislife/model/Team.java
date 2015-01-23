@@ -1,5 +1,8 @@
 package com.louislife.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -211,6 +214,27 @@ public class Team {
 		return false;
 	}
 	
-	
+	/* JavaFX tableview properties */
+	public StringProperty rankProperty() {
+		return new SimpleStringProperty(Game.getInstance().getRank(this, 0)+"");
+	}
+	public StringProperty nameProperty() {
+		return new SimpleStringProperty(this.getName());
+	}
+	public StringProperty playedProperty() {
+		return new SimpleStringProperty(Game.getInstance().getPlayedForTeam(this)+"");
+	}
+	public StringProperty winProperty() {
+		return new SimpleStringProperty(Game.getInstance().getWinsForTeam(this)+"");
+	}
+	public StringProperty tieProperty() {
+		return new SimpleStringProperty(Game.getInstance().getTieForTeam(this)+"");
+	}
+	public StringProperty lossProperty() {
+		return new SimpleStringProperty(Game.getInstance().getLossForTeam(this)+"");
+	}
+	public StringProperty pointsProperty() {
+		return new SimpleStringProperty(Game.getInstance().getPointsForTeam(this.getId(), 0)+"");
+	}
 
 }

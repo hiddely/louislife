@@ -26,6 +26,7 @@ ControlledScreen, GamePlayListener {
 	/** XML Properties **/
 	@FXML private Label balanceString;
 	@FXML private Label dateLabel;
+	@FXML private Label rankLabel;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -39,13 +40,14 @@ ControlledScreen, GamePlayListener {
 		DashboardController.setNavigationPane(navigationPane);
 
 		MainApplication.addListener(this);
+
+		//this.onGamePlayed(); // Invoke for first time
 	}
 	
 	public void updateBalance() {
 		
 		String balance = Integer.toString(Game.getInstance().getUserTeam().getBalance());
 		balanceString.setText(balance);
-		;
 	}
 	
 	public void updateDate() {
@@ -59,9 +61,14 @@ ControlledScreen, GamePlayListener {
 
 	}
 
+	public void updateRank() {
+		rankLabel.setText(Game.getInstance().getRank(Game.getInstance().getUserTeam(), 0)+"th");
+	}
+
 	@Override
 	public void onGamePlayed() {
 		updateBalance();
 		updateDate();
+		updateRank();
 	}
 }

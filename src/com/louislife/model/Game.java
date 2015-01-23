@@ -2,6 +2,8 @@ package com.louislife.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * Represents a Game object with leagues and played matches. This holds all the
@@ -247,6 +249,89 @@ public class Game {
 		}
 		
 	}
-		
+
+	/**
+	 * Returns sorted array of teams, sorted by points descending
+	 * @param league The current league
+	 * @return
+	 */
+	public ArrayList<Team> getRankList(int league) {
+		ArrayList<Team> output = new ArrayList<Team>();
+		League l = this.leagues.get(league);
+		output.addAll(l.getTeams());
+		Collections.sort(output, new Comparator<Team>() {
+			@Override
+			public int compare(Team o1, Team o2) {
+				int t1 = getPointsForTeam(o1.getId(), league);
+				int t2 = getPointsForTeam(o2.getId(), league);
+				int com = Integer.valueOf(t2).compareTo(Integer.valueOf(t1));
+				return com;
+			}
+		});
+		return output;
+	}
+
+	public int getRank(Team team, int league) {
+		int i = 1;
+		for (Team t : getRankList(league)) {
+			if (t.equals(team)) {
+				return i;
+			}
+			i++;
+		}
+		return -1; // Team not found
+	}
+
+	/**
+	 * Calculates all points for a team in the matches
+	 * @param id
+	 * @param league
+	 * @return
+	 */
+	public int getPointsForTeam(int id, int league) {
+		Team t = this.leagues.get(league).findTeam(id);
+		int points = 0;
+		for (Match m : matches) {
+			try {
+				points += m.getScore(t);
+			} catch (TeamNotFoundException tnfe) {
+				// Do nothing
+			}
+		}
+		return points;
+	}
+
+	public int getPlayedForTeam(Team t) {
+		int amt = 0;
+		for (Match m : matches) {
+			if (m.isPlayed() && (m.getTH().equals(t) || m.getTA().equals(t)))
+				amt++;
+		}
+		return amt;
+	}
+	public int getWinsForTeam(Team t) {
+		int amt = 0;
+		for (Match m : matches) {
+			if (t.equals(m.getWinningTeam()))
+				amt++;
+		}
+		return amt;
+	}
+	public int getTieForTeam(Team t) {
+		int amt = 0;
+		for (Match m : matches) {
+			if (m.isPlayed() && m.getWinningTeam() == null && m.getLosingTeam() == null && (m.getTH().equals(t) || m.getTA().equals(t)))
+				amt++; // For a tie
+		}
+		return amt;
+	}
+	public int getLossForTeam(Team t) {
+		int amt = 0;
+		for (Match m : matches) {
+			if (t.equals(m.getLosingTeam()))
+				amt++;
+		}
+		return amt;
+	}
 }
 

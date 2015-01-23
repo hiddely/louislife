@@ -57,18 +57,11 @@ public class Match {
 		this.events_away = new ArrayList<Event>();
 	}
 
-	/**
-	 * Creates a new match without specifying the participating teams.
-	 * 
+	/***
 	 * A match is played on the day that the overview screen shows before
 	 * pressing the next round button. Thus, nextWeek() happens after creating
 	 * the match object.
-	 * 
-	 * @param id
-	 *            - int. Match ID
-	 * @param day
-	 *            - int. Day the match is played on.
-=======
+	 *
 	 * Creates a new match without specifying the match day. The day should later be filled in with Match.setDay
 	 * @param id -int. match ID.
 	 * @param team_home - int. Team ID that played home.
@@ -179,6 +172,25 @@ public class Match {
 			return getTA();
 		}
 		return null;
+	}
+
+	/**
+	 * Returns the amount of points for a team
+	 * @param t can be either team_home or team_away
+	 * @return -1 (unknown),
+	 */
+	public int getScore(Team t) throws TeamNotFoundException {
+		if (getEvents_home().isEmpty() && getEvents_away().isEmpty()) {
+			return 0; // If match is not played yet.
+		}
+		if (t.equals(getWinningTeam())) { // Team won
+			return 3; // Won
+		} else if (t.equals(getLosingTeam())) {
+			return 0; // Lost
+		} else if (getWinningTeam() == null && getLosingTeam() == null) {
+			return 1; // Equal
+		}
+		throw new TeamNotFoundException("Team not losing or winning this match");
 	}
 
 	public boolean isPlayed() {
