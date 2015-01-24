@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -38,6 +40,8 @@ public class TransferMarketController implements Initializable,
 	private ListView<String> teamsList;
 	@FXML
 	private ListView<String> playerList;
+	@FXML 
+	private Label bidLabel;
 	
 	
 	
@@ -58,6 +62,7 @@ public class TransferMarketController implements Initializable,
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		teamsList.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
@@ -70,22 +75,45 @@ public class TransferMarketController implements Initializable,
 		playerList.setOnMouseClicked(new EventHandler<Event>(){
 			@Override
 			public void handle(Event event){
-				int index = playerList.getSelectionModel().getSelectedIndex();
-				Team selectedTeam= teams.get(teamsList.getSelectionModel().getSelectedIndex());
-				Player selectedPlayer= selectedTeam.getPlayers().get(index);
-				nameLabel.setText(selectedPlayer.getFirstname()+" "+selectedPlayer.getSurname());
-				attLabel.setText(Integer.toString((int)(selectedPlayer.getOffensiveScore())));
-				
+				updatePlayerLabels();
 				
 			}
+		});
+		
+		bidSlider.setMin(0);
+		bidSlider.setMax(1);
+		bidSlider.valueProperty().addListener(new ChangeListener<Number>(){
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
+				updateSlider();
+				bidLabel.setText(Integer.toString(newValue.intValue()));
+				
+
+				
+			}
+			
+			
 			
 			
 		});
 		
 		updateTeamsList();
 		updatePlayerList();
+		updateSlider();
 		
 		MainApplication.addListener(this);
+	}
+	public void updateSlider(){
+		bidSlider.setMin(0);
+		if (Game.getInstance().getUserTeam().getBalance()==0)
+			bidSlider.setDisable(true);
+		else{
+			bidSlider.setDisable(false);
+			bidSlider.setMax(Game.getInstance().getUserTeam().getBalance());
+		}
+		
 	}
 	
 	public void updateTeamsList(){
@@ -125,11 +153,24 @@ public class TransferMarketController implements Initializable,
 		
 		
 	}
+	
+	public void updatePlayerLabels(){
+	
+		int index = playerList.getSelectionModel().getSelectedIndex();
+		Team selectedTeam= teams.get(teamsList.getSelectionModel().getSelectedIndex());
+		Player selectedPlayer= selectedTeam.getPlayers().get(index);
+		nameLabel.setText(selectedPlayer.getFirstname()+" "+selectedPlayer.getSurname());
+		attLabel.setText(Integer.toString((int)(selectedPlayer.getOffensiveScore())));
+		defLabel.setText(Integer.toString((int)(selectedPlayer.getDefensiveScore())));
+		stamLabel.setText(Integer.toString((int)(selectedPlayer.getStaminaScore())));
+		
+	}
 
 	@Override
 	public void onGamePlayed() {
 		updateTeamsList();
 		updatePlayerList();
+		updateSlider();
 		
 	}
 

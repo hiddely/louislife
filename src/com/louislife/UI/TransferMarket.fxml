@@ -48,7 +48,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="DEF" textFill="#1100ff" GridPane.columnIndex="2">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="STAM" textFill="#ffdb00" GridPane.columnIndex="1">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -70,13 +70,13 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="566.0" layoutY="45.0" prefHeight="63.0" prefWidth="341.0" textFill="WHITE">
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="544.0" layoutY="12.0" prefHeight="96.0" prefWidth="379.0" text="Piet Jansen" textFill="WHITE">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
       <Slider fx:id="bidSlider" layoutX="617.0" layoutY="396.0" prefHeight="29.0" prefWidth="241.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="642.0" layoutY="306.0" prefHeight="32.0" prefWidth="177.0" text="0" textFill="WHITE">
+      <Label fx:id="bidLabel" alignment="CENTER_RIGHT" layoutX="642.0" layoutY="306.0" prefHeight="32.0" prefWidth="177.0" text="0" textFill="WHITE">
          <font>
             <Font size="27.0" />
          </font>
