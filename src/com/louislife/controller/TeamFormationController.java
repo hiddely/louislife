@@ -3,15 +3,9 @@ package com.louislife.controller;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.DragEvent;
@@ -19,11 +13,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
-
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;

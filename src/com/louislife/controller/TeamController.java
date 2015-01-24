@@ -24,12 +24,13 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.model.Player;
 
 public class TeamController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	
 
@@ -46,6 +47,9 @@ ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		MainApplication.addListener(this);
+
 
 		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 
@@ -104,5 +108,8 @@ ControlledScreen {
 		});
 
 
+	}
+	@Override
+	public void onGamePlayed() {
 	}
 }

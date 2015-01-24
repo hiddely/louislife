@@ -25,6 +25,8 @@ public class TransferMarketController implements Initializable,
 	ArrayList<Team> teams;
 	
 	@FXML
+	private Label nameLabel;
+	@FXML
 	private Label attLabel;
 	@FXML
 	private Label defLabel;
@@ -62,6 +64,21 @@ public class TransferMarketController implements Initializable,
 			public void handle(Event event) {
 				updatePlayerList();
 			}
+			
+		});
+		
+		playerList.setOnMouseClicked(new EventHandler<Event>(){
+			@Override
+			public void handle(Event event){
+				int index = playerList.getSelectionModel().getSelectedIndex();
+				Team selectedTeam= teams.get(teamsList.getSelectionModel().getSelectedIndex());
+				Player selectedPlayer= selectedTeam.getPlayers().get(index);
+				nameLabel.setText(selectedPlayer.getFirstname()+" "+selectedPlayer.getSurname());
+				attLabel.setText(Integer.toString((int)(selectedPlayer.getOffensiveScore())));
+				
+				
+			}
+			
 			
 		});
 		
