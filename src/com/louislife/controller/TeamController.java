@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,12 +24,13 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 
 import com.louislife.UI.ControlledScreen;
+import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 import com.louislife.model.Player;
 
 public class TeamController implements Initializable,
-ControlledScreen {
+ControlledScreen, GamePlayListener {
 	
 	
 
@@ -36,6 +38,7 @@ ControlledScreen {
 	
 	/** XML Properties **/
 	@FXML private ListView<String> teamList;
+	@FXML private Label teamLabel;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -44,6 +47,11 @@ ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		MainApplication.addListener(this);
+
+
+		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 
 		ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
 		String[] playerListDisplay = new String[players.size()-11];
@@ -100,5 +108,8 @@ ControlledScreen {
 		});
 
 
+	}
+	@Override
+	public void onGamePlayed() {
 	}
 }

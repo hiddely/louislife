@@ -19,6 +19,10 @@ public class MatchTest {
 		Match match5 = new Match(2, 3, 1, 4);
 		Match match6 = new Match(2, 3, 1, 4);
 		Match match7 = new Match(2, 3, 1, 4);
+		Match match8 = new Match(1, 0, 1);
+		Match match9 = new Match(1, 0, 1);
+		Match match10 = new Match(0, 1);
+		Match match11 = new Match(0, 1);
 		Event event1 = new Event(1, EventType.GOAL, 1);
 		Event event2 = new Event(2, EventType.GOAL, 2);
 		Event event3 = new Event(3, EventType.GOAL, 3);
@@ -29,15 +33,17 @@ public class MatchTest {
 		match5.addEventHome(event2);
 		match6.addEventAway(event1);
 		match6.addEventHome(event3);
-		match7.addEventAway(event1);
 		match7.addEventHome(event2);
 		match7.addEventAway(event3);
 		
-		assertTrue(match1.equals(match2));
-		assertFalse(match1.equals(match3));
-		assertTrue(match4.equals(match5));
-		assertFalse(match4.equals(match6));
-		assertFalse(match4.equals(match7));
+		assertEquals(match1, match2);
+		assertNotEquals(match1, match3);
+		assertEquals(match4, match5);
+		assertNotEquals(match4, match6);
+		assertNotEquals(match4, match7);
+		assertNotEquals(match1, event1);
+		assertEquals(match8, match9);
+		assertEquals(match10, match11);
 	}
 
 	@Test
@@ -249,19 +255,60 @@ public class MatchTest {
 		game.addLeague(l1);
 		Match m1 = new Match(0, 0, 0, 1);
 		Match m2 = new Match(1, 0, 2, 3);
+		Match m3 = new Match(1, 0, 3, 2);
 		game.addMatch(m1);
 		game.addMatch(m2);
+		game.addMatch(m3);
 		
-		m1.play(600);
-		m2.play(714);
+		m1.play(55403);
+		m2.play(348463654);
+		m3.play(48681);
 		
 		Match res1 = new Match(0, 0, 0, 1);
-		Event e1 = new Event(5, EventType.GOAL, 83);
-		Event e2 = new Event(21, EventType.GOAL, 45);
+		Event e1 = new Event(2, EventType.GOAL, 64);
+		Event e2 = new Event(5, EventType.GOAL, 76);
+		Event e3 = new Event(22, EventType.GOAL, 15);
+		Event e4 = new Event(21, EventType.GOAL, 60);
+		
+		Match res2 = new Match(1, 0, 2, 3);
+		Event e5 = new Event(2, EventType.GOAL, 15);
+		Event e6 = new Event(5, EventType.GOAL, 27);
+		Event e7 = new Event(3, EventType.GOAL, 41);
+		Event e8 = new Event(6, EventType.GOAL, 43);
+		Event e9 = new Event(3, EventType.GOAL, 63);
+		Event e10 = new Event(1, EventType.GOAL, 67);
+		Event e11 = new Event(6, EventType.GOAL, 84);
+		
+		Match res3 = new Match(1, 0, 3, 2);
+		Event e12 = new Event(1, EventType.GOAL, 15);
+		Event e13 = new Event(6, EventType.GOAL, 30);
+		Event e14 = new Event(3, EventType.GOAL, 45);
+		Event e15 = new Event(4, EventType.GOAL, 60);
+		Event e16 = new Event(2, EventType.GOAL, 90);
+
+
 		res1.addEventHome(e1);
 		res1.addEventHome(e2);
+		res1.addEventAway(e3);
+		res1.addEventAway(e4);
+		
+		res2.addEventHome(e5);
+		res2.addEventHome(e6);
+		res2.addEventHome(e7);
+		res2.addEventHome(e8);
+		res2.addEventHome(e9);
+		res2.addEventHome(e10);
+		res2.addEventHome(e11);
+		
+		res3.addEventAway(e12);
+		res3.addEventAway(e13);
+		res3.addEventAway(e14);
+		res3.addEventAway(e15);
+		res3.addEventAway(e16);
 		
 		assertEquals(m1, res1);
+		assertEquals(m2, res2);
+		assertEquals(m3, res3);
 		
 	}
 	
@@ -270,6 +317,211 @@ public class MatchTest {
 		Match match1 = new Match(1, 1, 1, 2);
 		assertEquals("Match [id=1, day=1, events_home=[], events_away=[], team_home=1, team_away=2]", match1.toString());
 	}
+	
+	@Test
+	public void testGetTH(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		Match m1 = new Match(0, 0, 0, 1);
+		game.addMatch(m1);
+		
+		assertEquals(m1.getTH(), t1);
+	}
+	
+	@Test
+	public void testGetTA(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		Match m1 = new Match(0, 0, 0, 1);
+		game.addMatch(m1);
+		
+		assertEquals(m1.getTA(), t2);
+	}
 
+	@Test
+	public void testSetDay(){
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(0, 50, 0 ,1);
+		m1.setDay(50);
+		assertEquals(m1, m2);
+	}
+	
+	@Test
+	public void testGetScore_home(){
+		Match m1 = new Match(0, 0, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 1);
+		Event e2 = new Event(2, EventType.GOAL, 2);
+		Event e3 = new Event(3, EventType.GOAL, 3);
+		Event e4 = new Event(4, EventType.YELLOWCARD, 5);
+		
+		m1.addEventHome(e1);
+		m1.addEventHome(e2);
+		m1.addEventAway(e3);
+		m1.addEventHome(e4);
+		
+		assertEquals(2, m1.getScore_home());
+	}
+	
+	@Test
+	public void testGetScore_away(){
+		Match m1 = new Match(0, 0, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 1);
+		Event e2 = new Event(2, EventType.GOAL, 2);
+		Event e3 = new Event(3, EventType.GOAL, 3);
+		Event e4 = new Event(4, EventType.YELLOWCARD, 5);
+		
+		m1.addEventHome(e1);
+		m1.addEventHome(e2);
+		m1.addEventAway(e3);
+		m1.addEventAway(e4);
+		
+		assertEquals(1, m1.getScore_away());
+	}
 
+	@Test
+	public void testGetWinningTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(1, 1, 0, 1);
+		Match m3 = new Match(1, 1, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 1);
+		Event e2 = new Event(2, EventType.GOAL, 2);
+		Event e3 = new Event(3, EventType.GOAL, 3);
+		m1.addEventHome(e1);
+		m1.addEventHome(e2);
+		m1.addEventAway(e3);
+		m2.addEventAway(e1);
+		m2.addEventAway(e2);
+		m2.addEventAway(e3);
+		m3.addEventAway(e1);
+		m3.addEventHome(e2);
+		game.addMatch(m1);
+		
+		assertEquals(m1.getWinningTeam(), t1);
+		assertEquals(m2.getWinningTeam(), t2);
+		assertEquals(m3.getWinningTeam(), null);
+		
+	}
+	
+	@Test
+	public void testGetLosingTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(1, 1, 0, 1);
+		Match m3 = new Match(1, 1, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 1);
+		Event e2 = new Event(2, EventType.GOAL, 2);
+		Event e3 = new Event(3, EventType.GOAL, 3);
+		m1.addEventHome(e1);
+		m1.addEventHome(e2);
+		m1.addEventAway(e3);
+		m2.addEventAway(e1);
+		m2.addEventAway(e2);
+		m2.addEventAway(e3);
+		m3.addEventAway(e1);
+		m3.addEventHome(e2);
+		game.addMatch(m1);
+		
+		assertEquals(m1.getLosingTeam(), t2);
+		assertEquals(m2.getLosingTeam(), t1);
+		assertEquals(m3.getLosingTeam(), null);
+		
+	}
+	
+	@Test
+	public void testIsPlayed(){
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(0, 0, 0, 1);
+		Match m3 = new Match(0, 0, 0, 1);
+		Match m4 = new Match(0, 0, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 23);
+		m2.addEventAway(e1);
+		m3.addEventHome(e1);
+		m4.addEventAway(e1);
+		m4.addEventHome(e1);
+		
+		assertFalse(m1.isPlayed());
+		assertTrue(m2.isPlayed());
+		assertTrue(m2.isPlayed());
+		assertTrue(m3.isPlayed());
+		
+	}
 }

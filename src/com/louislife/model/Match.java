@@ -57,18 +57,11 @@ public class Match {
 		this.events_away = new ArrayList<Event>();
 	}
 
-	/**
-	 * Creates a new match without specifying the participating teams.
-	 * 
+	/***
 	 * A match is played on the day that the overview screen shows before
 	 * pressing the next round button. Thus, nextWeek() happens after creating
 	 * the match object.
-	 * 
-	 * @param id
-	 *            - int. Match ID
-	 * @param day
-	 *            - int. Day the match is played on.
-=======
+	 *
 	 * Creates a new match without specifying the match day. The day should later be filled in with Match.setDay
 	 * @param id -int. match ID.
 	 * @param team_home - int. Team ID that played home.
@@ -181,6 +174,25 @@ public class Match {
 		return null;
 	}
 
+	/**
+	 * Returns the amount of points for a team
+	 * @param t can be either team_home or team_away
+	 * @return -1 (unknown),
+	 */
+	public int getScore(Team t) throws TeamNotFoundException {
+		if (getEvents_home().isEmpty() && getEvents_away().isEmpty()) {
+			return 0; // If match is not played yet.
+		}
+		if (t.equals(getWinningTeam())) { // Team won
+			return 3; // Won
+		} else if (t.equals(getLosingTeam())) {
+			return 0; // Lost
+		} else if (getWinningTeam() == null && getLosingTeam() == null) {
+			return 1; // Equal
+		}
+		throw new TeamNotFoundException("Team not losing or winning this match");
+	}
+
 	public boolean isPlayed() {
 		return !getEvents_home().isEmpty() || !getEvents_away().isEmpty();
 	}
@@ -192,8 +204,8 @@ public class Match {
 		
 		int homeChances = home.getTotStamina() / 110;
 		int awayChances = away.getTotStamina() / 120;
-		double homeGoalChance = (50 + ((home.getTotOff() * 2 - away.getTotDef()) * 100 / away.getTotDef()));
-		double awayGoalChance = (50 + ((away.getTotOff() * 2 - home.getTotDef()) *100 / home.getTotDef()));
+		double homeGoalChance = 0.4 * (40 + ((home.getTotOff() * 2 - away.getTotDef()) * 100 / away.getTotDef()));
+		double awayGoalChance = 0.4 * (40 + ((away.getTotOff() * 2 - home.getTotDef()) *100 / home.getTotDef()));
 		if(homeGoalChance < 5){
 			homeGoalChance = 5;
 		}else if(homeGoalChance > 90){
@@ -316,5 +328,30 @@ public class Match {
 				+ team_home + ", team_away=" + team_away + "]";
 	}
 	
-
+	public boolean equals(Object o){
+		if(o instanceof Match){
+			Match that = (Match) o;
+			if(this.id == that.id
+				&& this.day == that.day
+				&& this.team_away == that.team_away
+				&& this.team_home == that.team_home
+				&& this.events_away.size() == that.events_away.size()
+				&& this.events_home.size() == that.events_home.size()
+				){
+					for(int i = 0; i < this.events_away.size(); i++){
+						if(this.events_away.get(i).equals(that.events_away.get(i)) == false){
+							return false;
+						}
+					}
+					for(int n = 0; n < this.events_home.size(); n++){
+						if(this.events_home.get(n).equals(that.events_home.get(n)) == false){
+							return false;
+						}
+					}
+					return true;
+			}
+		}
+		return false;
+	}
+	
 }

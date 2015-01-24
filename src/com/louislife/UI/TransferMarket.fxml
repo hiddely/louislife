@@ -38,27 +38,27 @@
           <RowConstraints maxHeight="124.36552429199219" minHeight="10.0" prefHeight="124.36552429199219" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="defLabel" alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="defLabel" alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="-" textFill="#1100ff" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="attLabel" alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="ATT" textFill="RED" GridPane.rowIndex="1">
+            <Label fx:id="attLabel" alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="-" textFill="RED" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="DEF" textFill="#1100ff" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="stamLabel" alignment="CENTER" prefHeight="41.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="stamLabel" alignment="CENTER" prefHeight="41.0" prefWidth="126.0" text="-" textFill="#ffdb00" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="STAM" textFill="#ffdb00" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -70,7 +70,7 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="643.0" layoutY="45.0" prefHeight="63.0" prefWidth="164.0" text="Piet Jansen" textFill="WHITE">
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="566.0" layoutY="45.0" prefHeight="63.0" prefWidth="341.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>

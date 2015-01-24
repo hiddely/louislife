@@ -17,14 +17,21 @@ public class LeagueTest {
 		ArrayList<Player> players1 = new ArrayList<Player>();
 		players1.add(player1);
 		Team team1 = new Team(1, "United States", 10000, players1);
+		Team team2 = new Team(2, "Nederland", 1000, players1);
 		
 		ArrayList<Team> teams1 = new ArrayList<Team>();
 		teams1.add(team1);
+		ArrayList<Team> teams2 = new ArrayList<Team>();
+		teams2.add(team2);
 		
 		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
 		League league2 = new League(1, "Jupiler League", "Belgie", teams1);
+		League league3 = new League(1, "Jupiler League", "Belgie", teams2);
+		Match match1 = new Match(0, 0, 0 ,1);
 		
-		assertTrue(league1.equals(league2));
+		assertEquals(league1, league2);
+		assertNotEquals(league1, match1);
+		assertNotEquals(league1, league3);
 	}
 
 	@Test
@@ -217,6 +224,45 @@ public class LeagueTest {
 		league1.setCountry("Nederland");
 		
 		assertEquals(team1, league1.findTeam(1));
+		assertEquals(null, league1.findTeam(3));
+	}
+	
+	@Test
+	public void testFindPlayer() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		ArrayList<Player> players1 = new ArrayList<Player>();
+		players1.add(player1);
+		Team team1 = new Team(1, "United States", 10000, players1);
+		
+		ArrayList<Team> teams1 = new ArrayList<Team>();
+		teams1.add(team1);
+		
+		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
+		league1.setCountry("Nederland");
+		
+		assertEquals(player1, league1.findPlayer(1));
+		assertEquals(null, league1.findPlayer(20));
+	}
+	
+	@Test
+	public void testWeeklyMatches() {
+		byte b1 = 10;
+		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
+		ArrayList<Player> players1 = new ArrayList<Player>();
+		players1.add(player1);
+		Team team1 = new Team(1, "United States", 10000, players1);
+		Team team2 = new Team(2, "United Staids", 20000, players1);
+		Team team3 = new Team(3, "United Steden", 30000, players1);
+		
+		ArrayList<Team> teams1 = new ArrayList<Team>();
+		teams1.add(team1);
+		teams1.add(team2);
+		teams1.add(team3);
+		
+		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
+		
+		assertEquals(league1.weeklyMatches(), 1);
 	}
 
 }

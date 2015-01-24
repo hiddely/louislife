@@ -131,6 +131,35 @@ ControlledScreen, GamePlayListener {
 			p.setLayoutY(i * 30.0);
 			content.getChildren().add(p);
 		}
+
+		for (int i = 0; i < m.getEvents_away().size(); i++) {
+			String label = "";
+			String icon = "";
+			Event e = m.getEvents_away().get(i);
+			switch (e.getType()) {
+				case GOAL:
+					//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
+					label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " scored a goal";
+					icon = "icon_football.png";
+					break;
+
+			}
+			Label l = new Label(label);
+			l.setTextFill(Color.BLACK);
+			l.setFont(new Font("Avenir Medium", 18.0));
+			l.setLayoutX(40.0);
+			Image ii = new Image(new File("images/"+icon).toURI().toString(), 20, 20, false, false);
+			final ImageView iconview = new ImageView();
+			iconview.setLayoutX(5.0);
+			iconview.setLayoutY(5.0);
+			iconview.setImage(ii);
+			Pane p = new Pane();
+			p.getChildren().add(l);
+			p.getChildren().add(iconview);
+			p.setLayoutY(i * 30.0);
+			p.setLayoutX(300.0);
+			content.getChildren().add(p);
+		}
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.animation.FadeTransition;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 import org.xml.sax.SAXException;
 
 import com.louislife.UI.ControlledScreen;
@@ -56,6 +58,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
 		selected_teamId = 0; // TODO: Make dynamic
 		
 		final int ITEMS_ROW = 6; // Aantal items in de kolom
@@ -140,7 +143,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 				// Name already exists
 				e1.printStackTrace();
 			}
-			
+
+			MainApplication.mainContainer.loadScreen(MainApplication.OVERVIEW, MainApplication.OVERVIEW_FXML);
 			controller.setScreen(MainApplication.OVERVIEW);
 		}
 	}

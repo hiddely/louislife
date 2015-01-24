@@ -1,5 +1,8 @@
 package com.louislife.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -193,31 +196,45 @@ public class Team {
 
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Team other = (Team) obj;
-		if (balance != other.balance)
-			return false;
-		if (id != other.id)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (players == null) {
-			if (other.players != null)
-				return false;
-		} else if (!players.equals(other.players))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if(o instanceof Team){
+			Team that = (Team) o;
+			if(this.balance == that.balance
+				&& this.id == that.id
+				&& this.name.equals(that.name)
+				&& this.players.size() == that.players.size()){
+				for(int i = 0; i < this.players.size(); i++){
+					if(this.players.get(i).equals(that.players.get(i)) == false){
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	
+	/* JavaFX tableview properties */
+	public StringProperty rankProperty() {
+		return new SimpleStringProperty(Game.getInstance().getRank(this, 0)+"");
+	}
+	public StringProperty nameProperty() {
+		return new SimpleStringProperty(this.getName());
+	}
+	public StringProperty playedProperty() {
+		return new SimpleStringProperty(Game.getInstance().getPlayedForTeam(this)+"");
+	}
+	public StringProperty winProperty() {
+		return new SimpleStringProperty(Game.getInstance().getWinsForTeam(this)+"");
+	}
+	public StringProperty tieProperty() {
+		return new SimpleStringProperty(Game.getInstance().getTieForTeam(this)+"");
+	}
+	public StringProperty lossProperty() {
+		return new SimpleStringProperty(Game.getInstance().getLossForTeam(this)+"");
+	}
+	public StringProperty pointsProperty() {
+		return new SimpleStringProperty(Game.getInstance().getPointsForTeam(this.getId(), 0)+"");
+	}
 
 }

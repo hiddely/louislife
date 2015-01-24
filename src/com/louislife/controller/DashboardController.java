@@ -3,16 +3,19 @@ package com.louislife.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.louislife.model.Match;
 import com.louislife.util.XMLParser;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+import sun.applet.Main;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -22,13 +25,14 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  */
 
-public class DashboardController implements Initializable, ControlledScreen {
+public class DashboardController implements Initializable, ControlledScreen, GamePlayListener {
 
 	private static TabPane navigationPane;
 	ScreensController controller;
 
 	/** XML Properties **/
-	
+	@FXML private Label teamLabel;
+	@FXML private Label nextLabel;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -40,9 +44,27 @@ public class DashboardController implements Initializable, ControlledScreen {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		MainApplication.addListener(this);
 
+		updateDashboard();
+	}
+
+	public void updateDashboard() {
 		// Laad de load games
+		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 
+		// Get next match for team
+		int day = Game.getInstance().getCurrentDay();
+		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
+			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
+				Match m = Game.getInstance().getMatches().get(i);
+				if (m.getTH().equals(Game.getInstance().getUserTeam())) {
+					nextLabel.setText("Home: " + m.getTA().getName());
+				} else if (m.getTA().equals(Game.getInstance().getUserTeam())) {
+					nextLabel.setText("Away: " + m.getTH().getName());
+				}
+			}
+		}
 	}
 	
 	/**
@@ -98,5 +120,9 @@ public class DashboardController implements Initializable, ControlledScreen {
 	@FXML protected void onClickMainMenu(Event e){
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU);
 	}
-	
+
+	@Override
+	public void onGamePlayed() {
+		updateDashboard();
+	}
 }

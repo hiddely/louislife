@@ -35,4 +35,14 @@ private int minute;
 				+ minute + "]";
 	}
 	
+	public boolean equals(Object o){
+		if(o instanceof Event){
+			Event that = (Event) o;
+			if(this.player == that.player && this.type == that.type && this.minute == that.minute){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

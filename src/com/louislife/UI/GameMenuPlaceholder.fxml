@@ -25,24 +25,30 @@
   </rowConstraints>
   
    <children>
-      <Button maxHeight="50.0" minHeight="50.0" onAction="#actionButtonLoad" prefHeight="50.0" prefWidth="194.0" text="Load Game" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
-         <font>
-            <Font name="Avenir Medium" size="24.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="15.0" />
-         </GridPane.margin></Button>
-      <Button onAction="#actionButtonNew" prefHeight="30.0" prefWidth="193.0" text="New game" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
-         <font>
-            <Font name="Avenir Next Regular" size="16.0" />
-         </font></Button>
          
       <ListView fx:id="loadGameList" opacity="0.85" prefHeight="234.0" prefWidth="379.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Label prefHeight="74.0" prefWidth="215.0" text="Louis Life" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="301.0" text="Louis Life" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER">
          <font>
-            <Font name="Avenir Light" size="50.0" />
+            <Font name="Avenir Light" size="70.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Label>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Button layoutY="145.0" maxHeight="50.0" minHeight="36.0" onAction="#actionButtonLoad" prefHeight="36.0" prefWidth="149.0" text="Load Game">
+               <font>
+                  <Font name="Avenir Medium" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="153.0" layoutY="145.0" onAction="#actionButtonNew" prefHeight="36.0" prefWidth="149.0" text="New game">
+               <font>
+                  <Font name="Avenir Next Regular" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
