@@ -12,17 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.VBox;
-
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
@@ -66,7 +61,8 @@ ControlledScreen, GamePlayListener {
 		teamList.setItems(items);
 		
 		teamList.setOnDragDetected(new EventHandler<MouseEvent>() {
-		    public void handle(MouseEvent event) {
+		    @Override
+			public void handle(MouseEvent event) {
 		        /* drag was detected, start a drag-and-drop gesture*/
 		        /* allow any transfer mode */
 		        Dragboard db = teamList.startDragAndDrop(TransferMode.ANY);
@@ -84,7 +80,8 @@ ControlledScreen, GamePlayListener {
 		});
 		
 		teamList.setOnDragDone(new EventHandler<DragEvent>() {
-		    public void handle(DragEvent event) {
+		    @Override
+			public void handle(DragEvent event) {
 		        /* the drag and drop gesture ended */
 		        /* if the data was successfully moved, clear it */
 		    	//update list

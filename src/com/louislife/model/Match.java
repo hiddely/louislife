@@ -356,6 +356,7 @@ public class Match {
 		return credit;
 	}
 	
+	@Override
 	public String toString() {
 		return "Match [id=" + id + ", day=" + day + ", events_home="
 				+ events_home + ", events_away=" + events_away + ", team_home="
@@ -363,6 +364,7 @@ public class Match {
 	}
 	
 	
+	@Override
 	public boolean equals(Object o){
 		if(o instanceof Match){
 			Match that = (Match) o;

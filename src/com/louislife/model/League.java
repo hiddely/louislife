@@ -106,6 +106,7 @@ public class League {
 		return ( this.getTeams().size() - 1 ) * 2;
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		if(o instanceof League){
 			League that = (League) o;
