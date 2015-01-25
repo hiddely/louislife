@@ -72,7 +72,8 @@ public class MainApplication extends Application {
         popup.centerOnScreen();
         popup.getContent().add(pane);
         
-        popup.show(MainApplication.primaryStage);
+        popup.show(primaryStage);
+        System.out.println("POPUP");
         popup.autoHideProperty().set(true);
 		
 	}
@@ -80,15 +81,16 @@ public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+	
+
+		primaryStage = new Stage();
+		primaryStage.setTitle("Louis Life");
 		MainApplication.primaryStage=primaryStage;
 		// Load all screens here
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU, MainApplication.MAIN_MENU_FXML);
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu		
-
-		primaryStage = new Stage();
-		primaryStage.setTitle("Louis Life");
 		
 		Group root = new Group();
 		root.getChildren().addAll(MainApplication.mainContainer);
