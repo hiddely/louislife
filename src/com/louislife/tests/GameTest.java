@@ -284,4 +284,355 @@ public class GameTest {
 		assertEquals(50, game1.getCurrentTeam());
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testGetQuotes(){
+		String[] res = new String[] {
+				"That is another koek",
+				"Ben ik nou zo slim, of ben jij zo dom?",
+				"It is the dead or the gladiolie",
+				""
+		};
+		
+		assertEquals(res, Game.getQuotes());
+	}
+
+	@Test
+	public void testGetPointsForTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		
+		assertEquals(4, game.getPointsForTeam(0, 0));
+	}
+	
+	@Test
+	public void testGetPlayedForTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Match m4 = new Match(3, 3, 2, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		assertEquals(2, game.getPlayedForTeam(t1));
+	}
+	
+	@Test
+	public void testGetWinsForTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Match m4 = new Match(3, 3, 2, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		assertEquals(1, game.getWinsForTeam(t1));
+	}
+	
+	@Test
+	public void testGetTieForTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Match m4 = new Match(3, 3, 2, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		assertEquals(1, game.getTieForTeam(t1));
+		assertEquals(2, game.getTieForTeam(t2));
+	}
+	
+	@Test
+	public void testGetLossForTeam(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Match m4 = new Match(3, 3, 2, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		assertEquals(0, game.getLossForTeam(t1));
+		assertEquals(1, game.getLossForTeam(t2));
+	}
+	
+	@Test
+	public void testGetRankList(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(1, 1, 1, 0);
+		Match m3 = new Match(2, 2, 0, 2);
+		Match m4 = new Match(3, 3, 2, 0);
+		
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(2, EventType.GOAL, 78);
+		
+		m1.addEventHome(e1);
+		m2.addEventHome(e1);
+		m2.addEventAway(e2);
+		m3.addEventAway(e2);
+		m4.addEventHome(e2);
+		m4.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		ArrayList<Team> res = new ArrayList<Team>();
+		res.add(t3);
+		res.add(t1);
+		res.add(t2);
+		
+		assertEquals(res, game.getRankList(0));
+	}
+	
+	@Test
+	public void testGetRank(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		Team t3 = new Team(2, "Feijenoord", 850, pll2);
+		Team t4 = new Team(3, "Willem II", 4664, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		l1.addTeam(t3);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(1, 1, 1, 0);
+		Match m3 = new Match(2, 2, 0, 2);
+		Match m4 = new Match(3, 3, 2, 0);
+		
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(2, EventType.GOAL, 78);
+		
+		m1.addEventHome(e1);
+		m2.addEventHome(e1);
+		m2.addEventAway(e2);
+		m3.addEventAway(e2);
+		m4.addEventHome(e2);
+		m4.addEventHome(e1);
+		
+		game.addMatch(m1);
+		game.addMatch(m2);
+		game.addMatch(m3);
+		game.addMatch(m4);
+		
+		assertEquals(2, game.getRank(t1, 0));
+		assertEquals(3, game.getRank(t2, 0));
+		assertEquals(1, game.getRank(t3, 0));
+		assertEquals(-1, game.getRank(t4, 0));
+	}
 }

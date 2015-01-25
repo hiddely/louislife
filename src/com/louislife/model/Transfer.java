@@ -1,7 +1,5 @@
 package com.louislife.model;
 
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * A team transfer
@@ -22,7 +20,6 @@ public class Transfer {
 	private int player;
 	private int price;
 	private int day;
-	private static int transferIdentifier;
 
 	public Transfer(int id, int from, int to, int player, int price, int day) {
 		this.id = id;

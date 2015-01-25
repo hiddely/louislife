@@ -180,7 +180,7 @@ public class Match {
 	 * @return -1 (unknown),
 	 */
 	public int getScore(Team t) throws TeamNotFoundException {
-		if (getEvents_home().isEmpty() && getEvents_away().isEmpty()) {
+		if (this.isPlayed() == false) {
 			return 0; // If match is not played yet.
 		}
 		if (t.equals(getWinningTeam())) { // Team won
@@ -194,7 +194,7 @@ public class Match {
 	}
 
 	public boolean isPlayed() {
-		return !getEvents_home().isEmpty() || !getEvents_away().isEmpty();
+		return this.day < Game.getInstance().getCurrentDay();
 	}
 
 	public void play(long seed) {
