@@ -1,6 +1,8 @@
 package com.louislife.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -238,11 +240,61 @@ public class Match {
 			awayTime += 90/awayChances;
 			int random = r.nextInt(100);
 			if(random < awayGoalChance){
+				int eventTime = awayTime - 45/homeChances + r.nextInt(90/homeChances);
 				Player pl = sla.get(r.nextInt(sla.size()));
-				Event e = new Event(pl.getId(), EventType.GOAL, awayTime);
+				Event e = new Event(pl.getId(), EventType.GOAL, eventTime);
 				events_away.add(e);
 			}
 		}
+
+		// We do not have a stat for aggressiveness, or something in that sense, so we'll divide yellow and red cards randomly
+		for (int i = 1; i < 90; i++) { // i represents minute
+			if (r.nextInt(100) == 2) {
+				// We have a yellow card to give
+				if (r.nextInt(2) == 1) {
+					// Home
+					Player pl = slh.get(r.nextInt(slh.size()));
+					events_home.add(new Event(pl.getId(), EventType.YELLOWCARD, i));
+				} else {
+					Player pl = sla.get(r.nextInt(sla.size()));
+					events_away.add(new Event(pl.getId(), EventType.YELLOWCARD, i));
+				}
+			}
+			if (r.nextInt(120) == 2) {
+				// Injury
+				if (r.nextInt(2) == 1) {
+					// Home
+					Player pl = slh.get(r.nextInt(slh.size()));
+					events_home.add(new Event(pl.getId(), EventType.INJURY, i));
+				} else {
+					Player pl = sla.get(r.nextInt(sla.size()));
+					events_away.add(new Event(pl.getId(), EventType.INJURY, i));
+				}
+			}
+			if (r.nextInt(200) == 2) {
+				// Injury
+				if (r.nextInt(2) == 1) {
+					// Home
+					Player pl = slh.get(r.nextInt(slh.size()));
+					events_home.add(new Event(pl.getId(), EventType.REDCARD, i));
+				} else {
+					Player pl = sla.get(r.nextInt(sla.size()));
+					events_away.add(new Event(pl.getId(), EventType.REDCARD, i));
+				}
+			}
+		}
+		Collections.sort(events_home, new Comparator<Event>() {
+			@Override
+			public int compare(Event o1, Event o2) {
+				return Integer.valueOf(o1.getMinute()).compareTo(Integer.valueOf(o2.getMinute()));
+			}
+		});
+		Collections.sort(events_away, new Comparator<Event>() {
+			@Override
+			public int compare(Event o1, Event o2) {
+				return Integer.valueOf(o1.getMinute()).compareTo(Integer.valueOf(o2.getMinute()));
+			}
+		});
 		
 	}
 	

@@ -38,7 +38,7 @@
                   <DropShadow offsetY="2.0" />
                </effect>
             </Label>
-            <Label fx:id="nextLabel" alignment="CENTER_RIGHT" layoutX="30.0" layoutY="100.0" prefHeight="43.0" prefWidth="254.0" textFill="WHITE" wrapText="true">
+            <Label fx:id="nextLabel" layoutX="23.0" layoutY="143.0" prefHeight="43.0" prefWidth="254.0" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Avenir Light" size="24.0" />
                </font>
@@ -72,7 +72,17 @@
                </font>
             </Label>
          </children></Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <Pane onMouseClicked="#onClickMatches" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <children>
+            <Label layoutX="30.0" layoutY="31.0" prefHeight="43.0" prefWidth="240.0" text="Matches" textFill="#ffffffe5" wrapText="true">
+               <effect>
+                  <DropShadow offsetY="2.0" />
+               </effect>
+               <font>
+                  <Font name="Avenir Light" size="30.0" />
+               </font>
+            </Label>
+         </children></Pane>
       <Pane onMouseClicked="#onClickMarket" prefHeight="200.0" prefWidth="200.0" styleClass="dashboard-pane" stylesheets="@../../../../styles/app.css" GridPane.rowIndex="3">
          <children>
             <Label layoutX="23.0" layoutY="14.0" prefHeight="111.0" prefWidth="254.0" text="Transfer           Market" textFill="#ffffffe5" wrapText="true">

@@ -116,7 +116,11 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	@FXML protected void onClickMarket(Event e) {
 		navigationPane.getSelectionModel().select(3);
 	}
-	
+
+	@FXML protected void onClickMatches(Event e) {
+		navigationPane.getSelectionModel().select(4);
+	}
+
 	@FXML protected void onClickMainMenu(Event e){
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU);
 	}
