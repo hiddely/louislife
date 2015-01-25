@@ -70,6 +70,7 @@ public class Match {
 
 	public Match(int id, int team_home, int team_away) {
 		this.id = id;
+		this.day = -1;
 		
 		this.team_home = team_home;
 		this.team_away = team_away;
@@ -180,7 +181,7 @@ public class Match {
 	 * @return -1 (unknown),
 	 */
 	public int getScore(Team t) throws TeamNotFoundException {
-		if (getEvents_home().isEmpty() && getEvents_away().isEmpty()) {
+		if (this.isPlayed() == false) {
 			return 0; // If match is not played yet.
 		}
 		if (t.equals(getWinningTeam())) { // Team won
@@ -194,7 +195,7 @@ public class Match {
 	}
 
 	public boolean isPlayed() {
-		return !getEvents_home().isEmpty() || !getEvents_away().isEmpty();
+		return this.day < Game.getInstance().getCurrentDay();
 	}
 
 	public void play(long seed) {
@@ -321,11 +322,16 @@ public class Match {
 		return credit;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return "Match [id=" + id + ", day=" + day + ", events_home="
+//				+ events_home + ", events_away=" + events_away + ", team_home="
+//				+ team_home + ", team_away=" + team_away + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Match [id=" + id + ", day=" + day + ", events_home="
-				+ events_home + ", events_away=" + events_away + ", team_home="
-				+ team_home + ", team_away=" + team_away + "]";
+		return this.id + "HomeID=" + this.team_home + " AwayID=" + this.team_away;
 	}
 	
 	public boolean equals(Object o){

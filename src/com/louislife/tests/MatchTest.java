@@ -508,20 +508,56 @@ public class MatchTest {
 	
 	@Test
 	public void testIsPlayed(){
-		Match m1 = new Match(0, 0, 0, 1);
-		Match m2 = new Match(0, 0, 0, 1);
-		Match m3 = new Match(0, 0, 0, 1);
-		Match m4 = new Match(0, 0, 0, 1);
-		Event e1 = new Event(1, EventType.GOAL, 23);
-		m2.addEventAway(e1);
-		m3.addEventHome(e1);
-		m4.addEventAway(e1);
-		m4.addEventHome(e1);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.setCurrentDay(24);
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(1, 28, 0, 1);
 		
-		assertFalse(m1.isPlayed());
-		assertTrue(m2.isPlayed());
-		assertTrue(m2.isPlayed());
-		assertTrue(m3.isPlayed());
+		assertTrue(m1.isPlayed());
+		assertFalse(m2.isPlayed());
+		
+	}
+	
+	@Test (expected = TeamNotFoundException.class)
+	public void testGetScore() throws TeamNotFoundException {
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 800, pll1);
+		Team t2 = new Team(1, "PSV", 820, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 2, 0, 1);
+		Match m2 = new Match(2, 2, 0, 1);
+		Match m3 = new Match(3, 28, 0, 1);
+		Event e1 = new Event(1, EventType.GOAL, 25);
+		Event e2 = new Event(21, EventType.GOAL, 34);
+		
+		m1.addEventHome(e1);
+		m2.addEventAway(e2);
+		m2.addEventHome(e1);
+		
+		assertEquals(3, m1.getScore(t1));
+		assertEquals(0, m1.getScore(t2));
+		assertEquals(1, m2.getScore(t1));
+		assertEquals(1, m2.getScore(t2));
+		assertEquals(0, m3.getScore(t1));
 		
 	}
 }
