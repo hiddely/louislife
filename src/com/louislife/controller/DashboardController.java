@@ -23,7 +23,7 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
-
+import javafx.stage.Popup;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
@@ -53,7 +53,7 @@ public class DashboardController extends ExplainableController implements Initia
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MainApplication.addListener(this);
-		//quoteLabel.setWrapText(true);
+		quoteLabel.setWrapText(true);
 
 		updateDashboard();
 		if(!super.getExplained())
@@ -66,7 +66,7 @@ public class DashboardController extends ExplainableController implements Initia
 		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 		
 		// Get random Louis Quote
-		//quoteLabel.setText(Game.getQuotes()[6/*new Random().nextInt(Game.getQuotes().length)*/]);
+		quoteLabel.setText(Game.getQuotes()[new Random().nextInt(Game.getQuotes().length)]);
 
 		// Get next match for team
 		int day = Game.getInstance().getCurrentDay();
