@@ -1,13 +1,19 @@
 package com.louislife.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
+
+import com.louislife.UI.MainApplication;
+import com.louislife.model.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -17,12 +23,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.ScreensController;
-import com.louislife.model.Game;
-import com.louislife.model.Player;
-import com.louislife.model.Team;
-import com.louislife.model.PlayerType;
 
-public class TeamFormationController implements Initializable, ControlledScreen {
+public class TeamFormationController implements Initializable, ControlledScreen, GamePlayListener {
 
 	ScreensController controller;
 	private Team currentTeam;
@@ -63,6 +65,8 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	public void initialize(URL location, ResourceBundle resources) {
 		setTeam(Game.getInstance().getUserTeam());
 		setupDragDrop();
+
+		MainApplication.addListener(this);
 
 	}
 	
@@ -183,6 +187,9 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 	 */
 	
 	public void setUpLabels (Pane pane, Player player){
+		if (pane == null)
+			return;
+
 		Label nameLabel = new Label(player.getSurname());
 
 
@@ -190,15 +197,31 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 				.getJerseyNumber() +1));
 		Font myFont = Font.font(null, FontWeight.BOLD, 30);
 		jerseyLabel.setFont(myFont);
-		
-		
 
-		
-		if (pane != null) {
-			pane.getChildren().add(nameLabel);
-			pane.getChildren().add(jerseyLabel);
+		pane.getChildren().add(nameLabel);
+		pane.getChildren().add(jerseyLabel);
 
-			
+		// Add functionality for player red or yellow cards
+		PlayerStatus ps = getStatus(player);
+		if (ps != PlayerStatus.NORMAL) {
+			String cards = "";
+			switch (ps) {
+				case YELLOWCARD:
+					cards = "yellow";
+					break;
+				case REDCARD:
+					cards = "red";
+					break;
+				case INJURED:
+					cards ="injured";
+					break;
+			}
+			Image card = new Image(new File("images/icon_"+cards+"card.png").toURI().toString());
+			ImageView cardview = new ImageView(card);
+			pane.getChildren().add(cardview);
+
+			StackPane.setAlignment(cardview, Pos.BOTTOM_RIGHT);
+			cardview.setTranslateX(-10.);
 		}
 
 		
@@ -294,5 +317,43 @@ public class TeamFormationController implements Initializable, ControlledScreen 
 			return p11;
 		}
 		return null;
+	}
+
+	private PlayerStatus getStatus(Player p) {
+		// Get last matches
+		for (Match m : Game.getInstance().getMatches()) {
+			if (m.isPlayed() && m.getDay()+7 > Game.getInstance().getCurrentDay()) {
+				for (Event e : m.getEvents_home()) {
+					if (e.getPlayer() == p.getId()) {
+						switch (e.getType()) {
+							case YELLOWCARD:
+								return PlayerStatus.YELLOWCARD;
+							case REDCARD:
+								return PlayerStatus.REDCARD;
+							case INJURY:
+								return PlayerStatus.INJURED;
+						}
+					}
+				}
+				for (Event e : m.getEvents_away()) {
+					if (e.getPlayer() == p.getId()) {
+						switch (e.getType()) {
+							case YELLOWCARD:
+								return PlayerStatus.YELLOWCARD;
+							case REDCARD:
+								return PlayerStatus.REDCARD;
+							case INJURY:
+								return PlayerStatus.INJURED;
+						}
+					}
+				}
+			}
+		}
+		return PlayerStatus.NORMAL;
+	}
+
+	@Override
+	public void onGamePlayed() {
+		setTeam(Game.getInstance().getUserTeam());
 	}
 }

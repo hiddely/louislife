@@ -20,6 +20,7 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class GameOverviewController implements Initializable,
@@ -48,7 +49,6 @@ ControlledScreen, GamePlayListener {
 		MainApplication.addListener(this);
 
 		this.onGamePlayed(); // Invoke for first time
-
 	}
 	
 	public void updateBalance() {
