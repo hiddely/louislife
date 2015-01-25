@@ -147,7 +147,7 @@ public class DashboardController extends ExplainableController implements Initia
 			la.setTextFill(Color.WHITE);
 			int price = p.calculatePrice();
 			Label label2= new Label();
-			label2.setText("It's about "+p.getFirstname()+" "+p.getSurname()+",\n they would like to buy him for € "+p.calculatePrice());
+			label2.setText("It's about "+p.getFirstname()+" "+p.getSurname()+",\n they would like to buy him for EUR "+p.calculatePrice());
 			label2.setFont(Font.font("Avenir medium", FontWeight.BOLD, 16));
 			label2.setTextFill(Color.WHITE);
 

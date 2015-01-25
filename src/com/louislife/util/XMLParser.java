@@ -401,7 +401,7 @@ public class XMLParser {
 		File[] listOfFiles = folder.listFiles();
 		
 		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".xml") && !listOfFiles[i].getName().equalsIgnoreCase("example.xml")) { // We willen geen example.xml, is de reference xml
+			if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".xml") && !listOfFiles[i].getName().equalsIgnoreCase("example.xml") && !listOfFiles[i].getName().equalsIgnoreCase("tests.xml")) { // We willen geen example.xml, is de reference xml
 				out.add(listOfFiles[i].getName().replaceFirst(".xml", ""));
 			}
 		}
