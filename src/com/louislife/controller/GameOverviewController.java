@@ -43,12 +43,12 @@ ControlledScreen, GamePlayListener {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
 		DashboardController.setNavigationPane(navigationPane);
 
 		MainApplication.addListener(this);
 
 		this.onGamePlayed(); // Invoke for first time
+
 	}
 	
 	public void updateBalance() {
