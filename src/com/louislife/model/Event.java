@@ -35,6 +35,7 @@ private int minute;
 				+ minute + "]";
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		if(o instanceof Event){
 			Event that = (Event) o;

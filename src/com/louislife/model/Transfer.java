@@ -60,6 +60,7 @@ public class Transfer {
 				+ ", price=" + price + ", day=" + day + "]";
 	}
 	
+	@Override
 	public boolean equals(Object o){
 		if(o instanceof Transfer){
 			Transfer that = (Transfer) o;
