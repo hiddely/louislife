@@ -196,12 +196,12 @@ public class Game {
 	
 	public static String[] getQuotes() {
 		return new String[] {
-				"That is another koek",
-				"Ben ik nou zo slim, of ben jij zo dom?",
-				"It is the dead or the gladiolie",
-				"I have achieved more with Ajax in six years than Barcelona has in one hundred years",
-				"Congratulations on signing the best coach in the world",
-				"I am who I am: confident, arrogant, dominant, honest, hard-working and innovative",
+				"'That is another koek'",
+				"'Ben ik nou zo slim, of ben jij zo dom?'",
+				"'It is the dead or the gladiolie'",
+				"'I have achieved more with Ajax in six years than Barcelona has in one hundred years'",
+				"'Congratulations on signing the best coach in the world'",
+				"'I am who I am: confident, arrogant, dominant, honest, hard-working and innovative'",
 				};
 	}
 	
