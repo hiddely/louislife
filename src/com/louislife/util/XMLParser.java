@@ -173,8 +173,9 @@ public class XMLParser {
 						
 						int tid = Integer.parseInt(getAttribute(teamNode.getAttributes(), "id"));
 						String tname = getAttribute(teamNode.getAttributes(), "name");
+						int budget = Integer.parseInt(getChildValue(teamNode, "budget"));
 						
-						Team team = new Team(tid, tname);
+						Team team = new Team(tid, tname, budget, new ArrayList<Player>());
 						
 						// Get players
 						NodeList playerData = teamNode.getElementsByTagName("player");
@@ -245,6 +246,9 @@ public class XMLParser {
 					Element eTeam = doc.createElement("team");
 					eTeam.setAttribute("id", t.getId()+"");
 					eTeam.setAttribute("name", t.getName());
+					Element tBudget = doc.createElement("budget");
+					tBudget.appendChild(doc.createTextNode(t.getBalance()+""));
+					eTeam.appendChild(tBudget);
 					
 					for (Player p : t.getPlayers()) {
 						Element ePlayer = doc.createElement("player");

@@ -1,8 +1,10 @@
 package com.louislife.controller;
 
 import java.net.URL;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import com.louislife.UI.MainApplication;
@@ -58,8 +60,11 @@ ControlledScreen, GamePlayListener {
 	public void updateDate() {
 		
 		int days = Game.getInstance().getCurrentDay();
-		Date currentDate = new Date(1409522400000L + (days * 24 * 60 * 60 * 1000)); // 01/09/2014 00:00:00 + days
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, ''yy");
+		//Date currentDate = new Date(1409522400000L + (days * 24 * 60 * 60 * 1000)); // 01/09/2014 00:00:00 + days
+		Calendar c = new GregorianCalendar(2014, 9, 1);
+		c.add(Calendar.DAY_OF_MONTH, days);
+		Date currentDate = c.getTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("MMM d, ''yy");
 
 		dateLabel.setText(sdf.format(currentDate));
 
