@@ -50,7 +50,7 @@ public class XMLParser {
 		builder = factory.newDocumentBuilder(); // Initialize builder
 		
 	}
-	
+
 	/**
 	 * Parses game file with filename and initializes the singleton instance of Game
 	 * @return the Game object, also accessable by Game.getInstance()
@@ -233,7 +233,10 @@ public class XMLParser {
 			rootElement.setAttribute("name", g.getName()+"");
 			rootElement.setAttribute("currentday", g.getCurrentDay()+"");
 			Team tguser = g.getUserTeam();
-			rootElement.setAttribute("currentteam", tguser.getId()+"");
+			if (tguser != null)
+				rootElement.setAttribute("currentteam", tguser.getId()+"");
+			else
+				rootElement.setAttribute("currentteam", "-1");
 			
 			for (League l : g.getLeagues()) {
 				Element eLeague = doc.createElement("league");
