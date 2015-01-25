@@ -2,10 +2,10 @@ package com.louislife.controller;
 
 import com.louislife.model.Game;
 
-public abstract class explainedClass {
+public abstract class ExplainableController {
 	private boolean explained;
 
-	public explainedClass() {
+	public ExplainableController() {
 		// TODO Auto-generated constructor stub
 	}
 	

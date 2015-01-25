@@ -15,9 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -27,9 +24,6 @@ import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
 
-import javafx.stage.Popup;
-import sun.applet.Main;
-
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
@@ -38,7 +32,7 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  */
 
-public class DashboardController extends explainedClass implements Initializable, ControlledScreen, GamePlayListener {
+public class DashboardController extends ExplainableController implements Initializable, ControlledScreen, GamePlayListener {
 
 	private static TabPane navigationPane;
 	ScreensController controller;
@@ -115,16 +109,12 @@ public class DashboardController extends explainedClass implements Initializable
 				reqteam = Game.getInstance().getLeagues().get(0).getTeams().get(new Random().nextInt(Game.getInstance().getLeagues().get(0).getTeams().size()));
 			}
 			// Reqteam is now a random team and not the users team
-
-
-			final Popup popup = new Popup();
-			popup.setX(300);
-			popup.setY(200);
-
 			Label l = new Label("Louis, a transfer request has been made");
-			popup.getContent().add(l);
 
-			popup.show(teamLabel.getScene().getWindow());
+			ArrayList<Node> list= new ArrayList<Node>();
+			list.add(l);
+
+			MainApplication.makePopup(list);
 		}
 		
 		MainApplication.sendNextGame();
@@ -182,6 +172,6 @@ public class DashboardController extends explainedClass implements Initializable
         list.add(label2);
         MainApplication.makePopup(list);
         super.setExplained(true);
-        
+
 	}
 }

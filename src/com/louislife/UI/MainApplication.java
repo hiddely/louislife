@@ -50,7 +50,7 @@ public class MainApplication extends Application {
 	public static final String TEAM_FXML = "Team.fxml";
 	
 	public static ScreensController mainContainer = new ScreensController(); 
-	public  static Stage primaryStage = new Stage();
+	public static Stage primaryStage;
 	
 	public MainApplication() {
 	}
@@ -86,7 +86,8 @@ public class MainApplication extends Application {
 		MainApplication.mainContainer.loadScreen(MainApplication.MAIN_MENU_NEW_GAME, MainApplication.MAIN_MENU_NEW_GAME_FXML);
 
 		MainApplication.mainContainer.setScreen(MainApplication.MAIN_MENU); // Voor nu		
-		
+
+		primaryStage = new Stage();
 		primaryStage.setTitle("Louis Life");
 		
 		Group root = new Group();
