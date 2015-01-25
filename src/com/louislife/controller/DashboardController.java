@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
+import com.louislife.model.Team;
 import com.louislife.util.XMLParser;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -35,7 +36,7 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	/** XML Properties **/
 	@FXML private Label teamLabel;
 	@FXML private Label nextLabel;
-	
+
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
 		controller= screenParent;
@@ -68,7 +69,7 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 			}
 		}
 	}
-	
+
 	/**
 	 * Method that sets the navigationPane of the parent gameoverview, so we can access and manipulate it.
 	 * @param tabs tabPane to set
@@ -76,7 +77,7 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	public static void setNavigationPane( TabPane tabs){
 		navigationPane=tabs;
 	}
-	
+
 	@FXML protected void onClickNextGame(Event e) {
 
 		System.out.println("Next game");
@@ -84,11 +85,11 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
 			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
 				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
-				
+
 				// Award prize money
 				Game.getInstance().getMatches().get(i).calculateHomeCredit();
 				Game.getInstance().getMatches().get(i).calculateAwayCredit();
-				
+
 				System.out.println("Played: " + Game.getInstance().getMatches().get(i).toString());
 			}
 		}
@@ -96,6 +97,13 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 
 		if (new Random().nextInt(1) == 0) {
 			// Random transfer request
+			Team reqteam = Game.getInstance().getUserTeam();
+			while (reqteam == Game.getInstance().getUserTeam()) {
+				reqteam = Game.getInstance().getLeagues().get(0).getTeams().get(new Random().nextInt(Game.getInstance().getLeagues().get(0).getTeams().size()));
+			}
+			// Reqteam is now a random team and not the users team
+
+
 			final Popup popup = new Popup();
 			popup.setX(300);
 			popup.setY(200);
