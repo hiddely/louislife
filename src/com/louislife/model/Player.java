@@ -233,6 +233,7 @@ public class Player {
 				+ teamId + ", price=" + price + "]";
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Player){
 			Player pl = (Player) o;
