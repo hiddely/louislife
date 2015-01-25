@@ -35,6 +35,7 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	/** XML Properties **/
 	@FXML private Label teamLabel;
 	@FXML private Label nextLabel;
+	@FXML private Label quoteLabel;
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -47,6 +48,7 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MainApplication.addListener(this);
+		quoteLabel.setWrapText(true);
 
 		updateDashboard();
 	}
@@ -54,6 +56,9 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	public void updateDashboard() {
 		// Laad de load games
 		teamLabel.setText(Game.getInstance().getUserTeam().getName());
+		
+		// Get random Louis Quote
+		quoteLabel.setText(Game.getQuotes()[6/*new Random().nextInt(Game.getQuotes().length)*/]);
 
 		// Get next match for team
 		int day = Game.getInstance().getCurrentDay();
