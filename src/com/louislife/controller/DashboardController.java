@@ -1,20 +1,30 @@
 package com.louislife.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
+import com.louislife.model.Player;
 import com.louislife.model.Team;
 import com.louislife.util.XMLParser;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -89,10 +99,20 @@ public class DashboardController extends ExplainableController implements Initia
 		navigationPane=tabs;
 	}
 
-	@FXML protected void onClickNextGame(Event e) {
+	@FXML protected void onClickNextGame(Event event) {
 
 		System.out.println("Next game");
+
+
+		// To end game: check if day is more than rounds
 		int day = Game.getInstance().getCurrentDay();
+		if (day > (Game.getInstance().getLeagues().get(0).getTeams().size()-1)*2*7) {
+			// End game pop up
+
+		}
+
+		Team user = Game.getInstance().getUserTeam();
+		Match userMatch = null;
 		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
 			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
 				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
@@ -102,6 +122,10 @@ public class DashboardController extends ExplainableController implements Initia
 				Game.getInstance().getMatches().get(i).calculateAwayCredit();
 
 				System.out.println("Played: " + Game.getInstance().getMatches().get(i).toString());
+
+				Match m = Game.getInstance().getMatches().get(i);
+				if (user.equals(m.getTH()) || user.equals(m.getTA()))
+					userMatch = m;
 			}
 		}
 		Game.getInstance().nextWeek();
@@ -112,25 +136,187 @@ public class DashboardController extends ExplainableController implements Initia
 			while (reqteam == Game.getInstance().getUserTeam()) {
 				reqteam = Game.getInstance().getLeagues().get(0).getTeams().get(new Random().nextInt(Game.getInstance().getLeagues().get(0).getTeams().size()));
 			}
+			final Team fteam = reqteam;
 			// Reqteam is now a random team and not the users team
-			Label l = new Label("Louis, a transfer request has been made");
+			// Select random player to buy
+			Player p = user.getPlayers().get(new Random().nextInt(user.getPlayers().size()));
+
+			Label la= new Label();
+			la.setText("Louis, a transfer request has been made!");
+			la.setFont(Font.font("Avenir medium", FontWeight.BOLD, 20));
+			la.setTextFill(Color.WHITE);
+			int price = p.calculatePrice();
+			Label label2= new Label();
+			label2.setText("It's about "+p.getFirstname()+" "+p.getSurname()+",\n they would like to buy him for € "+p.calculatePrice());
+			label2.setFont(Font.font("Avenir medium", FontWeight.BOLD, 16));
+			label2.setTextFill(Color.WHITE);
+
+			HBox buttonsPane = new HBox();
+			Button accept = new Button("Accept");
+			accept.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					// Buy player
+					Game.getInstance().getUserTeam().setBalance(Game.getInstance().getUserTeam().getBalance()+price);
+					fteam.setBalance(fteam.getBalance() + price);
+					fteam.addPlayer(p);
+					Game.getInstance().getUserTeam().getPlayers().remove(p);
+
+					MainApplication.sendNextGame();
+				}
+			});
+			Button decline = new Button("Decline");
+			buttonsPane.getChildren().add(accept);
+			buttonsPane.getChildren().add(decline);
 
 			ArrayList<Node> list= new ArrayList<Node>();
-			list.add(l);
+			list.add(la);
+			list.add(label2);
+			list.add(buttonsPane);
 
-			MainApplication.makePopup(list);
+			MainApplication.makePopup(list, 750, 330);
 		}
 		
 		MainApplication.sendNextGame();
 
-		// Save game
-		XMLParser parser = null;
-		try {
-			parser = new XMLParser(Game.getInstance().getXmlName());
-		} catch (ParserConfigurationException e1) {
-			e1.printStackTrace();
+		if (userMatch != null) { // Just safety check
+			Match m = userMatch;
+			String title = "";
+			String score = userMatch.getScore_home()+" - "+userMatch.getScore_away();
+			String desc = userMatch.getTH().getName() + " vs. " + userMatch.getTA().getName();
+			String image = "louislost.jpeg";
+			if (user.equals(userMatch.getWinningTeam())) {
+				title = "Louis, you have won!";
+			} else if (user.equals(userMatch.getLosingTeam())) {
+				title = "Louis, you have lost.";
+			} else {
+				title = "Louis, it was a tie.";
+			}
+
+			Label la= new Label();
+			la.setText(title);
+			la.setFont(Font.font("Avenir medium", FontWeight.BOLD, 20));
+			la.setTextFill(Color.WHITE);
+			Label label2= new Label();
+			label2.setText(score);
+			label2.setFont(Font.font("Avenir medium", FontWeight.BOLD, 16));
+			label2.setTextFill(Color.WHITE);
+			Label ldesc= new Label();
+			ldesc.setText(desc);
+			ldesc.setFont(Font.font("Avenir medium", FontWeight.BOLD, 16));
+			ldesc.setTextFill(Color.WHITE);
+			ArrayList<Node> list= new ArrayList<Node>();
+			list.add(la);
+			list.add(label2);
+			list.add(ldesc);
+
+			Label laab= new Label();
+			laab.setText("Home:");
+			laab.setFont(Font.font("Avenir medium", FontWeight.BOLD, 18));
+			laab.setTextFill(Color.WHITE);
+			list.add(laab);
+
+			for (int i = 0; i < m.getEvents_home().size(); i++) {
+				com.louislife.model.Event e = m.getEvents_home().get(i);
+				String label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " ";
+				String icon = "";
+				switch (e.getType()) {
+					case GOAL:
+						//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
+						label += "scored a goal";
+						icon = "icon_football.png";
+						break;
+					case YELLOWCARD:
+						label += "received a yellow card";
+						icon = "icon_yellowcard.png";
+						break;
+					case REDCARD:
+						label += "received a red card";
+						icon = "icon_redcard.png";
+						break;
+					case INJURY:
+						label += "was injured";
+						icon = "";
+						break;
+				}
+				Label l = new Label(label);
+				l.setTextFill(Color.WHITE);
+				l.setFont(new Font("Avenir Medium", 16.0));
+				l.setLayoutX(40.0);
+				Image ii = new Image(new File("images/"+icon).toURI().toString(), 20, 20, false, false);
+				final ImageView iconview = new ImageView();
+				iconview.setLayoutX(5.0);
+				iconview.setLayoutY(3.0);
+				iconview.setImage(ii);
+				Pane p = new Pane();
+				p.getChildren().add(l);
+				p.getChildren().add(iconview);
+				p.setLayoutY(i * 30.0);
+				list.add(p);
+			}
+
+			Label laa= new Label();
+			laa.setText("Away:");
+			laa.setFont(Font.font("Avenir medium", FontWeight.BOLD, 18));
+			laa.setTextFill(Color.WHITE);
+			list.add(laa);
+
+			for (int i = 0; i < m.getEvents_away().size(); i++) {
+				com.louislife.model.Event e = m.getEvents_away().get(i);
+				String label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " ";
+				String icon = "";
+				switch (e.getType()) {
+					case GOAL:
+						//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
+						label += "scored a goal";
+						icon = "icon_football.png";
+						break;
+					case YELLOWCARD:
+						label += "received a yellow card";
+						icon = "icon_yellowcard.png";
+						break;
+					case REDCARD:
+						label += "received a red card";
+						icon = "icon_redcard.png";
+						break;
+					case INJURY:
+						label += "was injured";
+						icon = "";
+						break;
+				}
+				Label l = new Label(label);
+				l.setTextFill(Color.WHITE);
+				l.setFont(new Font("Avenir Medium", 16.0));
+				l.setLayoutX(40.0);
+				Image ii = new Image(new File("images/"+icon).toURI().toString(), 20, 20, false, false);
+				final ImageView iconview = new ImageView();
+				iconview.setLayoutX(5.0);
+				iconview.setLayoutY(3.0);
+				iconview.setImage(ii);
+				Pane p = new Pane();
+				p.getChildren().add(l);
+				p.getChildren().add(iconview);
+				p.setLayoutY(i * 30.0);
+				p.setLayoutX(300);
+				list.add(p);
+			}
+			MainApplication.makePopup(list, 300, 330);
+
 		}
-		parser.writeGame(Game.getInstance());
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// Save game on separate thread
+				XMLParser parser = null;
+				try {
+					parser = new XMLParser(Game.getInstance().getXmlName());
+				} catch (ParserConfigurationException e1) {
+					e1.printStackTrace();
+				}
+				parser.writeGame(Game.getInstance());
+			}
+		}).start();
 	}
 	
 	@FXML protected void onClickTeam(Event e) {
