@@ -246,23 +246,24 @@ public class LeagueTest {
 	}
 	
 	@Test
-	public void testWeeklyMatches() {
-		byte b1 = 10;
-		Player player1 = new Player(1, "Elgar", "Weijtmans", b1, PlayerType.STRIKER, PlayerStatus.NORMAL, b1, b1, b1, 1, 100);
-		ArrayList<Player> players1 = new ArrayList<Player>();
-		players1.add(player1);
-		Team team1 = new Team(1, "United States", 10000, players1);
-		Team team2 = new Team(2, "United Staids", 20000, players1);
-		Team team3 = new Team(3, "United Steden", 30000, players1);
+	public void testTeamMatches() {
+		Team team1 = new Team(1, "United States");
+		Team team2 = new Team(2, "United Staids");
+		Team team3 = new Team(3, "United Steden");
+		Team team4 = new Team(4, "Verenigde Steden");
+		Team team5 = new Team(5, "Belgique");
 		
 		ArrayList<Team> teams1 = new ArrayList<Team>();
 		teams1.add(team1);
 		teams1.add(team2);
 		teams1.add(team3);
+		teams1.add(team4);
+		teams1.add(team5);
 		
 		League league1 = new League(1, "Jupiler League", "Belgie", teams1);
 		
-		assertEquals(league1.weeklyMatches(), 1);
+		assertEquals(league1.teamMatches(), 8);
+		
 	}
 
 }

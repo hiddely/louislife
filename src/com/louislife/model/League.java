@@ -13,6 +13,14 @@ public class League {
 	private String name;
 	private String country;
 	private ArrayList<Team> teams;
+	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param country
+	 * @param teams
+	 */
 	public League(int id, String name, String country, ArrayList<Team> teams) {
 		super();
 		this.id = id;
@@ -20,6 +28,13 @@ public class League {
 		this.country = country;
 		this.teams = teams;
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param country
+	 */
 	public League(int id, String name, String country) {
 		super();
 		this.id = id;
@@ -81,13 +96,14 @@ public class League {
 	}
 	
 	/**
-	 * Returns the amount of matches that should be played in one week (one in-game round)
-	 * @return int.
+	 * Returns the amount of matches that one team has to play in the league.
+	 * This also equals to the amount of rounds that a game has (the player plays one match per round/week).
+	 * @return int - Amount of rounds
 	 * 
 	 * @author Wouter
 	 */
-	public int weeklyMatches() {
-		return getTeams().size() * ( getTeams().size() - 1 ) / ( ( getTeams().size() - 1 ) * 2 );
+	public int teamMatches() {
+		return ( this.getTeams().size() - 1 ) * 2;
 	}
 	
 	public boolean equals(Object o){

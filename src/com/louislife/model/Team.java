@@ -17,6 +17,33 @@ public class Team {
 	private String name;
 	private ArrayList<Player> players;
 	private int balance;
+	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param balance
+	 * @param players
+	 */
+	public Team(int id, String name, int balance, ArrayList<Player> players) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.balance = balance;
+		this.players = players;
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 */
+	public Team(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.players = new ArrayList<Player>();
+	}
 
 	public int getId() {
 		return id;
@@ -74,21 +101,6 @@ public class Team {
 	 */
 	public void removeFromBalance(int amount) {
 		this.balance -= amount;
-	}
-
-	public Team(int id, String name, int balance, ArrayList<Player> players) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.balance = balance;
-		this.players = players;
-	}
-
-	public Team(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.players = new ArrayList<Player>();
 	}
 
 	public Player findPlayer(int id) {

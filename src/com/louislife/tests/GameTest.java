@@ -283,5 +283,57 @@ public class GameTest {
 		game1.setCurrentTeam(50);
 		assertEquals(50, game1.getCurrentTeam());
 	}
+	
+	// User team is teamid 1
+	@Test
+	public void testCreateMatchScheduleOne() {
+		Game game1 = new Game(1, "Test",1,1);
+		game1.addLeague(new League(1, "Eredivisie", "Nederland"));
+		League curLeague = game1.getLeagues().get(0);
+		Team tm1 = new Team(1, "Ajax");
+		Team tm2 = new Team(2, "FC Twente");
+		Team tm3 = new Team(3, "Feyenoord");
+		Team tm4 = new Team(4, "DenHaag");
+		Team tm5 = new Team(5, "RotteDaem");
+		Team tm6 = new Team(6, "Delftsch");
+		curLeague.addTeam(tm1);
+		curLeague.addTeam(tm2);
+		curLeague.addTeam(tm3);
+		curLeague.addTeam(tm4);
+		curLeague.addTeam(tm5);
+		curLeague.addTeam(tm6);
+		
+		game1.createMatchSchedule();
+		
+		assertEquals(game1.getMatches().size(), 30);
+	}
+
+	// User team is teamid 1
+	@Test
+	public void testCreateMatchScheduleThree() {
+		Game game1 = new Game(2, "Test",1,3);
+		game1.addLeague(new League(2, "Eredivisie", "Nederland"));
+		League curLeague = game1.getLeagues().get(0);
+		Team t1 = new Team(1, "Ajax");
+		Team t2 = new Team(2, "FC Twente");
+		Team t3 = new Team(3, "Feyenoord");
+		Team t4 = new Team(4, "DenHaag");
+		Team t5 = new Team(5, "RotteDaem");
+		Team t6 = new Team(6, "Delftsch");
+		Team t7 = new Team(7, "Greuningen");
+		Team t8 = new Team(8, "Broabant");
+		curLeague.addTeam(t1);
+		curLeague.addTeam(t2);
+		curLeague.addTeam(t3);
+		curLeague.addTeam(t4);
+		curLeague.addTeam(t5);
+		curLeague.addTeam(t6);
+		curLeague.addTeam(t7);
+		curLeague.addTeam(t8);
+		
+		game1.createMatchSchedule();
+		
+		assertEquals(game1.getMatches().size(), 56);
+	}
 
 }
