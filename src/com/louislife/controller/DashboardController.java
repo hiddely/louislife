@@ -151,7 +151,7 @@ public class DashboardController extends explainedClass implements Initializable
         label.setFont(myFont);
         label.setTextFill(Color.WHITE);
         Label label2= new Label();
-        label2.setText("Manage your team, and become champion!");
+        label2.setText("Manage your team, and become this seasons champion!");
         Font myFont2 = Font.font(null, FontWeight.BOLD, 12);
         label2.setFont(myFont2);
         label2.setTextFill(Color.WHITE);
