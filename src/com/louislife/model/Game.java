@@ -217,14 +217,17 @@ public class Game {
 		Collections.shuffle(shuffledList);
 		int idCounter = 0;
 
-		Team t1 = shuffledList.get(0); // This one is stuck
-
 		int day = 1;
 		int n = shuffledList.size()/2; // Number of teams must be even!!
-		for (int round = 0; round < n; round++) {
+		for (int round = 0; round < (shuffledList.size()-1)*2; round++) {
 			for (int i = 0; i < n; i++) {
-				System.out.println("Round "+round+", match: "+i+" vs. "+(shuffledList.size()-i-1));
-				Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(shuffledList.size()-i-1).getId()) );
+				if (round % 2 == 0) {
+					System.out.println("Round "+round+", match: "+shuffledList.get(i).getName()+" vs. "+shuffledList.get(shuffledList.size()-i-1).getName());
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(shuffledList.size()-i-1).getId()) );
+				} else {
+					System.out.println("ARound "+round+", match: "+shuffledList.get(shuffledList.size()-i-1).getName()+" vs. "+shuffledList.get(i).getName());
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(shuffledList.size()-i-1).getId(), shuffledList.get(i).getId()) );
+				}
 				idCounter++;
 			}
 			shuffledList = rotateNext(shuffledList); // Rotate to next
