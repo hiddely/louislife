@@ -645,4 +645,5 @@ public class MatchTest {
 		assertEquals(400000, t2.getBalance());
 		assertEquals(1600000, t1.getBalance());
 	}
+	
 }
