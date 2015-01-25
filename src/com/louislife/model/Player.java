@@ -55,6 +55,27 @@ public class Player {
 		this.teamId = teamId;
 		this.price = price;
 	}
+	
+	public int calculatePrice(){
+		double res= (offensiveRating+defensiveRating+stamina); //average value
+			if (offensiveRating>60) //account for excellation
+				res=res+offensiveRating*0.8;
+			if (defensiveRating>60)
+				res=res+defensiveRating*0.8;
+			if (stamina>60)
+				res=res+stamina*0.8;
+
+			res=res/200;
+			
+		try{
+		res=res*5000000+Game.getInstance().getUserTeam().getBalance()/4*res;
+		}
+		catch(Exception e){
+			res=res*5000000;
+		}
+
+		return (int)res;
+	}
 
 	public int getId() {
 		return id;

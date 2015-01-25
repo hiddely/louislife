@@ -59,7 +59,6 @@ ControlledScreen, GamePlayListener {
 			//if(Game.getInstance().getMatches().get(i).getDay() >= day-7 && Game.getInstance().getMatches().get(i).getDay() < day){
 			if (Game.getInstance().getMatches().get(i).isPlayed()) {
 				matches.add(Game.getInstance().getMatches().get(i));
-				System.out.println("LOADINGMATCH: " + Game.getInstance().getMatches().get(i).toString());
 			}
 		}
 		String[] playerListDisplay = new String[matches.size()];

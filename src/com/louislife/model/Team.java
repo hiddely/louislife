@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Represents a Team object with players
@@ -70,6 +71,13 @@ public class Team {
 	}
 
 	public void addPlayer(Player p) {
+		for (Player player: players){
+			if (player.getJerseyNumber()==p.getJerseyNumber()){
+				p.setJerseyNumber((byte)(players.size()));
+			}
+			
+			
+		}
 		this.players.add(p);
 	}
 
@@ -200,11 +208,22 @@ public class Team {
 		
 	}
 	
+	public boolean acceptsBid(Player player, int bid){
+		Random rand = new Random();
+		if (bid>player.calculatePrice()*((rand.nextFloat()/4)+0.8))
+			return true;
+		
+		return false;
+		
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", players=" + players
 				+ "]";
 	}
+	
 
 
 	@Override
