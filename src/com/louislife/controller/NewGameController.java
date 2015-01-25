@@ -77,7 +77,7 @@ public class NewGameController implements Initializable, ControlledScreen {
 					final int teamid = ITEMS_ROW*i + j;
 					Team t = teams.get(teamid);
 					StackPane p = new StackPane(); // Make clickable
-					p.getStylesheets().add("../../../../styles/app.css");
+					p.getStylesheets().add("../../../../../styles/app.css");
 					p.getStyleClass().add("pane-team");
 					p.setPadding(new Insets(10, 10, 10, 10));
 					p.setPrefWidth(200.0);
