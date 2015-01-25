@@ -3,14 +3,13 @@ package com.louislife.UI;
 import com.louislife.controller.GamePlayListener;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -54,22 +53,26 @@ public class MainApplication extends Application {
 		launch(args);
 
 	}
-	//Makes and shows popup.
-	public static void makePopup(Collection<Node> content){
+
+	public static void makePopup(Collection<Node> content) {
+		makePopup(content, 500, 600);
+	}
+		//Makes and shows popup.
+	public static void makePopup(Collection<Node> content, float x, float y){
 		final Popup popup = new Popup();
 		VBox pane= new VBox();
+		pane.setPadding(new Insets(10, 20, 10, 20));
 		pane.getChildren().addAll(content);
         pane.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(10), null)));
         pane.setAlignment(Pos.CENTER);
-		popup.setX(500);
-		popup.setY(500);
+		popup.setX(x);
+		popup.setY(y);
         popup.centerOnScreen();
         popup.getContent().add(pane);
         
         popup.show(primaryStage);
         System.out.println("POPUP");
         popup.autoHideProperty().set(true);
-		
 	}
 
 	@Override
