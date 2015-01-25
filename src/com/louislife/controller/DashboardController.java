@@ -53,7 +53,6 @@ public class DashboardController extends ExplainableController implements Initia
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MainApplication.addListener(this);
-		quoteLabel.setWrapText(true);
 
 		updateDashboard();
 		if(!super.getExplained())
