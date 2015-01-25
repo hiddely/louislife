@@ -50,6 +50,8 @@ public class NewGameController implements Initializable, ControlledScreen {
 	/** XML Properties **/
 	@FXML private TextField fieldName;
 	@FXML private GridPane parentGrid;
+
+	private ArrayList<Label> names = new ArrayList<Label>();
 	
 	@Override
 	public void setScreenParent(ScreensController screenParent) {
@@ -77,19 +79,11 @@ public class NewGameController implements Initializable, ControlledScreen {
 					final int teamid = ITEMS_ROW*i + j;
 					Team t = teams.get(teamid);
 					StackPane p = new StackPane(); // Make clickable
-					p.getStylesheets().add("../../../../../styles/app.css");
+					//p.getStylesheets().add("../../../../../styles/app.css");
 					p.getStyleClass().add("pane-team");
 					p.setPadding(new Insets(10, 10, 10, 10));
 					p.setPrefWidth(200.0);
 					p.setPrefHeight(100.0);
-					p.setOnMouseClicked(new EventHandler<MouseEvent>() {
-						@Override
-						public void handle(MouseEvent event) {
-							// Select this team
-							System.out.println("TEAMID: "+teamid);
-							selected_teamId = teams.get(teamid).getId();
-						}
-					});
 					
 					//p.setOnMousePressed(new TeamSelectHandler());
 					Label name = new Label(t.getName());
@@ -98,8 +92,24 @@ public class NewGameController implements Initializable, ControlledScreen {
 					name.setFont(Font.font("Avenir Medium", 18.0));
 					//name.setPrefWidth(200.0);
 					name.setTextAlignment(TextAlignment.CENTER);
+					names.add(name);
 					StackPane.setAlignment(name, Pos.CENTER);
 					p.getChildren().add(name);
+
+					p.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							// Select this team
+							System.out.println("TEAMID: "+teamid);
+							selected_teamId = teams.get(teamid).getId();
+							for (Label l : names) {
+								l.setTextFill(Color.WHITE);
+								l.setFont(Font.font("Avenir Medium", 18.0));
+							}
+							name.setFont(Font.font("Avenir Medium", 20.0));
+							name.setTextFill(Color.ORANGERED);
+						}
+					});
 					
 					gp.add(p, j, i);
 				}
