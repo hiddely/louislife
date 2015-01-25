@@ -260,7 +260,7 @@ public class Match {
 					events_away.add(new Event(pl.getId(), EventType.YELLOWCARD, i));
 				}
 			}
-			if (r.nextInt(120) == 2) {
+			if (r.nextInt(180) == 2) {
 				// Injury
 				if (r.nextInt(2) == 1) {
 					// Home
@@ -347,8 +347,8 @@ public class Match {
 	int credit = 0;
 		
 		// Credit based on events
-		for (int i = 0; i < events_home.size(); i++) {
-			Event curEvent = events_home.get(i);
+		for (int i = 0; i < events_away.size(); i++) {
+			Event curEvent = events_away.get(i);
 			
 			if (curEvent.getType() == EventType.GOAL) {
 				getTA().addToBalance(100000);
@@ -374,17 +374,12 @@ public class Match {
 		return credit;
 	}
 	
-//	@Override
-//	public String toString() {
-//		return "Match [id=" + id + ", day=" + day + ", events_home="
-//				+ events_home + ", events_away=" + events_away + ", team_home="
-//				+ team_home + ", team_away=" + team_away + "]";
-//	}
-	
-	@Override
 	public String toString() {
-		return this.id + "HomeID=" + this.team_home + " AwayID=" + this.team_away;
+		return "Match [id=" + id + ", day=" + day + ", events_home="
+				+ events_home + ", events_away=" + events_away + ", team_home="
+				+ team_home + ", team_away=" + team_away + "]";
 	}
+	
 	
 	public boolean equals(Object o){
 		if(o instanceof Match){
@@ -411,5 +406,6 @@ public class Match {
 		}
 		return false;
 	}
+	
 	
 }
