@@ -3,7 +3,6 @@ package com.louislife.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 
 /**
  * Represents a Game object with leagues and played matches. This holds all the
@@ -163,6 +162,7 @@ public class Game {
 				+ "]";
 	}
 	
+	@Override
 	public boolean equals(Object o) {
 		if(o instanceof Game){
 			Game that = (Game) o;

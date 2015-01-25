@@ -78,7 +78,8 @@ public class TeamFormationController implements Initializable, ControlledScreen,
 			StackPane pane= getPane(i);
 
 			pane.setOnDragOver(new EventHandler<DragEvent>() {
-			    public void handle(DragEvent event) {
+			    @Override
+				public void handle(DragEvent event) {
 			        /* data is dragged over the target */
 			        /* accept it only if it is not dragged from the same node 
 			         * and if it has a string data */
@@ -93,7 +94,8 @@ public class TeamFormationController implements Initializable, ControlledScreen,
 			});
 			
 			pane.setOnDragEntered(new EventHandler<DragEvent>() {
-			    public void handle(DragEvent event) {
+			    @Override
+				public void handle(DragEvent event) {
 			    /* the drag-and-drop gesture entered the target */
 			    /* show to the user that it is an actual gesture target */
 			         if (event.getGestureSource() != pane &&
@@ -106,7 +108,8 @@ public class TeamFormationController implements Initializable, ControlledScreen,
 			});
 			
 			pane.setOnDragExited(new EventHandler<DragEvent>() {
-			    public void handle(DragEvent event) {
+			    @Override
+				public void handle(DragEvent event) {
 			        /* mouse moved away, remove the graphical cues */
 		             pane.setStyle("");
 
@@ -115,7 +118,8 @@ public class TeamFormationController implements Initializable, ControlledScreen,
 			});
 			
 			pane.setOnDragDropped(new EventHandler<DragEvent>() {
-			    public void handle(DragEvent event) {
+			    @Override
+				public void handle(DragEvent event) {
 			        /* data dropped */
 			        /* if there is a string data on dragboard, read it and use it */
 			        Dragboard db = event.getDragboard();

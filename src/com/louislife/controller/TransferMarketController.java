@@ -74,7 +74,7 @@ public class TransferMarketController implements Initializable,
 				Team selectedTeam= teams.get(teamsList.getSelectionModel().getSelectedIndex());
 				Player selectedPlayer= selectedTeam.getPlayers().get(index);
 				nameLabel.setText(selectedPlayer.getFirstname()+" "+selectedPlayer.getSurname());
-				attLabel.setText(Integer.toString((int)(selectedPlayer.getOffensiveScore())));
+				attLabel.setText(Integer.toString((selectedPlayer.getOffensiveScore())));
 				
 				
 			}

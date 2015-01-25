@@ -105,5 +105,10 @@
                </font>
             </Label>
          </children></Pane>
+      <Label fx:id="quoteLabel" prefHeight="174.0" prefWidth="920.0" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="5" GridPane.rowIndex="4">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
