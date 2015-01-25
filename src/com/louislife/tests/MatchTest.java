@@ -265,46 +265,65 @@ public class MatchTest {
 		m3.play(48681);
 		
 		Match res1 = new Match(0, 0, 0, 1);
-		Event e1 = new Event(2, EventType.GOAL, 64);
-		Event e2 = new Event(5, EventType.GOAL, 76);
-		Event e3 = new Event(22, EventType.GOAL, 15);
-		Event e4 = new Event(21, EventType.GOAL, 60);
+		Event e1 = new Event(1, EventType.YELLOWCARD, 3);
+		Event e2 = new Event(1, EventType.INJURY, 34);
+		Event e3 = new Event(2, EventType.GOAL, 64);
+		Event e4 = new Event(5, EventType.GOAL, 76);
+		Event e5 = new Event(6, EventType.INJURY, 76);
+		
+		Event e6 = new Event(23, EventType.GOAL, 15);
+		Event e7 = new Event(21, EventType.INJURY, 27);
+		Event e8 = new Event(23, EventType.GOAL, 39);
+		Event e9 = new Event(22, EventType.GOAL, 94);
+
 		
 		Match res2 = new Match(1, 0, 2, 3);
-		Event e5 = new Event(2, EventType.GOAL, 15);
-		Event e6 = new Event(5, EventType.GOAL, 27);
-		Event e7 = new Event(3, EventType.GOAL, 41);
-		Event e8 = new Event(6, EventType.GOAL, 43);
-		Event e9 = new Event(3, EventType.GOAL, 63);
-		Event e10 = new Event(1, EventType.GOAL, 67);
-		Event e11 = new Event(6, EventType.GOAL, 84);
+		Event e10 = new Event(2, EventType.GOAL, 15);
+		Event e11 = new Event(5, EventType.GOAL, 27);
+		Event e12 = new Event(3, EventType.GOAL, 41);
+		Event e13 = new Event(6, EventType.GOAL, 43);
+		Event e14 = new Event(3, EventType.GOAL, 63);
+		Event e15 = new Event(1, EventType.GOAL, 67);
+		Event e16 = new Event(6, EventType.GOAL, 84);
 		
 		Match res3 = new Match(1, 0, 3, 2);
-		Event e12 = new Event(1, EventType.GOAL, 15);
-		Event e13 = new Event(6, EventType.GOAL, 30);
-		Event e14 = new Event(3, EventType.GOAL, 45);
-		Event e15 = new Event(4, EventType.GOAL, 60);
-		Event e16 = new Event(2, EventType.GOAL, 90);
+		Event e17 = new Event(2, EventType.YELLOWCARD, 76);
+		
+		Event e18 = new Event(3, EventType.GOAL, 19);
+		Event e19 = new Event(3, EventType.GOAL, 31);
+		Event e20 = new Event(3, EventType.GOAL, 39);
+		Event e21 = new Event(1, EventType.YELLOWCARD, 47);
+		Event e22 = new Event(2, EventType.GOAL, 65);
+		Event e23 = new Event(2, EventType.GOAL, 78);
+		Event e24 = new Event(1, EventType.GOAL, 84);
 
 
 		res1.addEventHome(e1);
 		res1.addEventHome(e2);
-		res1.addEventAway(e3);
-		res1.addEventAway(e4);
+		res1.addEventHome(e3);
+		res1.addEventHome(e4);
+		res1.addEventHome(e5);
+		res1.addEventAway(e6);
+		res1.addEventAway(e7);
+		res1.addEventAway(e8);
+		res1.addEventAway(e9);
 		
-		res2.addEventHome(e5);
-		res2.addEventHome(e6);
-		res2.addEventHome(e7);
-		res2.addEventHome(e8);
-		res2.addEventHome(e9);
 		res2.addEventHome(e10);
 		res2.addEventHome(e11);
+		res2.addEventHome(e12);
+		res2.addEventHome(e13);
+		res2.addEventHome(e14);
+		res2.addEventHome(e15);
+		res2.addEventHome(e16);
 		
-		res3.addEventAway(e12);
-		res3.addEventAway(e13);
-		res3.addEventAway(e14);
-		res3.addEventAway(e15);
-		res3.addEventAway(e16);
+		res3.addEventHome(e17);
+		res3.addEventAway(e18);
+		res3.addEventAway(e19);
+		res3.addEventAway(e20);
+		res3.addEventAway(e21);
+		res3.addEventAway(e22);
+		res3.addEventAway(e23);
+		res3.addEventAway(e24);
 		
 		assertEquals(m1, res1);
 		assertEquals(m2, res2);
@@ -518,7 +537,7 @@ public class MatchTest {
 		
 	}
 	
-	@Test (expected = TeamNotFoundException.class)
+	@Test 
 	public void testGetScore() throws TeamNotFoundException {
 		byte t = 80;
 		byte jn = 32;
@@ -560,4 +579,71 @@ public class MatchTest {
 		assertEquals(0, m3.getScore(t1));
 		
 	}
+	
+	@Test
+	public void testCalculateHomeCredit(){
+		byte t = 80;
+		byte jn = 32;
+		byte z = 60;
+		byte v = 75;
+		
+		Player pl1 = new Player(1, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 0, 500);
+		ArrayList<Player> pll1 = new ArrayList<Player>();
+		pll1.add(pl1);
+		
+		Player pl21 = new Player(21, "Jan", "Pan", jn, PlayerType.STRIKER, PlayerStatus.NORMAL, t, z, v, 1, 500);
+		ArrayList<Player> pll2 = new ArrayList<Player>();
+		pll2.add(pl21);
+		
+		Team t1 = new Team(0, "AJAX", 1000000, pll1);
+		Team t2 = new Team(1, "PSV", 1000000, pll2);
+		
+		League l1 = new League(0, "EREDIVISIE", "NEDERLAND");
+		l1.addTeam(t1);
+		l1.addTeam(t2);
+		Game game = new Game(0, "Testgame", 0 , 0);
+		game.addLeague(l1);
+		game.setCurrentDay(24);
+		
+		Match m1 = new Match(0, 0, 0, 1);
+		Match m2 = new Match(1, 2, 1, 0);
+		Match m3 = new Match(2, 4, 1, 0);
+		
+		Event e1 = new Event(1, EventType.GOAL, 23);
+		Event e2 = new Event(21, EventType.YELLOWCARD, 34);
+		Event e3 = new Event(21, EventType.REDCARD, 35);
+		Event e4 = new Event(21, EventType.GOAL, 67);
+		
+		m1.addEventHome(e1);
+		m1.addEventAway(e2);
+		m1.addEventAway(e3);
+		m2.addEventHome(e1);
+		m2.addEventAway(e4);
+		m3.addEventAway(e1);
+		m3.addEventHome(e2);
+		m3.addEventHome(e3);
+		
+		m1.calculateAwayCredit();
+		m1.calculateHomeCredit();
+		
+		assertEquals(1600000, t1.getBalance());
+		assertEquals(400000, t2.getBalance());
+		
+		t1.setBalance(1000000);
+		t2.setBalance(1000000);
+		m2.calculateAwayCredit();
+		m2.calculateHomeCredit();
+		
+		assertEquals(1350000, t1.getBalance());
+		assertEquals(1350000, t2.getBalance());
+		
+		t1.setBalance(1000000);
+		t2.setBalance(1000000);
+		m3.calculateAwayCredit();
+		m3.calculateHomeCredit();
+		
+		assertEquals(400000, t2.getBalance());
+		assertEquals(1600000, t1.getBalance());
+	}
+	
 }
