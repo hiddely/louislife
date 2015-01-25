@@ -41,7 +41,7 @@ public class TransferMarketController implements Initializable,
 	@FXML
 	private ListView<String> playerList;
 	@FXML 
-	private Label bidLabel;
+	private Label bidField;
 	
 	
 	
@@ -88,7 +88,7 @@ public class TransferMarketController implements Initializable,
 			public void changed(ObservableValue<? extends Number> observable,
 					Number oldValue, Number newValue) {
 				updateSlider();
-				bidLabel.setText(Integer.toString(newValue.intValue()));
+				bidField.setText("$"+Integer.toString(newValue.intValue()));
 				
 
 				

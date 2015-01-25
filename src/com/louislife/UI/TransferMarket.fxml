@@ -68,23 +68,19 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
+            <Label fx:id="nameLabel" alignment="CENTER" prefHeight="96.0" prefWidth="379.0" text="Piet Jansen" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
-      <Label fx:id="nameLabel" alignment="CENTER" layoutX="544.0" layoutY="12.0" prefHeight="96.0" prefWidth="379.0" text="Piet Jansen" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="26.0" />
-         </font>
-      </Label>
       <Slider fx:id="bidSlider" layoutX="617.0" layoutY="396.0" prefHeight="29.0" prefWidth="241.0" />
-      <Label fx:id="bidLabel" alignment="CENTER_RIGHT" layoutX="642.0" layoutY="306.0" prefHeight="32.0" prefWidth="177.0" text="0" textFill="WHITE">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
       <Button fx:id="bidButton" layoutX="670.0" layoutY="487.0" mnemonicParsing="false" text="Place Bid">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
+      <TextField fx:id="bidField" layoutX="645.0" layoutY="322.0" text="\$0" />
    </children>
 </AnchorPane>
