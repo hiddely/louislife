@@ -105,5 +105,10 @@
                </font>
             </Label>
          </children></Pane>
+      <Label fx:id="quoteLabel" alignment="TOP_RIGHT" prefHeight="174.0" prefWidth="920.0" text="quote" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="5" GridPane.rowIndex="4">
+         <font>
+            <Font name="Times Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>

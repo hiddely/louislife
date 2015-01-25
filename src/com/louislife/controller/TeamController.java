@@ -48,17 +48,7 @@ ControlledScreen, GamePlayListener {
 
 		teamLabel.setText(Game.getInstance().getUserTeam().getName());
 
-		ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
-		String[] playerListDisplay = new String[players.size()-11];
-		
-		for (int i = 11; i < players.size(); i++) {
-			Player p = players.get(i);
-			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
-		
-		}
-		// En zet ze dynamisch in de UI
-		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
-		teamList.setItems(items);
+		updateTeamList();
 		
 		teamList.setOnDragDetected(new EventHandler<MouseEvent>() {
 		    @Override
@@ -86,19 +76,7 @@ ControlledScreen, GamePlayListener {
 		        /* if the data was successfully moved, clear it */
 		    	//update list
 		        if (event.getTransferMode() == TransferMode.MOVE) {
-		        	teamList.setItems(null);
-		        	
-		        	ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
-		    		String[] playerListDisplay = new String[players.size()-11];
-		    		
-		    		for (int i = 11; i < players.size(); i++) {
-		    			Player p = players.get(i);
-		    			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
-		    		
-		    		}
-		    		// En zet ze dynamisch in de UI
-		    		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
-		    		teamList.setItems(items);
+		        	updateTeamList();
 		        }
 		        event.consume();
 		    }
@@ -106,7 +84,24 @@ ControlledScreen, GamePlayListener {
 
 
 	}
+	public void updateTeamList(){
+		teamList.setItems(null);
+    	
+    	ArrayList<Player> players = Game.getInstance().getUserTeam().getPlayers();
+		String[] playerListDisplay = new String[players.size()-11];
+		
+		for (int i = 11; i < players.size(); i++) {
+			Player p = players.get(i);
+			playerListDisplay[i-11] = p.getJerseyNumber()+1 + " - "  + p.getSurname()+", "+p.getFirstname() + " " +"\n Att: "+p.getOffensiveScore()+" Mid: "+p.getStaminaScore()+" Def: "+p.getDefensiveScore() ;
+		
+		}
+		// En zet ze dynamisch in de UI
+		ObservableList<String> items =FXCollections.observableArrayList(playerListDisplay);
+		teamList.setItems(items);
+		
+	}
 	@Override
 	public void onGamePlayed() {
+		updateTeamList();
 	}
 }
