@@ -116,7 +116,16 @@ public class DashboardController extends ExplainableController implements Initia
 		int day = Game.getInstance().getCurrentDay();
 		if (day > (Game.getInstance().getLeagues().get(0).getTeams().size()-1)*2*7) {
 			// End game pop up
+			Label la= new Label();
+			la.setTextFill(Color.WHITE);
+			la.setFont(Font.font("Avenir medium", 20.0));
+			la.setText("You have finished Louis' Life and placed "+(Game.getInstance().getRank(Game.getInstance().getUserTeam(), 0)+1) + "th!");
+			ArrayList<Node> list= new ArrayList<Node>();
+			list.add(la);
 
+			MainApplication.makePopup(list);
+
+			return;
 		}
 
 		Team user = Game.getInstance().getUserTeam();
@@ -138,7 +147,7 @@ public class DashboardController extends ExplainableController implements Initia
 		}
 		Game.getInstance().nextWeek();
 
-		if (new Random().nextInt(1) == 0) {
+		if (new Random().nextInt(17) == 0) {
 			// Random transfer request
 			Team reqteam = Game.getInstance().getUserTeam();
 			while (reqteam == Game.getInstance().getUserTeam()) {
