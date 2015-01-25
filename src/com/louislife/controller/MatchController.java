@@ -107,23 +107,36 @@ ControlledScreen, GamePlayListener {
 		eventsPane.setContent(content);
 
 		for (int i = 0; i < m.getEvents_home().size(); i++) {
-			String label = "";
-			String icon = "";
 			Event e = m.getEvents_home().get(i);
+			String label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " ";
+			String icon = "";
 			switch (e.getType()) {
 				case GOAL:
 					//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
-					label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " scored a goal";
+					label += "scored a goal";
 					icon = "icon_football.png";
 					break;
-
+				case YELLOWCARD:
+					label += "received a yellow card";
+					icon = "icon_yellowcard.png";
+					break;
+				case REDCARD:
+					label += "received a red card";
+					icon = "icon_redcard.png";
+					break;
+				case INJURY:
+					label += "was injured";
+					icon = "";
+					break;
 			}
 			Label l = new Label(label);
 			l.setTextFill(Color.BLACK);
-			l.setFont(new Font("Avenir Medium", 20.0));
+			l.setFont(new Font("Avenir Medium", 16.0));
 			l.setLayoutX(40.0);
-			Image ii = new Image(new File("images/"+icon).toURI().toString(), 30, 30, false, false);
+			Image ii = new Image(new File("images/"+icon).toURI().toString(), 20, 20, false, false);
 			final ImageView iconview = new ImageView();
+			iconview.setLayoutX(5.0);
+			iconview.setLayoutY(3.0);
 			iconview.setImage(ii);
 			Pane p = new Pane();
 			p.getChildren().add(l);
@@ -133,31 +146,42 @@ ControlledScreen, GamePlayListener {
 		}
 
 		for (int i = 0; i < m.getEvents_away().size(); i++) {
-			String label = "";
-			String icon = "";
 			Event e = m.getEvents_away().get(i);
+			String label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " ";
+			String icon = "";
 			switch (e.getType()) {
 				case GOAL:
 					//Player p = Game.getInstance().getLeagues().get(0).m.getEvents_home().get(i).getPlayer();
-					label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " scored a goal";
+					label += "scored a goal";
 					icon = "icon_football.png";
 					break;
-
+				case YELLOWCARD:
+					label += "received a yellow card";
+					icon = "icon_yellowcard.png";
+					break;
+				case REDCARD:
+					label += "received a red card";
+					icon = "icon_redcard.png";
+					break;
+				case INJURY:
+					label += "was injured";
+					icon = "";
+					break;
 			}
 			Label l = new Label(label);
 			l.setTextFill(Color.BLACK);
-			l.setFont(new Font("Avenir Medium", 18.0));
+			l.setFont(new Font("Avenir Medium", 16.0));
 			l.setLayoutX(40.0);
 			Image ii = new Image(new File("images/"+icon).toURI().toString(), 20, 20, false, false);
 			final ImageView iconview = new ImageView();
 			iconview.setLayoutX(5.0);
-			iconview.setLayoutY(5.0);
+			iconview.setLayoutY(3.0);
 			iconview.setImage(ii);
 			Pane p = new Pane();
 			p.getChildren().add(l);
 			p.getChildren().add(iconview);
 			p.setLayoutY(i * 30.0);
-			p.setLayoutX(300.0);
+			p.setLayoutX(300);
 			content.getChildren().add(p);
 		}
 	}
