@@ -215,49 +215,32 @@ public class Game {
 		ArrayList<Team> shuffledList = new ArrayList<Team>();
 		shuffledList.addAll(curLeague.getTeams());
 		Collections.shuffle(shuffledList);
-		System.out.print(shuffledList.toString());
-		
 		int idCounter = 0;
-		
-		// Add all matches that the User will play.
-		for (int p = 0; p < shuffledList.size(); p++) {
-			if (!Game.getInstance().getUserTeam().equals(shuffledList.get(p) ) ) {
-				Game.getInstance().addMatch(new Match(idCounter, currentTeam, shuffledList.get(p).getId()) );
-				idCounter++;
-				Game.getInstance().addMatch(new Match(idCounter, shuffledList.get(p).getId(), currentTeam ) );
-				idCounter++;
-			}
-		}
-		
-		Collections.shuffle(matches);
-		
-		int day = 0;
-		for (int i = 0; i < matches.size(); i++) {
-			matches.get(i).setDay(day);
-			day += 7;
-		}		
-		
-		// Add all remaining matches to the match list
-		shuffledList.remove(Game.getInstance().getUserTeam());
-		day = 0;
-		
-		for (int i = 0; i < shuffledList.size(); i++) {
-			
-			for (int j = 0; j < (shuffledList.size()); j++) {
-				if (!(shuffledList.get(i) == shuffledList.get(j)) ) {
-					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
-					idCounter++;
-					
-					// Up daycounter. Reset if last game day has passed
-					if (day == (7 * (Game.getInstance().getLeagues().get(0).teamMatches()-1))) {
-						day = 0;
-					}
-					else {
-						day += 7;
-					}
+
+		int day = 1;
+		int n = shuffledList.size()/2; // Number of teams must be even!!
+		for (int round = 0; round < (shuffledList.size()-1)*2; round++) {
+			for (int i = 0; i < n; i++) {
+				if (round % 2 == 0) {
+					System.out.println("Round "+round+", match: "+shuffledList.get(i).getName()+" vs. "+shuffledList.get(shuffledList.size()-i-1).getName());
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(shuffledList.size()-i-1).getId()) );
+				} else {
+					System.out.println("ARound "+round+", match: "+shuffledList.get(shuffledList.size()-i-1).getName()+" vs. "+shuffledList.get(i).getName());
+					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(shuffledList.size()-i-1).getId(), shuffledList.get(i).getId()) );
 				}
+				idCounter++;
 			}
+			shuffledList = rotateNext(shuffledList); // Rotate to next
+			day += 7;
 		}
+	}
+
+	public ArrayList<Team> rotateNext(ArrayList<Team> teams) {
+		Team fixed = teams.get(0);
+		teams.remove(0);
+		Collections.rotate(teams, 1);
+		teams.add(0, fixed);
+		return teams;
 	}
 
 	/**

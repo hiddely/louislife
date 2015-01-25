@@ -20,6 +20,7 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class GameOverviewController implements Initializable,
@@ -43,7 +44,6 @@ ControlledScreen, GamePlayListener {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
 		DashboardController.setNavigationPane(navigationPane);
 
 		MainApplication.addListener(this);

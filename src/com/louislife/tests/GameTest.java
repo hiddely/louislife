@@ -305,7 +305,7 @@ public class GameTest {
 		
 		game1.createMatchSchedule();
 		
-		assertEquals(game1.getMatches().size(), 30);
+		assertEquals(30, game1.getMatches().size());
 	}
 
 	// User team is teamid 1
@@ -333,7 +333,7 @@ public class GameTest {
 		
 		game1.createMatchSchedule();
 		
-		assertEquals(game1.getMatches().size(), 56);
+		assertEquals(56, game1.getMatches().size());
 	}
 
 	@SuppressWarnings("deprecation")
