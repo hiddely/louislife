@@ -188,7 +188,7 @@ public class Match {
 			return 3; // Won
 		} else if (t.equals(getLosingTeam())) {
 			return 0; // Lost
-		} else if (getWinningTeam() == null && getLosingTeam() == null) {
+		} else if (getWinningTeam() == null && getLosingTeam() == null && (getTH().equals(t) || getTA().equals(t))) {
 			return 1; // Equal
 		}
 		throw new TeamNotFoundException("Team not losing or winning this match");
