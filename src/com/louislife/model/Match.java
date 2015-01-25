@@ -24,22 +24,7 @@ public class Match {
 
 	/**
 	 * Creates a new match.
-	 * 
-	 * A match is played on the day that the overview screen shows before
-	 * pressing the next round button. Thus, nextWeek() happens after creating
-	 * the match object.
-	 * 
-	 * @param id
-	 *            - int. Match ID
-	 * @param day
-	 *            - int. Day the match is played on
-	 * @param team_home
-	 *            - int. Team ID that played home
-	 * @param team_away
-	 *            - int. Team ID that played away
-=======
-	 * A match is played on the day that the overview screen shows before pressing the next round button.
-	 * Thus, nextWeek() happens after creating the match object.
+
 	 * @param id - int. Match ID.
 	 * @param day - int. Day the match is played on.
 	 * @param team_home - int. Team ID that played home.
@@ -60,9 +45,6 @@ public class Match {
 	}
 
 	/***
-	 * A match is played on the day that the overview screen shows before
-	 * pressing the next round button. Thus, nextWeek() happens after creating
-	 * the match object.
 	 *
 	 * Creates a new match without specifying the match day. The day should later be filled in with Match.setDay
 	 * @param id -int. match ID.

@@ -15,6 +15,8 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,9 +24,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -33,7 +39,9 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+
 import javafx.stage.Popup;
+
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
@@ -153,18 +161,7 @@ public class DashboardController extends ExplainableController implements Initia
 
 			HBox buttonsPane = new HBox();
 			Button accept = new Button("Accept");
-			accept.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					// Buy player
-					Game.getInstance().getUserTeam().setBalance(Game.getInstance().getUserTeam().getBalance()+price);
-					fteam.setBalance(fteam.getBalance() + price);
-					fteam.addPlayer(p);
-					Game.getInstance().getUserTeam().getPlayers().remove(p);
-
-					MainApplication.sendNextGame();
-				}
-			});
+		
 			Button decline = new Button("Decline");
 			buttonsPane.getChildren().add(accept);
 			buttonsPane.getChildren().add(decline);
@@ -174,8 +171,42 @@ public class DashboardController extends ExplainableController implements Initia
 			list.add(label2);
 			list.add(buttonsPane);
 
-			MainApplication.makePopup(list, 750, 330);
-		}
+			final Popup popup = new Popup();
+			VBox pane= new VBox();
+			pane.setPadding(new Insets(10, 20, 10, 20));
+			pane.getChildren().addAll(list);
+	        pane.setBackground(new Background(new BackgroundFill(Color.BLACK,new CornerRadii(10), null)));
+	        pane.setAlignment(Pos.CENTER);
+			popup.setX(750);
+			popup.setY(350);
+	        popup.centerOnScreen();
+	        popup.getContent().add(pane);
+	        
+	    	accept.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					// Buy player
+					Game.getInstance().getUserTeam().setBalance(Game.getInstance().getUserTeam().getBalance()+price);
+					fteam.setBalance(fteam.getBalance() + price);
+					fteam.addPlayer(p);
+					Game.getInstance().getUserTeam().getPlayers().remove(p);
+					popup.hide();
+					MainApplication.sendNextGame();
+				}
+			});
+	    	
+	    	decline.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent event) {
+					popup.hide();
+					
+				}
+	    		
+	    		
+	    	});
+	        
+	        popup.show(MainApplication.primaryStage);		}
 		
 		MainApplication.sendNextGame();
 
