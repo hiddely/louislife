@@ -70,6 +70,7 @@ public class Match {
 
 	public Match(int id, int team_home, int team_away) {
 		this.id = id;
+		this.day = -1;
 		
 		this.team_home = team_home;
 		this.team_away = team_away;
@@ -321,11 +322,16 @@ public class Match {
 		return credit;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return "Match [id=" + id + ", day=" + day + ", events_home="
+//				+ events_home + ", events_away=" + events_away + ", team_home="
+//				+ team_home + ", team_away=" + team_away + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Match [id=" + id + ", day=" + day + ", events_home="
-				+ events_home + ", events_away=" + events_away + ", team_home="
-				+ team_home + ", team_away=" + team_away + "]";
+		return this.id + "HomeID=" + this.team_home + " AwayID=" + this.team_away;
 	}
 	
 	public boolean equals(Object o){

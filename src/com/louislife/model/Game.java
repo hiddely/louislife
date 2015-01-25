@@ -22,19 +22,18 @@ public class Game {
 	private String xmlName;
 	private int currentDay;
 
-	public String getXmlName() {
-		return xmlName;
-	}
-
-	public void setXmlName(String xmlName) {
-		this.xmlName = xmlName;
-	}
-
 	private int currentTeam;
 	private ArrayList<League> leagues;
 	private ArrayList<Transfer> transfers;
 	private ArrayList<Match> matches;
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param currentDay
+	 * @param currentTeam
+	 */
 	public Game(int id, String name, int currentDay, int currentTeam) {
 		super();
 		this.id = id;
@@ -83,7 +82,19 @@ public class Game {
 	public void nextWeek(){
 		currentDay += 7;
 	}
+
+	public String getXmlName() {
+		return xmlName;
+	}
+
+	public void setXmlName(String xmlName) {
+		this.xmlName = xmlName;
+	}
 	
+	/**
+	 * 
+	 * @return Team
+	 */
 	public Team getUserTeam() {
 		return leagues.get(0).findTeam(currentTeam);
 	}
@@ -195,22 +206,23 @@ public class Game {
 	/**
 	 * Creates the match schedule for the current league. The first match happens on day 0.
 	 * 
-	 * The match schedule is created by shuffling the League.Teams ArrayList and
+	 * The match schedule is created by shuffling a copy of the League.Teams ArrayList and
 	 * then matching all combinations against each other according to the 
 	 * Premier League system (double round-robin)
 	 */
 	public void createMatchSchedule() {
-		League curLeague = this.leagues.get(0); // current league hardcoded 'cause we only have one for now.
+		League curLeague = this.leagues.get(0); // current league hardcoded because we only have one.
 		ArrayList<Team> shuffledList = new ArrayList<Team>();
 		shuffledList.addAll(curLeague.getTeams());
 		Collections.shuffle(shuffledList);
+		System.out.print(shuffledList.toString());
 		
 		int idCounter = 0;
 		
-		// Adds all matches that the User will play.
+		// Add all matches that the User will play.
 		for (int p = 0; p < shuffledList.size(); p++) {
 			if (!Game.getInstance().getUserTeam().equals(shuffledList.get(p) ) ) {
-				Game.getInstance().addMatch(new Match(idCounter, currentTeam, shuffledList.get(p).getId() ) );
+				Game.getInstance().addMatch(new Match(idCounter, currentTeam, shuffledList.get(p).getId()) );
 				idCounter++;
 				Game.getInstance().addMatch(new Match(idCounter, shuffledList.get(p).getId(), currentTeam ) );
 				idCounter++;
@@ -223,31 +235,29 @@ public class Game {
 		for (int i = 0; i < matches.size(); i++) {
 			matches.get(i).setDay(day);
 			day += 7;
-		}
+		}		
 		
-		
-		// Adds all remaining matches to the match list
+		// Add all remaining matches to the match list
 		shuffledList.remove(Game.getInstance().getUserTeam());
 		day = 0;
-		int weeklyCounter = 1;
 		
 		for (int i = 0; i < shuffledList.size(); i++) {
 			
-			for (int j = 0; j < shuffledList.size(); j++) {
-				
-				if (i != j) {
+			for (int j = 0; j < (shuffledList.size()); j++) {
+				if (!(shuffledList.get(i) == shuffledList.get(j)) ) {
 					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(j).getId()));
 					idCounter++;
 					
-					// Go to next week
-					if (weeklyCounter < curLeague.weeklyMatches() ) {
+					// Up daycounter. Reset if last game day has passed
+					if (day == (7 * (Game.getInstance().getLeagues().get(0).teamMatches()-1))) {
+						day = 0;
+					}
+					else {
 						day += 7;
-						weeklyCounter = 1;
 					}
 				}
 			}
 		}
-		
 	}
 
 	/**
