@@ -222,10 +222,10 @@ public class Game {
 		for (int round = 0; round < (shuffledList.size()-1)*2; round++) {
 			for (int i = 0; i < n; i++) {
 				if (round % 2 == 0) {
-					System.out.println("Round "+round+", match: "+shuffledList.get(i).getName()+" vs. "+shuffledList.get(shuffledList.size()-i-1).getName());
+					//System.out.println("Round "+round+", match: "+shuffledList.get(i).getName()+" vs. "+shuffledList.get(shuffledList.size()-i-1).getName());
 					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(i).getId(), shuffledList.get(shuffledList.size()-i-1).getId()) );
 				} else {
-					System.out.println("ARound "+round+", match: "+shuffledList.get(shuffledList.size()-i-1).getName()+" vs. "+shuffledList.get(i).getName());
+					//System.out.println("ARound "+round+", match: "+shuffledList.get(shuffledList.size()-i-1).getName()+" vs. "+shuffledList.get(i).getName());
 					Game.getInstance().addMatch(new Match(idCounter, day, shuffledList.get(shuffledList.size()-i-1).getId(), shuffledList.get(i).getId()) );
 				}
 				idCounter++;

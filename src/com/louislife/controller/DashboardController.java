@@ -88,7 +88,15 @@ public class DashboardController extends ExplainableController implements Initia
 	@FXML protected void onClickNextGame(Event e) {
 
 		System.out.println("Next game");
+
+
+		// To end game: check if day is more than rounds
 		int day = Game.getInstance().getCurrentDay();
+		if (day > (Game.getInstance().getLeagues().get(0).getTeams().size()-1)*2*7) {
+			// End game pop up
+
+		}
+
 		for(int i = 0; i < Game.getInstance().getMatches().size(); i++){
 			if(Game.getInstance().getMatches().get(i).getDay() >= day && Game.getInstance().getMatches().get(i).getDay() < day+7){
 				Game.getInstance().getMatches().get(i).play(System.currentTimeMillis());
