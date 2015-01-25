@@ -7,17 +7,23 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
+import com.louislife.model.Player;
 import com.louislife.model.Team;
 import com.louislife.util.XMLParser;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -130,13 +136,45 @@ public class DashboardController extends ExplainableController implements Initia
 			while (reqteam == Game.getInstance().getUserTeam()) {
 				reqteam = Game.getInstance().getLeagues().get(0).getTeams().get(new Random().nextInt(Game.getInstance().getLeagues().get(0).getTeams().size()));
 			}
+			final Team fteam = reqteam;
 			// Reqteam is now a random team and not the users team
-			Label l = new Label("Louis, a transfer request has been made");
+			// Select random player to buy
+			Player p = user.getPlayers().get(new Random().nextInt(user.getPlayers().size()));
+
+			Label la= new Label();
+			la.setText("Louis, a transfer request has been made!");
+			la.setFont(Font.font("Avenir medium", FontWeight.BOLD, 20));
+			la.setTextFill(Color.WHITE);
+			int price = p.calculatePrice();
+			Label label2= new Label();
+			label2.setText("It's about "+p.getFirstname()+" "+p.getSurname()+",\n they would like to buy him for € "+p.calculatePrice());
+			label2.setFont(Font.font("Avenir medium", FontWeight.BOLD, 16));
+			label2.setTextFill(Color.WHITE);
+
+			HBox buttonsPane = new HBox();
+			Button accept = new Button("Accept");
+			accept.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					// Buy player
+					Game.getInstance().getUserTeam().setBalance(Game.getInstance().getUserTeam().getBalance()+price);
+					fteam.setBalance(fteam.getBalance() + price);
+					fteam.addPlayer(p);
+					Game.getInstance().getUserTeam().getPlayers().remove(p);
+
+					MainApplication.sendNextGame();
+				}
+			});
+			Button decline = new Button("Decline");
+			buttonsPane.getChildren().add(accept);
+			buttonsPane.getChildren().add(decline);
 
 			ArrayList<Node> list= new ArrayList<Node>();
-			list.add(l);
+			list.add(la);
+			list.add(label2);
+			list.add(buttonsPane);
 
-			MainApplication.makePopup(list, 500, 700);
+			MainApplication.makePopup(list, 750, 330);
 		}
 		
 		MainApplication.sendNextGame();
@@ -171,6 +209,12 @@ public class DashboardController extends ExplainableController implements Initia
 			list.add(la);
 			list.add(label2);
 			list.add(ldesc);
+
+			Label laab= new Label();
+			laab.setText("Home:");
+			laab.setFont(Font.font("Avenir medium", FontWeight.BOLD, 18));
+			laab.setTextFill(Color.WHITE);
+			list.add(laab);
 
 			for (int i = 0; i < m.getEvents_home().size(); i++) {
 				com.louislife.model.Event e = m.getEvents_home().get(i);
@@ -211,6 +255,12 @@ public class DashboardController extends ExplainableController implements Initia
 				list.add(p);
 			}
 
+			Label laa= new Label();
+			laa.setText("Away:");
+			laa.setFont(Font.font("Avenir medium", FontWeight.BOLD, 18));
+			laa.setTextFill(Color.WHITE);
+			list.add(laa);
+
 			for (int i = 0; i < m.getEvents_away().size(); i++) {
 				com.louislife.model.Event e = m.getEvents_away().get(i);
 				String label = e.getMinute() + ": " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getFirstname() + " " + Game.getInstance().getLeagues().get(0).findPlayer(e.getPlayer()).getSurname() + " ";
@@ -250,7 +300,7 @@ public class DashboardController extends ExplainableController implements Initia
 				p.setLayoutX(300);
 				list.add(p);
 			}
-			MainApplication.makePopup(list, 500, 450);
+			MainApplication.makePopup(list, 300, 330);
 
 		}
 
