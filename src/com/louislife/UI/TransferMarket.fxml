@@ -48,7 +48,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="Def" textFill="#1100ff" GridPane.columnIndex="2">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="122.0" text="DEF" textFill="#1100ff" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="Stam" textFill="#ffdb00" GridPane.columnIndex="1">
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="126.0" text="STAM" textFill="#ffdb00" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -68,19 +68,20 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="nameLabel" alignment="CENTER" prefHeight="96.0" prefWidth="379.0" text="Piet Jansen" textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
          </children>
       </GridPane>
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="566.0" layoutY="45.0" prefHeight="63.0" prefWidth="341.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
       <Slider fx:id="bidSlider" layoutX="617.0" layoutY="396.0" prefHeight="29.0" prefWidth="241.0" />
       <Button fx:id="bidButton" layoutX="670.0" layoutY="487.0" mnemonicParsing="false" text="Place Bid">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <TextField fx:id="bidField" layoutX="645.0" layoutY="322.0" text="\$0" />
+      <TextField fx:id="bidField" layoutX="656.0" layoutY="309.0" text="0" />
+      <Label layoutX="590.0" layoutY="314.0" prefHeight="16.0" prefWidth="62.0" text="Bid:     $" textFill="WHITE" />
    </children>
 </AnchorPane>

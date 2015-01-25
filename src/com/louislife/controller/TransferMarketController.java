@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class TransferMarketController implements Initializable,
 	@FXML
 	private ListView<String> playerList;
 	@FXML 
-	private Label bidField;
+	private TextField bidField;
 	
 	
 	
@@ -63,6 +64,27 @@ public class TransferMarketController implements Initializable,
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		bidField.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				
+				if (Integer.parseInt(bidField.getText())==0
+						||Integer.parseInt(bidField.getText())<0
+						||Integer.parseInt(bidField.getText())>Game.getInstance().getUserTeam().getBalance()) {
+					bidField.setText("0");
+				}
+				bidSlider.setValue((double)Integer.parseInt(bidField.getText()));
+
+				
+			}
+			
+		});
+
+			
+			
+			
 		teamsList.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
@@ -88,7 +110,7 @@ public class TransferMarketController implements Initializable,
 			public void changed(ObservableValue<? extends Number> observable,
 					Number oldValue, Number newValue) {
 				updateSlider();
-				bidField.setText("$"+Integer.toString(newValue.intValue()));
+				bidField.setText(Integer.toString(newValue.intValue()));
 				
 
 				
@@ -115,6 +137,7 @@ public class TransferMarketController implements Initializable,
 		}
 		
 	}
+
 	
 	public void updateTeamsList(){
 		
@@ -163,6 +186,12 @@ public class TransferMarketController implements Initializable,
 		attLabel.setText(Integer.toString((int)(selectedPlayer.getOffensiveScore())));
 		defLabel.setText(Integer.toString((int)(selectedPlayer.getDefensiveScore())));
 		stamLabel.setText(Integer.toString((int)(selectedPlayer.getStaminaScore())));
+		if(selectedPlayer.calculatePrice()<Game.getInstance().getUserTeam().getBalance())
+			bidField.setText(Integer.toString(selectedPlayer.calculatePrice()));
+		else
+			bidField.setText(Integer.toString(Game.getInstance().getUserTeam().getBalance()));
+		bidSlider.setValue((double)Integer.parseInt(bidField.getText()));
+
 		
 	}
 
