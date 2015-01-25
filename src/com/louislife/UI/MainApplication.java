@@ -73,7 +73,8 @@ public class MainApplication extends Application {
         popup.getContent().add(pane);
         
         popup.show(MainApplication.primaryStage);
-        popup.autoHideProperty().set(true);
+        System.out.println("POPUP");
+        //popup.autoHideProperty().set(true);
 		
 	}
 
