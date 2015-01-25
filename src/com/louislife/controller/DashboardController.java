@@ -1,6 +1,7 @@
 package com.louislife.controller;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
@@ -15,6 +16,7 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+import javafx.stage.Popup;
 import sun.applet.Main;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -91,6 +93,18 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 			}
 		}
 		Game.getInstance().nextWeek();
+
+		if (new Random().nextInt(1) == 0) {
+			// Random transfer request
+			final Popup popup = new Popup();
+			popup.setX(300);
+			popup.setY(200);
+
+			Label l = new Label("Louis, a transfer request has been made");
+			popup.getContent().add(l);
+
+			popup.show(teamLabel.getScene().getWindow());
+		}
 		
 		MainApplication.sendNextGame();
 
