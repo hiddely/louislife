@@ -1,20 +1,30 @@
 package com.louislife.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
 import com.louislife.util.XMLParser;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
+
 import sun.applet.Main;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,7 +35,7 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  */
 
-public class DashboardController implements Initializable, ControlledScreen, GamePlayListener {
+public class DashboardController extends explainedClass implements Initializable, ControlledScreen, GamePlayListener {
 
 	private static TabPane navigationPane;
 	ScreensController controller;
@@ -47,6 +57,9 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 		MainApplication.addListener(this);
 
 		updateDashboard();
+		if(!super.getExplained())
+			explain();
+		
 	}
 
 	public void updateDashboard() {
@@ -128,5 +141,25 @@ public class DashboardController implements Initializable, ControlledScreen, Gam
 	@Override
 	public void onGamePlayed() {
 		updateDashboard();
+	}
+
+	@Override
+	public void explain() {
+		Label label= new Label();
+        label.setText("Welcome Louis!");
+        Font myFont = Font.font(null, FontWeight.BOLD, 20);
+        label.setFont(myFont);
+        label.setTextFill(Color.WHITE);
+        Label label2= new Label();
+        label2.setText("Manage your team, and become champion!");
+        Font myFont2 = Font.font(null, FontWeight.BOLD, 12);
+        label2.setFont(myFont2);
+        label2.setTextFill(Color.WHITE);
+        ArrayList<Node> list= new ArrayList<Node>();
+        list.add(label);
+        list.add(label2);
+        MainApplication.makePopup(list);
+        super.setExplained(true);
+        
 	}
 }

@@ -57,13 +57,13 @@ public class Player {
 	}
 	
 	public int calculatePrice(){
-		float res= (offensiveRating+defensiveRating+stamina); //average value
+		double res= (offensiveRating+defensiveRating+stamina); //average value
 			if (offensiveRating>60) //account for excellation
-				res=res+offensiveRating;
+				res=res+offensiveRating*0.8;
 			if (defensiveRating>60)
-				res=res+defensiveRating;
+				res=res+defensiveRating*0.8;
 			if (stamina>60)
-				res=res+stamina;
+				res=res+stamina*0.8;
 
 			res=res/200;
 			

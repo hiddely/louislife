@@ -1,7 +1,9 @@
 package com.louislife.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -12,8 +14,20 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Popup;
 
 import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
@@ -43,6 +57,8 @@ public class TransferMarketController implements Initializable,
 	private ListView<String> playerList;
 	@FXML 
 	private TextField bidField;
+	@FXML
+	private Button bidButton;
 	
 	
 	
@@ -102,6 +118,16 @@ public class TransferMarketController implements Initializable,
 			}
 		});
 		
+		bidButton.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				placeBid();
+			}
+			
+			
+		});
+		
 		bidSlider.setMin(0);
 		bidSlider.setMax(1);
 		bidSlider.valueProperty().addListener(new ChangeListener<Number>(){
@@ -154,7 +180,36 @@ public class TransferMarketController implements Initializable,
 				
 		
 	}
-	
+	public void placeBid(){
+
+		int index = playerList.getSelectionModel().getSelectedIndex();
+		if (index!=-1){
+			Team selectedTeam= teams.get(teamsList.getSelectionModel().getSelectedIndex());
+			Player selectedPlayer= selectedTeam.getPlayers().get(index);
+			if (selectedTeam.acceptsBid(selectedPlayer, Integer.parseInt(bidField.getText()))){
+				Game.getInstance().getUserTeam().setBalance(Game.getInstance().getUserTeam().getBalance()-Integer.parseInt(bidField.getText()));
+				selectedTeam.setBalance(selectedTeam.getBalance()+Integer.parseInt(bidField.getText()));
+				Game.getInstance().getUserTeam().addPlayer(selectedPlayer);
+				selectedTeam.getPlayers().remove(selectedPlayer);
+				Label label= new Label();
+		        label.setText("We'll accept that offer Louis,\nbut only because you're so handsome!");
+		        Font myFont = Font.font(null, FontWeight.BOLD, 20);
+		        label.setFont(myFont);
+		        label.setTextFill(Color.GREEN);
+		        ArrayList<Node> list= new ArrayList<Node>();
+		        list.add(label);
+		        MainApplication.makePopup(list);
+			        
+				MainApplication.sendNextGame();
+				
+			   
+		        System.out.println("Transfer completed");
+
+			}
+		}
+		
+		
+	}
 	
 	public void updatePlayerList(){
 		
