@@ -1,11 +1,8 @@
 package com.louislife.controller;
 
 import java.net.URL;
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
 import java.util.Random;
->>>>>>> FETCH_HEAD
 import java.util.ResourceBundle;
 
 import com.louislife.model.Match;
@@ -28,11 +25,8 @@ import com.louislife.UI.ControlledScreen;
 import com.louislife.UI.MainApplication;
 import com.louislife.UI.ScreensController;
 import com.louislife.model.Game;
-<<<<<<< HEAD
 
-=======
 import javafx.stage.Popup;
->>>>>>> FETCH_HEAD
 import sun.applet.Main;
 
 import javax.xml.parsers.ParserConfigurationException;
